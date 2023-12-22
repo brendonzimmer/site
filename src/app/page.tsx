@@ -1,68 +1,88 @@
 import Image from "next/image";
 import { cn } from "@/utils";
 import Link from "next/link";
+import {
+  description,
+  type Experience,
+  experiences,
+  type Project,
+  projects,
+} from "@/data";
+import { GithubIcon, LinkIcon, LinkedinIcon } from "@/icons";
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-2 p-24 gap-4">
+    <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr_3fr] gap-4 p-24">
       <header className="sticky top-24 h-min">
-        <About />
-        <Nav />
+        {/* Info */}
+        <h1 className="text-5xl font-bold tracking-tight text-auto+">
+          <Link href={"/"}>Brendon Zimmer</Link>
+        </h1>
+        <h2 className="pt-3 text-lg font-medium text-auto+">
+          Undergraduate Full-Stack Engineer
+        </h2>
+        <p className="mt-4 max-w-xs">
+          I&apos;m a software engineer in Los Angeles. I&apos;m currently
+          working on{" "}
+          <InlineLink href="https://ofcourse.fyi">ofc.fyi</InlineLink>. I&apos;m
+          interested in distributed systems, programming languages, and
+          developer tools.
+        </p>
+
+        {/* Social Links */}
+        <ul className="flex gap-4 py-4">
+          <li>
+            <InlineLink
+              href="https://linkedin.com/in/brendonzimmer"
+              className="text-auto-"
+            >
+              <LinkedinIcon className="size-6" />
+            </InlineLink>
+          </li>
+          <li>
+            <InlineLink
+              href="https://github.com/brendonzimmer"
+              className="text-auto-"
+            >
+              <GithubIcon className="size-6" />
+            </InlineLink>
+          </li>
+        </ul>
       </header>
-      <main className="flex flex-col gap-36">
-        <Section id="about" className="space-y-4 text-balance">
-          <Description />
+
+      <main className="flex flex-col gap-12">
+        {/* Description */}
+        <Section id="about">
+          <div className="flex flex-col gap-4">
+            {description.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
         </Section>
 
+        <Separator />
+
+        {/* Experience */}
         <Section id="experience">
-          <div>
+          <div className="flex flex-col gap-12">
             <ol className="flex flex-col gap-12">
-              <li>
-                <Experience
-                  date="Jan 2023 — Present"
-                  roles={[
-                    { role: "Director of Recruitment", current: true },
-                    { role: "Engineer & Consultant", current: true },
-                  ]}
-                  company={{ name: "TroyLabs", url: "https://troylabs.vc" }}
-                  skills={["React", "TypeScript", "Node.js", "GraphQL"]}
-                  description="TroyLabs is a venture platform at USC, empowering the Trojan community to transform ideas into reality with funding resources, startup guidance, and community involvement."
-                />
-              </li>
-              <li>
-                <Experience
-                  date="Jan 2023 — Present"
-                  roles={[
-                    { role: "Director of Recruitment", current: true },
-                    { role: "Engineer & Consultant", current: true },
-                  ]}
-                  company={{ name: "TroyLabs", url: "https://troylabs.vc" }}
-                  skills={["React", "TypeScript", "Node.js", "GraphQL"]}
-                  description="TroyLabs is a venture platform at USC, empowering the Trojan community to transform ideas into reality with funding resources, startup guidance, and community involvement."
-                />
-              </li>
-              <li>
-                <Experience
-                  date="Jan 2023 — Present"
-                  roles={[
-                    { role: "Director of Recruitment", current: true },
-                    { role: "Engineer & Consultant", current: true },
-                  ]}
-                  company={{ name: "TroyLabs", url: "https://troylabs.vc" }}
-                  skills={["React", "TypeScript", "Node.js", "GraphQL"]}
-                  description="TroyLabs is a venture platform at USC, empowering the Trojan community to transform ideas into reality with funding resources, startup guidance, and community involvement."
-                />
-              </li>
+              {experiences.map((experience) => (
+                <li key={`${experience.company.name}_${experience.date}`}>
+                  <Experience {...experience} />
+                </li>
+              ))}
             </ol>
 
-            <div className="mt-12">
+            {/* Resume */}
+            <div className="flex flex-col gap-1">
               <Link
-                className="inline-flex items-center leading-tight font-semibold text-slate-200 group"
-                aria-label="View Full Résumé"
+                className="group/link inline-flex items-center font-semibold leading-tight text-auto+"
+                aria-label="View Resume"
                 href="/resume.pdf"
+                target="_blank"
               >
-                <span className="border-b border-transparent pb-px transition group-hover:border-teal-300 motion-reduce:transition-none">
-                  View Full Résumé
+                <span className="border-b border-transparent pb-px transition group-hover/link:border-clr motion-reduce:transition-none">
+                  View Resume
                 </span>
                 <span className="whitespace-nowrap">
                   <LinkArrowRightIcon />
@@ -72,248 +92,113 @@ export default function Home() {
           </div>
         </Section>
 
+        <Separator />
+
+        {/* Projects */}
         <Section id="projects">
           <ol className="flex flex-col gap-12">
-            <li>
-              <Project
-                title="Factor"
-                description="Find the prime factorization of a number!"
-                url="https://github.com/brendonzimmer/factor"
-                skills={["Rust", "CLI", "Trial Division"]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Music Garage (v1)"
-                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
-                url="https://v1.music.brendon.app"
-                skills={[
-                  "Spotify API",
-                  "Apple Music API",
-                  "OAuth",
-                  "React",
-                  "TypeScript",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "Vercel",
-                ]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Factor"
-                description="Find the prime factorization of a number!"
-                url="https://github.com/brendonzimmer/factor"
-                skills={["Rust", "CLI", "Trial Division"]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Music Garage (v1)"
-                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
-                url="https://v1.music.brendon.app"
-                skills={[
-                  "Spotify API",
-                  "Apple Music API",
-                  "OAuth",
-                  "React",
-                  "TypeScript",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "Vercel",
-                ]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Factor"
-                description="Find the prime factorization of a number!"
-                url="https://github.com/brendonzimmer/factor"
-                skills={["Rust", "CLI", "Trial Division"]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Music Garage (v1)"
-                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
-                url="https://v1.music.brendon.app"
-                skills={[
-                  "Spotify API",
-                  "Apple Music API",
-                  "OAuth",
-                  "React",
-                  "TypeScript",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "Vercel",
-                ]}
-              />
-            </li>
-            <li>
-              <Project
-                title="Music Garage (v1)"
-                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
-                url="https://v1.music.brendon.app"
-                skills={[
-                  "Spotify API",
-                  "Apple Music API",
-                  "OAuth",
-                  "React",
-                  "TypeScript",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "Vercel",
-                ]}
-              />
-            </li>
+            {projects.map((project) => (
+              <li key={`${project.title}_${project.links[0].url}`}>
+                <Project {...project} />
+              </li>
+            ))}
           </ol>
         </Section>
+
+        <Separator />
+
+        {/*  Footer */}
+        <footer className="flex flex-col gap-4">
+          {/* <div className="flex items-center">
+            <Separator className="grow" />
+            <span className="shrink px-4">Content</span>
+            <Separator className="grow" />
+          </div> */}
+          <h3>
+            Coded in Visual Studio Code. Built with Next.js and Tailwind CSS.
+            Deployed with Vercel. Inspired by{" "}
+            <InlineLink href="https://brittanychiang.com/">
+              Brittany Chiang
+            </InlineLink>
+            .
+          </h3>
+        </footer>
       </main>
     </div>
   );
 }
 
-function About() {
+function InlineLink({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <>
-      <h1 className="text-5xl font-bold tracking-tight text-slate-200">
-        <Link href={"/"}>Brendon Zimmer</Link>
-      </h1>
-      <h2 className="pt-3 text-lg font-medium text-slate-200 text-balance">
-        Undergraduate Full-Stack Engineer
-      </h2>
-      <p className="mt-4 max-w-xs text-balance">
-        I&apos;m a software engineer in Los Angeles. I&apos;m currently working
-        on <a href="https://ofcourse.fyi">ofc.fyi</a>. I&apos;m interested in
-        distributed systems, programming languages, and developer tools.
-      </p>
-    </>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="block">
-      <ul className="mt-16 w-max">
-        <li>
-          <Link className="group flex items-center py-3" href={"#about"}>
-            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-              About
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link className="group flex items-center py-3" href={"#experience"}>
-            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-              Experience
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link className="group flex items-center py-3" href={"#projects"}>
-            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-              Projects
-            </span>
-          </Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-function Description() {
-  return (
-    <>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ipsam
-        provident temporibus esse similique voluptates explicabo ex impedit
-        iusto, nostrum exercitationem, enim assumenda modi blanditiis quasi ut.
-        Error, dicta doloribus. Officia corrupti esse neque iusto reprehenderit
-        non. Placeat ab, numquam aut sapiente corporis omnis similique
-        aspernatur commodi est aliquid illo minima. Quia deserunt corrupti quo
-        amet earum cupiditate repellat ipsam.
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        quas nihil illo ipsam, odit maiores, eaque explicabo unde reprehenderit
-        omnis autem eius. Pariatur natus illum praesentium molestias possimus
-        neque vitae.
-      </p>
-    </>
+    <Link
+      href={href}
+      target="_blank"
+      className={cn(
+        "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
+        className,
+      )}
+    >
+      {children}
+    </Link>
   );
 }
 
 function Experience({
   date,
-  roles,
+  roles: [role, ...roles],
   company,
   description,
-  links,
   skills,
-}: {
-  date: string;
-  roles: [
-    { role: string; current: boolean },
-    ...{ role: string; current: boolean }[]
-  ];
-  company: { name: string; url: string };
-  description?: string;
-  links?: { name: string; url: string }[];
-  skills?: string[];
-}) {
-  const [curr_role, ...rest_roles] = roles;
-
+}: Experience) {
   return (
-    <div className="group grid grid-cols-[1fr_4fr]">
+    <div className="grid grid-cols-[1fr_7fr]">
       {/* Date */}
-      <div className="mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 text-balance">
+      <div className="mt-1 text-pretty pr-2 text-xs font-semibold uppercase text-clr">
         {date}
       </div>
 
       <div>
-        {/* Roles + Company */}
-        <h3>
-          <Link
-            href={company.url}
-            className="font-medium group/link items-baseline leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
-          >
-            {curr_role.role} · {company.name}
+        <InlineLink
+          href={company.url}
+          className="group/link items-baseline font-semibold leading-tight"
+        >
+          {/* Roles + Company */}
+          <h3>
+            {role.role}
+            <span className="text-xs italic"> at </span>
+            {company.name}
             <LinkArrowUpRightIcon />
-          </Link>
-          {rest_roles.map(({ role, current }) => (
-            <div
-              key={role}
-              className={cn(
-                "text-slate-500"
-                // current && "text-slate-200 font-medium leading-tight"
-              )}
-            >
-              {role}
-            </div>
-          ))}
-        </h3>
-
-        {/* Description */}
-        {description && <p className="mt-2 text-sm">{description}</p>}
-
-        {/* Links */}
-        {links && (
-          <ul className="mt-2 flex flex-wrap">
-            {links.map(({ name, url }) => (
-              <li key={url} className="mr-1.5 mt-2">
-                <Link href={url}>{name}</Link>
-              </li>
+            {roles.map(({ role, current }) => (
+              <div
+                key={role}
+                className={cn(
+                  "text-auto-",
+                  current && "font-semibold leading-tight text-auto+",
+                )}
+              >
+                {role}
+              </div>
             ))}
-          </ul>
-        )}
+          </h3>
+
+          {/* Description */}
+          {description && (
+            <p className="mt-2 text-sm text-auto">{description}</p>
+          )}
+        </InlineLink>
 
         {/* Skills */}
         {skills && (
           <ul className="mt-2 flex flex-wrap">
-            {skills.map(tag => (
+            {skills.map((tag) => (
               <li key={tag} className="mr-1.5 mt-2">
                 <Tag item={tag} />
               </li>
@@ -325,44 +210,33 @@ function Experience({
   );
 }
 
-function Project({
-  img,
-  title,
-  url,
-  description,
-  skills,
-}: {
-  img?: { url: string; alt: string };
-  title: string;
-  url: string;
-  description: string;
-  skills?: string[];
-}) {
+function Project({ title, description, skills, links }: Project) {
   return (
-    <div className={cn("group", img && "grid grid-cols-[1fr_4fr]")}>
-      {/* Thumbnail */}
-      {img && <Image src={img.url} alt={img.alt} />}
+    <div className={cn("grid grid-cols-[1fr_7fr]")}>
+      {/* Links */}
+      <div className="mt-0.5 flex flex-col gap-0.5 pr-2 text-xs font-semibold uppercase">
+        {links.map(({ name, url }) => (
+          <InlineLink key={name} href={url} className="flex gap-1 text-clr">
+            <LinkIcon className="size-[1rem]" />
+            {name}
+          </InlineLink>
+        ))}
+      </div>
 
-      <div>
+      <div className="flex flex-col gap-2">
         {/* Title */}
-        <h3>
-          <Link
-            href={url}
-            className="font-medium group/link items-baseline leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
-          >
-            {title}
-            <LinkArrowUpRightIcon />
-          </Link>
+        <h3 className="items-baseline font-medium leading-tight text-auto+">
+          {title}
         </h3>
 
         {/* Description */}
-        <p className="mt-2 text-sm">{description}</p>
+        <p className="text-sm">{description}</p>
 
         {/* Skills */}
         {skills && (
-          <ul className="mt-2 flex flex-wrap">
-            {skills.map(tag => (
-              <li key={tag} className="mr-1.5 mt-2">
+          <ul className="flex flex-wrap gap-2">
+            {skills.map((tag) => (
+              <li key={tag}>
                 <Tag item={tag} />
               </li>
             ))}
@@ -375,7 +249,7 @@ function Project({
 
 function Tag({ item }: { item: string }) {
   return (
-    <div className="rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 text-teal-300">
+    <div className="rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
       {item}
     </div>
   );
@@ -386,12 +260,16 @@ function Section({
   children,
   className,
 }: {
-  id?: string;
+  id: string;
   children?: React.ReactNode;
   className?: string;
 }) {
   return (
-    <section id={id} className={cn("scroll-mt-24", className)}>
+    <section id={id} className={cn(className)}>
+      <div className="flex w-min flex-col pb-1 lg:hidden">
+        <h2 className="text-xs font-bold uppercase text-auto+">{id}</h2>
+        {/* <Separator /> */}
+      </div>
       {children}
     </section>
   );
@@ -403,7 +281,7 @@ function LinkArrowUpRightIcon() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+      className="ml-1 inline-block h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none"
       aria-hidden="true"
     >
       <path
@@ -421,7 +299,7 @@ function LinkArrowRightIcon() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="ml-1 inline-block h-4 w-4 shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none"
+      className="ml-1 inline-block h-4 w-4 shrink-0 -translate-y-px transition-transform group-hover/link:translate-x-2 group-focus-visible/link:translate-x-2 motion-reduce:transition-none"
       aria-hidden="true"
     >
       <path
@@ -430,5 +308,11 @@ function LinkArrowRightIcon() {
         clipRule="evenodd"
       ></path>
     </svg>
+  );
+}
+
+function Separator({ className }: { className?: string }) {
+  return (
+    <hr className={cn("w-full border-[0.5px] border-auto", className)}></hr>
   );
 }

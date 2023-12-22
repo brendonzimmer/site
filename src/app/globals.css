@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-slate-900 text-slate-400;
-  @apply font-sans;
-  @apply scroll-smooth;
+  @apply bg-auto-- text-auto;
+  @apply font-mono;
+  
+  @apply text-balance;
 }
