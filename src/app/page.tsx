@@ -12,7 +12,7 @@ import { GithubIcon, LinkIcon, LinkedinIcon } from "@/icons";
 
 export default function Home() {
   return (
-    <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr_3fr] gap-4 p-24">
+    <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr_3fr] gap-4 px-24 pb-12 pt-24">
       <header className="sticky top-24 h-min">
         {/* Info */}
         <h1 className="text-5xl font-bold tracking-tight text-auto+">
@@ -50,7 +50,9 @@ export default function Home() {
         </ul>
       </header>
 
-      <main className="flex flex-col gap-12">
+      <main className="flex flex-col gap-8 pt-4">
+        <SeparatorWith text="About" />
+
         {/* Description */}
         <Section id="about">
           <div className="flex flex-col gap-4">
@@ -60,7 +62,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Separator />
+        <SeparatorWith text="Experience" />
 
         {/* Experience */}
         <Section id="experience">
@@ -92,7 +94,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Separator />
+        <SeparatorWith text="Projects" />
 
         {/* Projects */}
         <Section id="projects">
@@ -109,11 +111,6 @@ export default function Home() {
 
         {/*  Footer */}
         <footer className="flex flex-col gap-4">
-          {/* <div className="flex items-center">
-            <Separator className="grow" />
-            <span className="shrink px-4">Content</span>
-            <Separator className="grow" />
-          </div> */}
           <h3>
             Coded in Visual Studio Code. Built with Next.js and Tailwind CSS.
             Deployed with Vercel. Inspired by{" "}
@@ -166,34 +163,32 @@ function Experience({
       </div>
 
       <div>
-        <InlineLink
-          href={company.url}
-          className="group/link items-baseline font-semibold leading-tight"
-        >
-          {/* Roles + Company */}
-          <h3>
+        {/* Roles + Company */}
+        <h3>
+          <InlineLink
+            href={company.url}
+            className="group/link items-baseline font-semibold leading-tight"
+          >
             {role.role}
             <span className="text-xs italic"> at </span>
             {company.name}
-            <LinkArrowUpRightIcon />
-            {roles.map(({ role, current }) => (
-              <div
-                key={role}
-                className={cn(
-                  "text-auto-",
-                  current && "font-semibold leading-tight text-auto+",
-                )}
-              >
-                {role}
-              </div>
-            ))}
-          </h3>
+            <LinkArrowUpRightIcon className="ml-0.5 inline-block" />
+          </InlineLink>
+          {roles.map(({ role, current }) => (
+            <div
+              key={role}
+              className={cn(
+                "text-auto-",
+                current && "font-semibold leading-tight text-auto+",
+              )}
+            >
+              {role}
+            </div>
+          ))}
+        </h3>
 
-          {/* Description */}
-          {description && (
-            <p className="mt-2 text-sm text-auto">{description}</p>
-          )}
-        </InlineLink>
+        {/* Description */}
+        {description && <p className="mt-2 text-sm text-auto">{description}</p>}
 
         {/* Skills */}
         {skills && (
@@ -275,13 +270,16 @@ function Section({
   );
 }
 
-function LinkArrowUpRightIcon() {
+function LinkArrowUpRightIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="ml-1 inline-block h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none"
+      className={cn(
+        "size-4 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none",
+        className,
+      )}
       aria-hidden="true"
     >
       <path
@@ -314,5 +312,30 @@ function LinkArrowRightIcon() {
 function Separator({ className }: { className?: string }) {
   return (
     <hr className={cn("w-full border-[0.5px] border-auto", className)}></hr>
+  );
+}
+
+function SeparatorWith({
+  text,
+  className,
+  pt,
+}: {
+  text: string;
+  pt?: `${string}-${number}`;
+  className?: string;
+}) {
+  return (
+    <div className={"flex items-center " + pt}>
+      <Separator className="grow" />
+      <span
+        className={cn(
+          "shrink px-4 text-sm font-semibold uppercase text-clr",
+          className,
+        )}
+      >
+        {text}
+      </span>
+      <Separator className="grow" />
+    </div>
   );
 }

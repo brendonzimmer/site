@@ -75,10 +75,10 @@ export const experiences: Experience[] = [
     company: { name: "METRANS TSA", url: "https://www.metrans.org" },
     skills: ["HTML", "CSS", "JavaScript", "Squarespace"],
   },
-];
+] satisfies Experience[];
 
 export type Project = {
-  img: { url: string; alt: string };
+  img?: { url: string; alt: string };
   links: [{ name: string; url: string }, ...{ name: string; url: string }[]];
   title: string;
   description: string;
@@ -86,7 +86,17 @@ export type Project = {
 };
 export const projects: Project[] = [
   {
-    title: "Music Garage (v1)",
+    title: "USC Course Notifier",
+    description:
+      "Addressed the challenge lowerclassmen face in enrolling for high-demand USC courses by developing a real-time seat availability checker. Built a Node.js app with TypeScript that monitors specific USC course sections for seat fluctuations, providing immediate notifications via Twilio SMS or Call. Initiated with Playwright for data scraping but transitioned to a fetch-based method resulting in a sub-2-second notification time and saving over 20x memory. This project laid the groundwork for the inception of ofCourse, my organization aimed at improving course exploration at USC, furthering my mission to assist students with course enrollment.",
+    skills: ["USC API", "Playwright", "TypeScript", "Google Cloud", "Twilio"],
+    links: [
+      { name: "Code", url: "" },
+      { name: "Article", url: "" },
+    ],
+  },
+  {
+    title: "Music Playlist Transfer Service (v1)",
     description:
       "A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options.",
     skills: [
@@ -101,15 +111,75 @@ export const projects: Project[] = [
     ],
     img: { url: "/mg.png", alt: "Music Garage" },
     links: [
-      { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
       { name: "Site", url: "https://v1.music.brendon.app" },
+      { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
+      { name: "Article", url: "" },
     ],
   },
   {
-    title: "Factor",
-    description: "Find the prime factorization of a number!",
+    title: "Paxos-based Sharded RSM Key-Value Service",
+    description:
+      "Built multi-Paxos consensus protocol to facilitate distributed decision-making in sharded network. Designed a resilient Paxos Replicated State Machine (RSM) library, abstracting the Paxos layer and ensuring consistent replication across a distributed system.Leveraged my type-agnostic PaxosRSM library to build a robust and scalable Key-Value Store, ensuring efficient data retrieval and updates.",
+    links: [
+      { name: "Code", url: "" },
+      { name: "Article", url: "" },
+    ],
+    skills: ["Golang", "Paxos", "Distributed Systems", "RSMs", "RPCs"],
+  },
+  {
+    title: "factor",
+    description:
+      "Developed as a way to learn the Rust programming language. A CLI tool designed to derive the prime factors of any 64-bit number. Easy to use and quick results.",
     skills: ["Rust", "CLI", "Algorithms"],
     img: { url: "/factor.png", alt: "Factor" },
-    links: [{ name: "Code", url: "https://github.com/brendonzimmer/factor" }],
+    links: [
+      { name: "Code", url: "https://github.com/brendonzimmer/factor" },
+      { name: "Article", url: "" },
+    ],
   },
-];
+  {
+    title: "ftov",
+    description: "A Rust-based file-to-video encoding and decoding library!",
+    skills: ["Rust", "CLI", "FFmpeg", "Iterators"],
+    links: [
+      { name: "Code", url: "https://github.com/brendonzimmer/ftov/tree/bw" },
+      { name: "Article", url: "" },
+    ],
+  },
+  {
+    title: "status",
+    description: "A fun way to share your status with friends and family!",
+    skills: [
+      "TypeScript",
+      "Next.js",
+      "Vercel",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Prisma",
+    ],
+    links: [
+      { name: "Code", url: "https://github.com/brendonzimmer/status" },
+      { name: "Article", url: "" },
+    ],
+  },
+  {
+    title: "Concordance",
+    description:
+      'An art project based on the short story "A Concordance of One\'s Life" by Jim Nelson. Using three.js and p5.js. Final project for GESM 110.',
+    skills: ["JavaScript", "Three.js", "p5.js"],
+    links: [
+      { name: "Site", url: "https://concordance.brendon.app" },
+      { name: "Code", url: "https://github.com/brendonzimmer/concordance" },
+    ],
+  },
+  {
+    title: "Semationary",
+    description:
+      'A crowd-sourced dictionary of semagrams, based of off "The Story of Your Life" by Ted Chiang. Project for USC GESM 110.',
+    skills: ["TypeScript", "Next.js", "Tailwind CSS", "Vercel"],
+    links: [
+      { name: "Site", url: "https://semagrams.brendon.app" },
+      { name: "Code", url: "https://github.com/brendonzimmer/semagrams" },
+    ],
+  },
+] satisfies Project[];
