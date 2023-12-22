@@ -97,8 +97,8 @@ function About() {
         Undergraduate Full-Stack Engineer
       </h2>
       <p className="mt-4 max-w-xs text-balance">
-        I'm a software engineer in Los Angeles. I'm currently working on{" "}
-        <a href="https://ofcourse.fyi">ofc.fyi</a>. I'm interested in
+        I&apos;m a software engineer in Los Angeles. I&apos;m currently working
+        on <a href="https://ofcourse.fyi">ofc.fyi</a>. I&apos;m interested in
         distributed systems, programming languages, and developer tools.
       </p>
     </>
