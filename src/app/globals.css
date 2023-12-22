@@ -5,4 +5,5 @@
 :root {
   @apply bg-slate-900 text-slate-400;
   @apply font-sans;
+  @apply scroll-smooth;
 }

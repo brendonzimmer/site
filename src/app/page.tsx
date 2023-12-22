@@ -5,12 +5,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="grid grid-cols-2 p-24 gap-4">
-      <aside className="sticky top-24 h-min">
+      <header className="sticky top-24 h-min">
         <About />
-        <Link href={"#about"}>About</Link>
-        <Link href={"#experience"}>Experience</Link>
-        <Link href={"#projects"}>Projects</Link>
-      </aside>
+        <Nav />
+      </header>
       <main className="flex flex-col gap-36">
         <Section id="about" className="space-y-4 text-balance">
           <Description />
@@ -75,12 +73,100 @@ export default function Home() {
         </Section>
 
         <Section id="projects">
-          <Project
-            title="Factor"
-            description="Find the prime factorization of a number!"
-            url="https://github.com/brendonzimmer/factor"
-            skills={["Rust", "CLI", "Trial Division"]}
-          />
+          <ol className="flex flex-col gap-12">
+            <li>
+              <Project
+                title="Factor"
+                description="Find the prime factorization of a number!"
+                url="https://github.com/brendonzimmer/factor"
+                skills={["Rust", "CLI", "Trial Division"]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Music Garage (v1)"
+                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
+                url="https://v1.music.brendon.app"
+                skills={[
+                  "Spotify API",
+                  "Apple Music API",
+                  "OAuth",
+                  "React",
+                  "TypeScript",
+                  "Next.js",
+                  "Tailwind CSS",
+                  "Vercel",
+                ]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Factor"
+                description="Find the prime factorization of a number!"
+                url="https://github.com/brendonzimmer/factor"
+                skills={["Rust", "CLI", "Trial Division"]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Music Garage (v1)"
+                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
+                url="https://v1.music.brendon.app"
+                skills={[
+                  "Spotify API",
+                  "Apple Music API",
+                  "OAuth",
+                  "React",
+                  "TypeScript",
+                  "Next.js",
+                  "Tailwind CSS",
+                  "Vercel",
+                ]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Factor"
+                description="Find the prime factorization of a number!"
+                url="https://github.com/brendonzimmer/factor"
+                skills={["Rust", "CLI", "Trial Division"]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Music Garage (v1)"
+                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
+                url="https://v1.music.brendon.app"
+                skills={[
+                  "Spotify API",
+                  "Apple Music API",
+                  "OAuth",
+                  "React",
+                  "TypeScript",
+                  "Next.js",
+                  "Tailwind CSS",
+                  "Vercel",
+                ]}
+              />
+            </li>
+            <li>
+              <Project
+                title="Music Garage (v1)"
+                description="A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options."
+                url="https://v1.music.brendon.app"
+                skills={[
+                  "Spotify API",
+                  "Apple Music API",
+                  "OAuth",
+                  "React",
+                  "TypeScript",
+                  "Next.js",
+                  "Tailwind CSS",
+                  "Vercel",
+                ]}
+              />
+            </li>
+          </ol>
         </Section>
       </main>
     </div>
@@ -102,6 +188,39 @@ function About() {
         distributed systems, programming languages, and developer tools.
       </p>
     </>
+  );
+}
+
+function Nav() {
+  return (
+    <nav className="block">
+      <ul className="mt-16 w-max">
+        <li>
+          <Link className="group flex items-center py-3" href={"#about"}>
+            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              About
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link className="group flex items-center py-3" href={"#experience"}>
+            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              Experience
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link className="group flex items-center py-3" href={"#projects"}>
+            <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              Projects
+            </span>
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
@@ -288,9 +407,9 @@ function LinkArrowUpRightIcon() {
       aria-hidden="true"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
     </svg>
   );
@@ -306,9 +425,9 @@ function LinkArrowRightIcon() {
       aria-hidden="true"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
     </svg>
   );
