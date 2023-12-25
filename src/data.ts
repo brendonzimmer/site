@@ -83,6 +83,7 @@ export type Project = {
   title: string;
   description: string;
   skills?: string[];
+  feature: boolean;
 };
 export const projects: Project[] = [
   {
@@ -94,6 +95,7 @@ export const projects: Project[] = [
       { name: "Code", url: "" },
       { name: "Article", url: "" },
     ],
+    feature: true,
   },
   {
     title: "Music Playlist Transfer Service (v1)",
@@ -115,6 +117,7 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
       { name: "Article", url: "" },
     ],
+    feature: true,
   },
   {
     title: "Paxos-based Sharded RSM Key-Value Service",
@@ -125,6 +128,7 @@ export const projects: Project[] = [
       { name: "Article", url: "" },
     ],
     skills: ["Golang", "Paxos", "Distributed Systems", "RSMs", "RPCs"],
+    feature: true,
   },
   {
     title: "factor",
@@ -136,6 +140,7 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/factor" },
       { name: "Article", url: "" },
     ],
+    feature: true,
   },
   {
     title: "ftov",
@@ -145,6 +150,7 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/ftov/tree/bw" },
       { name: "Article", url: "" },
     ],
+    feature: true,
   },
   {
     title: "status",
@@ -161,6 +167,7 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/status" },
       { name: "Article", url: "" },
     ],
+    feature: false,
   },
   {
     title: "Concordance",
@@ -171,6 +178,7 @@ export const projects: Project[] = [
       { name: "Site", url: "https://concordance.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/concordance" },
     ],
+    feature: false,
   },
   {
     title: "Semationary",
@@ -181,5 +189,6 @@ export const projects: Project[] = [
       { name: "Site", url: "https://semagrams.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/semagrams" },
     ],
+    feature: false,
   },
 ] satisfies Project[];

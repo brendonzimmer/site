@@ -1,0 +1,40 @@
+import { Description } from "./pure/description";
+import { InlineLink } from "./pure/inline_link";
+import { type Project } from "@/data";
+import { LinkIcon } from "@/icons";
+import { Skills } from "./skills";
+
+export function Project({ title, description, skills, links }: Project) {
+  return (
+    <div className={"grid grid-cols-[1fr_7fr]"}>
+      {/* Links */}
+      <Links items={links} />
+
+      <div className="flex flex-col gap-2">
+        {/* Title */}
+        <h3 className="items-baseline font-medium leading-tight text-auto+">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <Description text={description} />
+
+        {/* Skills */}
+        <Skills items={skills} />
+      </div>
+    </div>
+  );
+}
+
+function Links({ items }: { items: Project["links"] }) {
+  return (
+    <div className="mt-0.5 flex flex-col gap-0.5 pr-2 text-xs font-semibold uppercase">
+      {items.map(({ name, url }) => (
+        <InlineLink key={name} href={url} className="flex gap-1 text-clr">
+          <LinkIcon className="size-[1rem]" />
+          {name}
+        </InlineLink>
+      ))}
+    </div>
+  );
+}
