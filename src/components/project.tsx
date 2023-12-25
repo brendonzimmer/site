@@ -6,7 +6,7 @@ import { Skills } from "./skills";
 
 export function Project({ title, description, skills, links }: Project) {
   return (
-    <div className={"grid grid-cols-[1fr_7fr]"}>
+    <div className="text-pretty lg:grid lg:grid-cols-[1fr_7fr]">
       {/* Links */}
       <Links items={links} />
 
@@ -28,7 +28,7 @@ export function Project({ title, description, skills, links }: Project) {
 
 function Links({ items }: { items: Project["links"] }) {
   return (
-    <div className="mt-0.5 flex flex-col gap-0.5 pr-2 text-xs font-semibold uppercase">
+    <div className="flex gap-2 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2">
       {items.map(({ name, url }) => (
         <InlineLink key={name} href={url} className="flex gap-1 text-clr">
           <LinkIcon className="size-[1rem]" />

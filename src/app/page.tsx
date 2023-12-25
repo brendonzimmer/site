@@ -10,8 +10,8 @@ import { cn } from "@/utils";
 
 export default function Home() {
   return (
-    <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr_3fr] gap-4 px-24 pb-12 pt-24">
-      <header className="sticky top-24 h-min">
+    <div className="mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
+      <header className="h-min lg:sticky lg:top-24">
         {/* Me */}
         <Me />
 
@@ -19,7 +19,7 @@ export default function Home() {
         <SocialList className="py-4" />
       </header>
 
-      <main className="flex flex-col gap-8 pt-4">
+      <main className="flex flex-col gap-8 pt-4 lg:gap-8">
         <Divider text="About" />
 
         {/* Description */}
@@ -35,8 +35,8 @@ export default function Home() {
 
         {/* Experience */}
         <Section id="experience">
-          <div className="flex flex-col gap-12">
-            <ol className="flex flex-col gap-12">
+          <div className="flex flex-col gap-6 lg:gap-12">
+            <ol className="flex flex-col gap-6 lg:gap-12">
               {experiences.map((experience) => (
                 <li key={`${experience.company.name}_${experience.date}`}>
                   <Experience {...experience} />
@@ -53,8 +53,8 @@ export default function Home() {
 
         {/* Projects */}
         <Section id="projects">
-          <div className="flex flex-col gap-12">
-            <ol className="flex flex-col gap-12">
+          <div className="flex flex-col gap-6 lg:gap-12">
+            <ol className="flex flex-col gap-6 lg:gap-12">
               {projects
                 .filter((p) => p.feature)
                 .map((project) => (
@@ -112,7 +112,7 @@ function Me() {
       <h2 className="pt-3 text-lg font-medium text-auto+">
         Undergraduate Full-Stack Engineer
       </h2>
-      <p className="mt-4 max-w-xs">
+      <p className="mt-4 lg:max-w-xs">
         I&apos;m a software engineer in Los Angeles. I&apos;m currently working
         on <InlineLink href="https://ofcourse.fyi">ofc.fyi</InlineLink>.
         I&apos;m interested in distributed systems, programming languages, and
