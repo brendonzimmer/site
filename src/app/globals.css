@@ -4,7 +4,7 @@
 
 :root {
   @apply bg-auto-- text-auto;
-  @apply font-mono;
-  
-  @apply text-balance;
+  @apply font-mono text-balance;
+
+  font-synthesis-weight: none /* Safari Variable Font Issue */
 }
