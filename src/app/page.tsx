@@ -1,9 +1,9 @@
-import { Divider, Separator } from "@/components/pure/separator";
+import { Divider, Separator } from "./_components/pure/separator";
 import { description, experiences, projects } from "@/data";
-import { InlineLink } from "@/components/pure/inline_link";
-import { Experience } from "@/components/experience";
-import { SocialList } from "@/components/socials";
-import { Project } from "@/components/project";
+import { InlineLink } from "./_components/pure/inline_link";
+import { Experience } from "./_components/experience";
+import { SocialList } from "./_components/socials";
+import { Project } from "./_components/project";
 import { LinkArrowRightIcon } from "@/icons";
 import Link from "next/link";
 import { cn } from "@/utils";
