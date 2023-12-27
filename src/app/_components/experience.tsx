@@ -13,7 +13,7 @@ export function Experience({
   skills,
 }: Experience) {
   return (
-    <div className="text-pretty lg:grid lg:grid-cols-[1fr_7fr]">
+    <div className="lg:grid lg:grid-cols-[1fr_7fr]">
       {/* Date */}
       <Date date={date} />
 
@@ -41,7 +41,7 @@ function Date({
   return (
     <div
       className={cn(
-        "text-pretty text-xs font-semibold uppercase text-clr lg:mt-1 lg:pr-2",
+        "text-xs font-semibold uppercase text-clr lg:mt-1 lg:pr-2",
         className,
       )}
     >

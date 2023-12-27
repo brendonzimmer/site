@@ -6,7 +6,7 @@ import { Skills } from "./skills";
 
 export function Project({ title, description, skills, links }: Project) {
   return (
-    <div className="text-pretty lg:grid lg:grid-cols-[1fr_7fr]">
+    <div className="lg:grid lg:grid-cols-[1fr_7fr]">
       {/* Links */}
       <Links items={links} />
 

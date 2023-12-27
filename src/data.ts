@@ -1,9 +1,3 @@
-export type Description = string[];
-export const description: Description = [
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ipsam provident temporibus esse similique voluptates explicabo ex impedit iusto, nostrum exercitationem, enim assumenda modi blanditiis quasi ut. Error, dicta doloribus. Officia corrupti esse neque iusto reprehenderit non. Placeat ab, numquam aut sapiente corporis omnis similique aspernatur commodi est aliquid illo minima. Quia deserunt corrupti quo amet earum cupiditate repellat ipsam.",
-  "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas nihil illo ipsam, odit maiores, eaque explicabo unde reprehenderit omnis autem eius. Pariatur natus illum praesentium molestias possimus neque vitae.",
-];
-
 export type Experience = {
   date: string;
   roles: [

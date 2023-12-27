@@ -2,6 +2,8 @@ import { cn } from "./utils";
 
 export const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
+    width={16}
+    height={16}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
     fill="currentColor"
@@ -14,6 +16,8 @@ export const LinkedinIcon = ({ className }: { className?: string }) => (
 
 export const GithubIcon = ({ className }: { className?: string }) => (
   <svg
+    width={16}
+    height={16}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 496 512"
     fill="currentColor"
@@ -26,6 +30,8 @@ export const GithubIcon = ({ className }: { className?: string }) => (
 
 export const LinkIcon = ({ className }: { className?: string }) => (
   <svg
+    width={16}
+    height={16}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 640 512"
     fill="currentColor"
@@ -38,6 +44,8 @@ export const LinkIcon = ({ className }: { className?: string }) => (
 
 export const ArrowOutIcon = ({ className }: { className?: string }) => (
   <svg
+    width={16}
+    height={16}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
@@ -54,6 +62,8 @@ export const ArrowOutIcon = ({ className }: { className?: string }) => (
 
 export const ArrowRightIcon = ({ className }: { className?: string }) => (
   <svg
+    width={16}
+    height={16}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
