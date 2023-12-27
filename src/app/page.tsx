@@ -1,9 +1,8 @@
 import { BlockLink, InlineLink } from "@/components/link";
-import { Experience } from "@/components/experience";
+import { Experience, Project } from "@/components/item";
 import { Separator } from "@/components/separator";
 import { SocialList } from "@/components/socials";
 import { experiences, projects } from "@/data";
-import { Project } from "@/components/project";
 import { Divider } from "@/components/divider";
 
 export default function Home() {
