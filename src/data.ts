@@ -72,7 +72,6 @@ export const experiences: Experience[] = [
 ] satisfies Experience[];
 
 export type Project = {
-  img?: { url: string; alt: string };
   links: [{ name: string; url: string }, ...{ name: string; url: string }[]];
   title: string;
   description: string;
@@ -147,7 +146,7 @@ export const projects: Project[] = [
   },
   {
     title: "status",
-    description: "A fun way to share your status with friends and family!",
+    description: "A web app to share your status with friends and family.",
     skills: [
       "TypeScript",
       "Next.js",
@@ -165,7 +164,7 @@ export const projects: Project[] = [
   {
     title: "Concordance",
     description:
-      'An art project based on the short story "A Concordance of One\'s Life" by Jim Nelson. Using three.js and p5.js. Final project for GESM 110.',
+      'A programmatic art piece based on the short story "A Concordance of One\'s Life" by Jim Nelson.',
     skills: ["JavaScript", "Three.js", "p5.js"],
     links: [
       { name: "Site", url: "https://concordance.brendon.app" },
@@ -176,7 +175,7 @@ export const projects: Project[] = [
   {
     title: "Semationary",
     description:
-      'A crowd-sourced dictionary of semagrams, based of off "The Story of Your Life" by Ted Chiang. Project for USC GESM 110.',
+      'A crowdsourced collection of semagrams inspired by "The Story of Your Life" by Ted Chiang.',
     skills: ["TypeScript", "Next.js", "Tailwind CSS", "Vercel"],
     links: [
       { name: "Site", url: "https://semagrams.brendon.app" },
