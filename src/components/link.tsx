@@ -45,12 +45,8 @@ export function BlockLink({
       target={target}
       prefetch={target !== "_blank"}
     >
-      {italic && (
-        <span className="text-xs lowercase italic transition-colors group-hover/link:text-clr group-focus-visible/link:text-clr">
-          {italic}{" "}
-        </span>
-      )}
       <span className="border-b-[1.5px] border-transparent pb-px transition group-hover/link:border-clr motion-reduce:transition-none">
+        {italic && <span className="text-xs lowercase italic">{italic} </span>}
         {text}
       </span>
 
