@@ -1,9 +1,8 @@
-import { InlineLink } from "@/components/link";
-import { Description } from "./description";
 import { type Experience } from "@/data";
 import { ArrowOutIcon } from "@/icons";
-import { Skills } from "./skills";
+import { InlineLink } from "./link";
 import { cn } from "@/utils";
+import { Item } from "./item";
 
 export function Experience({
   date,
@@ -13,31 +12,16 @@ export function Experience({
   skills,
 }: Experience) {
   return (
-    <div className="lg:grid lg:grid-cols-[1fr_7fr]">
-      {/* Date */}
-      <Date date={date} />
-
-      <div className="flex flex-col gap-2">
-        {/* Roles + Company */}
-        <Title roles={roles} company={company} />
-
-        {/* Description */}
-        <Description text={description} />
-
-        {/* Skills */}
-        <Skills items={skills} />
-      </div>
-    </div>
+    <Item
+      side={<Date date={date} />}
+      title={<Title roles={roles} company={company} />}
+      desc={description}
+      tags={skills}
+    />
   );
 }
 
-function Date({
-  date,
-  className,
-}: {
-  date: Experience["date"];
-  className?: string;
-}) {
+function Date({ date, className }: { date: string; className?: string }) {
   return (
     <div
       className={cn(

@@ -1,28 +1,20 @@
-import { InlineLink } from "@/components/link";
-import { Description } from "./description";
 import { type Project } from "@/data";
+import { InlineLink } from "./link";
 import { LinkIcon } from "@/icons";
-import { Skills } from "./skills";
+import { Item } from "./item";
 
 export function Project({ title, description, skills, links }: Project) {
   return (
-    <div className="lg:grid lg:grid-cols-[1fr_7fr]">
-      {/* Links */}
-      <Links items={links} />
-
-      <div className="flex flex-col gap-2">
-        {/* Title */}
+    <Item
+      side={<Links items={links} />}
+      title={
         <h3 className="items-baseline font-medium leading-tight text-auto+">
           {title}
         </h3>
-
-        {/* Description */}
-        <Description text={description} />
-
-        {/* Skills */}
-        <Skills items={skills} />
-      </div>
-    </div>
+      }
+      desc={description}
+      tags={skills}
+    />
   );
 }
 
