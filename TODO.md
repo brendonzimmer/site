@@ -1,5 +1,7 @@
 # TODO
 
+- Change blocklink so arrow moves on hover etc, no more color
+- No more italic in blocklink
 - real text for about + me + experience
 - code project archive
   - add private projects I can't show to it
