@@ -1,10 +1,11 @@
-import { Divider, Separator } from "./_components/pure/separator";
 import { description, experiences, projects } from "@/data";
-import { InlineLink } from "./_components/pure/inline_link";
+import { ArrowRightIcon, ArrowOutIcon } from "@/icons";
 import { Experience } from "./_components/experience";
+import { Separator } from "../components/separator";
 import { SocialList } from "./_components/socials";
+import { InlineLink } from "../components/link";
 import { Project } from "./_components/project";
-import { LinkArrowRightIcon } from "@/icons";
+import { Divider } from "@/components/divider";
 import Link from "next/link";
 import { cn } from "@/utils";
 
@@ -23,18 +24,18 @@ export default function Home() {
         <Divider text="About" />
 
         {/* Description */}
-        <Section id="about">
+        <section>
           <div className="flex flex-col gap-4">
             {description.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
-        </Section>
+        </section>
 
         <Divider text="Experience" />
 
         {/* Experience */}
-        <Section id="experience">
+        <section>
           <div className="flex flex-col gap-6 lg:gap-12">
             <ol className="flex flex-col gap-6 lg:gap-12">
               {experiences.map((experience) => (
@@ -45,14 +46,19 @@ export default function Home() {
             </ol>
 
             {/* Resume */}
-            <Button text="View Resume" href="/resume.pdf" target="_blank" />
+            <Button
+              italic="view"
+              text="Resume"
+              href="/resume.pdf"
+              target="_blank"
+            />
           </div>
-        </Section>
+        </section>
 
         <Divider text="Projects" />
 
         {/* Projects */}
-        <Section id="projects">
+        <section>
           <div className="flex flex-col gap-6 lg:gap-12">
             <ol className="flex flex-col gap-6 lg:gap-12">
               {projects
@@ -65,13 +71,13 @@ export default function Home() {
             </ol>
 
             {/* Project Archive */}
-            <Button text="More Projects" href="/projects" />
+            <Button italic="view" text="Project Archive" href="/projects" />
           </div>
-        </Section>
+        </section>
 
         <Separator />
 
-        {/*  Footer */}
+        {/* Footer */}
         <footer className="flex flex-col gap-4">
           <h3>
             Coded in Visual Studio Code. Built with Next.js and Tailwind CSS.
@@ -84,22 +90,6 @@ export default function Home() {
         </footer>
       </main>
     </div>
-  );
-}
-
-function Section({
-  id,
-  children,
-  className,
-}: {
-  id: string;
-  children?: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <section id={id} className={cn(className)}>
-      {children}
-    </section>
   );
 }
 
@@ -126,26 +116,38 @@ function Button({
   text,
   href,
   target,
+  italic,
 }: {
   text: string;
+  italic?: string;
   href: string;
   target?: React.HTMLAttributeAnchorTarget;
 }) {
+  const icon_cn =
+    "inline-block size-3 transition-colors group-hover/link:text-clr group-focus-visible/link:text-clr motion-reduce:transition-none";
   return (
-    <div className="flex flex-col gap-1">
-      <Link
-        className="group/link inline-flex items-center font-semibold leading-tight text-auto+"
-        aria-label={text}
-        href={href}
-        target={target}
-      >
-        <span className="border-b border-transparent pb-px transition group-hover/link:border-clr motion-reduce:transition-none">
-          {text}
+    <Link
+      className="group/link w-fit font-semibold leading-tight text-auto+"
+      href={href}
+      target={target}
+      prefetch={target !== "_blank"}
+    >
+      {italic && (
+        <span className="text-xs lowercase italic transition-colors group-hover/link:text-clr group-focus-visible/link:text-clr">
+          {italic}{" "}
         </span>
-        <span className="whitespace-nowrap">
-          <LinkArrowRightIcon className="ml-1 -translate-y-px transition-transform group-hover/link:translate-x-2 group-focus-visible/link:translate-x-2 motion-reduce:transition-none" />
-        </span>
-      </Link>
-    </div>
+      )}
+      <span className="border-b-[1.5px] border-transparent pb-px transition group-hover/link:border-clr motion-reduce:transition-none">
+        {text}
+      </span>
+
+      <span className="whitespace-nowrap">
+        {target === "_blank" ? (
+          <ArrowOutIcon className={cn(icon_cn, "mb-2.5 ml-0.5")} />
+        ) : (
+          <ArrowRightIcon className={cn(icon_cn, "mb-0.5 ml-1")} />
+        )}
+      </span>
+    </Link>
   );
 }

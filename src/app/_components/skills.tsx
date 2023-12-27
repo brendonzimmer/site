@@ -1,4 +1,4 @@
-import { Tag } from "./pure/tag";
+import { Tag } from "@/components/tag";
 import { cn } from "@/utils";
 
 export function Skills({

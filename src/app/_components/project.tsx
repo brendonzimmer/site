@@ -1,5 +1,5 @@
-import { Description } from "./pure/description";
-import { InlineLink } from "./pure/inline_link";
+import { InlineLink } from "@/components/link";
+import { Description } from "./description";
 import { type Project } from "@/data";
 import { LinkIcon } from "@/icons";
 import { Skills } from "./skills";

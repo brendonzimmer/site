@@ -1,7 +1,7 @@
-import { Description } from "./pure/description";
-import { InlineLink } from "./pure/inline_link";
-import { LinkArrowUpRightIcon } from "@/icons";
+import { InlineLink } from "@/components/link";
+import { Description } from "./description";
 import { type Experience } from "@/data";
+import { ArrowOutIcon } from "@/icons";
 import { Skills } from "./skills";
 import { cn } from "@/utils";
 
@@ -61,12 +61,12 @@ function Title({
     <h3>
       <InlineLink
         href={company.url}
-        className="group/link items-baseline font-semibold leading-tight"
+        className="group/link font-semibold leading-tight"
       >
         {role.role}
         <span className="text-xs italic"> at </span>
         {company.name}
-        <LinkArrowUpRightIcon className="ml-0.5 inline-block size-4 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none" />
+        <ArrowOutIcon className="mb-2.5 ml-0.5 inline-block size-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
       </InlineLink>
       {roles.map(({ role, current }) => (
         <div

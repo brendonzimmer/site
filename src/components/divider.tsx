@@ -1,9 +1,5 @@
 import { cn } from "@/utils";
 
-export function Separator({ className }: { className?: string }) {
-  return <hr className={cn("w-full border-[0.5px] border-auto", className)} />;
-}
-
 export function Divider({
   text,
   className,
@@ -15,7 +11,7 @@ export function Divider({
 }) {
   return (
     <div className={"flex items-center " + pt}>
-      <Separator className="grow" />
+      <div className="w-full grow border-[0.5px] border-auto" />
       <span
         className={cn(
           "shrink px-4 text-sm font-semibold uppercase text-clr",
@@ -24,7 +20,7 @@ export function Divider({
       >
         {text}
       </span>
-      <Separator className="grow" />
+      <div className="w-full grow border-[0.5px] border-auto" />
     </div>
   );
 }
