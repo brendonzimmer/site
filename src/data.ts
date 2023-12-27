@@ -83,18 +83,18 @@ export const projects: Project[] = [
   {
     title: "USC Course Notifier",
     description:
-      "Addressed the challenge lowerclassmen face in enrolling for high-demand USC courses by developing a real-time seat availability checker. Built a Node.js app with TypeScript that monitors specific USC course sections for seat fluctuations, providing immediate notifications via Twilio SMS or Call. Initiated with Playwright for data scraping but transitioned to a fetch-based method resulting in a sub-2-second notification time and saving over 20x memory. This project laid the groundwork for the inception of ofCourse, my organization aimed at improving course exploration at USC, furthering my mission to assist students with course enrollment.",
+      "A real-time seat availability checker for USC courses. Sends text messages when seats open up.",
     skills: ["USC API", "Playwright", "TypeScript", "Google Cloud", "Twilio"],
     links: [
       { name: "Code", url: "" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     feature: true,
   },
   {
     title: "Music Playlist Transfer Service (v1)",
     description:
-      "A music transfer service to transfer your music from Spotify to Apple Music and vice versa. Utilized ISRC codes to make song matching highly accurate and provides custom album cover options.",
+      "A service to transfer your music from Spotify to Apple Music and vice versa with added customization.",
     skills: [
       "Spotify API",
       "Apple Music API",
@@ -105,21 +105,20 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Vercel",
     ],
-    img: { url: "/mg.png", alt: "Music Garage" },
     links: [
       { name: "Site", url: "https://v1.music.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     feature: true,
   },
   {
-    title: "Paxos-based Sharded RSM Key-Value Service",
+    title: "Distributed Key-Value Service",
     description:
-      "Built multi-Paxos consensus protocol to facilitate distributed decision-making in sharded network. Designed a resilient Paxos Replicated State Machine (RSM) library, abstracting the Paxos layer and ensuring consistent replication across a distributed system.Leveraged my type-agnostic PaxosRSM library to build a robust and scalable Key-Value Store, ensuring efficient data retrieval and updates.",
+      "A sharded and replicated KV service with using Paxos for consensus.",
     links: [
       { name: "Code", url: "" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     skills: ["Golang", "Paxos", "Distributed Systems", "RSMs", "RPCs"],
     feature: true,
@@ -127,22 +126,22 @@ export const projects: Project[] = [
   {
     title: "factor",
     description:
-      "Developed as a way to learn the Rust programming language. A CLI tool designed to derive the prime factors of any 64-bit number. Easy to use and quick results.",
+      "A CLI tool to easily derive the prime factors of any 64-bit number.",
     skills: ["Rust", "CLI", "Algorithms"],
-    img: { url: "/factor.png", alt: "Factor" },
     links: [
       { name: "Code", url: "https://github.com/brendonzimmer/factor" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     feature: true,
   },
   {
     title: "ftov",
-    description: "A Rust-based file-to-video encoding and decoding library!",
+    description:
+      "A CLI tool to encode/decode files into/from their video representation.",
     skills: ["Rust", "CLI", "FFmpeg", "Iterators"],
     links: [
       { name: "Code", url: "https://github.com/brendonzimmer/ftov/tree/bw" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     feature: true,
   },
@@ -159,7 +158,7 @@ export const projects: Project[] = [
     ],
     links: [
       { name: "Code", url: "https://github.com/brendonzimmer/status" },
-      { name: "Article", url: "" },
+      { name: "Blog", url: "" },
     ],
     feature: false,
   },
