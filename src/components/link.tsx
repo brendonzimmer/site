@@ -62,59 +62,55 @@ export function BlockLink({
       target={target}
       prefetch={target !== "_blank"}
     >
-      {icon === "left" && (
-        <span className="whitespace-nowrap">
+      <div className="w-fit text-pretty leading-[1.375]">
+        {icon === "left" && (
           <ArrowRightIcon
             className={cn(
               icon_cn,
               "mb-0.5 mr-1 rotate-180 group-hover/link:-translate-x-[0.175rem] group-focus-visible/link:-translate-x-[0.175rem]",
             )}
           />
-        </span>
-      )}
-
-      <span
-        className={cn(
-          "border-b-[1.5px] border-transparent pb-px transition motion-reduce:transition-none",
-          underline && "group-hover/link:border-clr",
         )}
-      >
-        {italic && <span className="text-xs lowercase italic">{italic} </span>}
-        {text}
-      </span>
 
-      {icon === "out" && (
-        <span className="whitespace-nowrap">
+        <span
+          className={cn(
+            "border-b-[1.5px] border-transparent pb-px transition motion-reduce:transition-none",
+            underline && "group-hover/link:border-clr",
+          )}
+        >
+          {italic && (
+            <span className="text-xs lowercase italic">{italic} </span>
+          )}
+          {text}
+        </span>
+
+        {icon === "out" && (
           <ArrowOutIcon
             className={cn(
               icon_cn,
               "mb-2.5 ml-0.5 group-hover/link:-translate-y-0.5 group-focus-visible/link:-translate-y-0.5",
             )}
           />
-        </span>
-      )}
+        )}
 
-      {icon === "right" && (
-        <span className="whitespace-nowrap">
+        {icon === "right" && (
           <ArrowRightIcon
             className={cn(
               icon_cn,
               "mb-0.5 ml-1 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
             )}
           />
-        </span>
-      )}
+        )}
 
-      {icon === "chevron-right" && (
-        <span className="whitespace-nowrap">
+        {icon === "chevron-right" && (
           <ChevronRightIcon
             className={cn(
               icon_cn,
-              "mb-0.5 ml-0.5 size-4 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
+              "mb-0.5 ml-0.5 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
             )}
           />
-        </span>
-      )}
+        )}
+      </div>
     </Link>
   );
 }

@@ -1,9 +1,10 @@
 import { BlockLink, InlineLink } from "@/components/link";
-import { Experience, Project } from "@/components/item";
+import { Experience } from "@/components/experience";
 import { Separator } from "@/components/separator";
 import { SocialList } from "@/components/socials";
 import { experiences, projects } from "@/data";
 import { Divider } from "@/components/divider";
+import { Project } from "@/components/project";
 
 export default function Home() {
   return (
@@ -54,51 +55,43 @@ const About = () => (
 );
 
 const Experiences = () => (
-  <section>
-    <Divider as="h2" text="Experience" className="py-4" sticky />
-    <div className="flex flex-col gap-8 pt-4 lg:gap-12">
-      <ol className="flex flex-col gap-8 lg:gap-12">
-        {experiences.map((experience) => (
-          <li key={`${experience.company.name}_${experience.date}`}>
-            <Experience {...experience} />
-          </li>
-        ))}
-      </ol>
-
-      {/* Resume */}
+  <Section
+    name="Experiences"
+    items={experiences.map((experience) => (
+      <li key={`${experience.company.name}_${experience.date}`}>
+        <Experience {...experience} />
+      </li>
+    ))}
+    link={
       <BlockLink
         italic="view"
         text="Resume"
         href="/resume.pdf"
         target="_blank"
       />
-    </div>
-  </section>
+    }
+  />
 );
 
 const Projects = () => (
-  <section>
-    <Divider as="h2" text="Projects" className="py-4" sticky />
-    <div className="flex flex-col gap-8 pt-4 lg:gap-12">
-      <ol className="flex flex-col gap-8 lg:gap-12">
-        {projects
-          .filter((p) => p.feature)
-          .map((project) => (
-            <li key={`${project.title}_${project.year}`}>
-              <Project {...project} />
-            </li>
-          ))}
-      </ol>
-
-      {/* Project Archive */}
+  <Section
+    name="Projects"
+    items={projects
+      .filter((p) => p.feature)
+      .map((project) => (
+        <li key={`${project.title}_${project.year}`}>
+          <Project {...project} />
+        </li>
+      ))}
+    link={
       <BlockLink
         italic="view"
         text="Project Archive"
         href="/projects"
         icon="right"
       />
-    </div>
-  </section>
+    }
+  />
 );
 
 const Footer = () => (
@@ -113,3 +106,27 @@ const Footer = () => (
     </h3>
   </footer>
 );
+
+function Section({
+  name,
+  items,
+  link,
+}: {
+  name: string;
+  items: React.ReactNode[];
+  link?: React.ReactNode;
+}) {
+  return (
+    <section>
+      <Divider as="h2" text={name} className="py-4" sticky />
+      {link && (
+        <div className="flex flex-col gap-8 pt-4 lg:gap-12">
+          <ol className="flex flex-col gap-8 lg:gap-12">{items}</ol>
+          {link}
+        </div>
+      )}
+
+      {!link && <ol className="flex flex-col gap-8 lg:gap-12">{items}</ol>}
+    </section>
+  );
+}

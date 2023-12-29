@@ -1,6 +1,6 @@
-import { Links, Tags } from "@/components/item";
-import { Tooltip } from "@/components/tooltip";
+import { Project } from "@/components/project";
 import { BlockLink } from "@/components/link";
+import { Tags } from "@/components/item";
 import { projects } from "@/data";
 
 export default function Projects() {
@@ -39,44 +39,10 @@ export default function Projects() {
                 >
                   <td className="translate-y-px">{p.year}</td>
                   <td className="flex flex-col gap-1">
-                    {p.blogID && (
-                      <div className="text-base font-semibold leading-snug text-auto+">
-                        <h2 className="hidden sm:block">
-                          <Tooltip
-                            trigger={
-                              <BlockLink
-                                href={`/projects/${p.blogID}`}
-                                ariaLabel={`Blog link for ${p.title}`}
-                                target="_self"
-                                text={p.title}
-                                icon="chevron-right"
-                                className="text-left"
-                              />
-                            }
-                            content={
-                              <div className="bg-auto--">
-                                <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
-                                  <span className="lowercase italic">
-                                    goto{" "}
-                                  </span>
-                                  Blog Post
-                                </p>
-                              </div>
-                            }
-                          />
-                        </h2>
-                        <h2 className="sm:hidden">{p.title}</h2>
-                      </div>
-                    )}
-
-                    {!p.blogID && (
-                      <h2 className="text-base font-semibold leading-snug text-auto+">
-                        {p.title}
-                      </h2>
-                    )}
+                    <Project.Title as="h2" title={p.title} blogID={p.blogID} />
                     <p className="text-pretty">{p.description}</p>
                     <div className="sm:hidden">
-                      <Links
+                      <Project.Links
                         links={[
                           ...(p.blogID
                             ? [{ name: "Blog", url: `/projects/${p.blogID}` }]
@@ -92,7 +58,7 @@ export default function Projects() {
                   </td>
                   <td className="hidden sm:table-cell">
                     {p.links?.length && (
-                      <Links
+                      <Project.Links
                         links={p.links}
                         title={p.title}
                         forceColumn
