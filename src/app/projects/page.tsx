@@ -18,7 +18,7 @@ export default function Projects() {
       </h1>
 
       <table className="mt-4 text-left">
-        <thead className="sticky top-0 z-10 border-b border-clr/20 bg-auto--/75 px-6 py-5 backdrop-blur">
+        <thead className="sticky top-0 z-10 border-b border-auto/20 bg-auto--/75 px-6 py-5 backdrop-blur">
           <tr className="text-sm font-semibold uppercase text-clr *:py-4">
             <th className="xs:hidden sm:table-cell">Year</th>
             <th>Project</th>
@@ -33,7 +33,7 @@ export default function Projects() {
             .map((p) => (
               <tr
                 key={p.title}
-                className="border-b border-clr/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
+                className="border-b border-auto/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
               >
                 <td className="xs:hidden translate-y-px sm:table-cell">
                   {p.year}

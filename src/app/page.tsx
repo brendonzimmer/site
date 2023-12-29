@@ -17,6 +17,7 @@ export default function Home() {
         <About />
         <Experiences />
         <Projects />
+
         <Separator className="my-4" />
         <Footer />
       </main>

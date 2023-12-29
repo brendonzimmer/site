@@ -16,7 +16,7 @@ export function Divider({
       className={cn(
         "flex items-center",
         pt,
-        sticky && "sticky top-0 z-10 bg-auto--/75 backdrop-blur md:static",
+        sticky && "sticky top-0 z-10 bg-auto--/75 backdrop-blur lg:static",
         className,
       )}
     >
