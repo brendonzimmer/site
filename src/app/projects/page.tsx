@@ -15,7 +15,7 @@ export default function Projects() {
         ariaLabel="Homepage"
       />
 
-      <h1 className="text-5xl font-bold tracking-tight text-auto+">
+      <h1 className="text-4xl font-bold tracking-tight text-auto+ sm:text-5xl">
         Project Archive
       </h1>
 

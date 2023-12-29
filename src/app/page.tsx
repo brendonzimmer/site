@@ -3,8 +3,8 @@ import { Experience } from "@/components/experience";
 import { Separator } from "@/components/separator";
 import { SocialList } from "@/components/socials";
 import { experiences, projects } from "@/data";
-import { Divider } from "@/components/divider";
 import { Project } from "@/components/project";
+import { Section } from "@/components/section";
 
 export default function Home() {
   return (
@@ -18,10 +18,10 @@ export default function Home() {
         <About />
         <Experiences />
         <Projects />
-
-        <Separator className="my-4" />
-        <Footer />
       </main>
+
+      <Separator className="my-8" />
+      <Footer />
     </div>
   );
 }
@@ -41,21 +41,18 @@ const Me = () => (
 );
 
 const About = () => (
-  <section>
-    <Divider as="h2" text="About" className="py-4" sticky />
-    <div className="flex flex-col gap-4 pt-4">
-      <p>
-        I&apos;m a software engineer in Los Angeles. I&apos;m currently working
-        on <InlineLink href="https://ofcourse.fyi">ofc.fyi</InlineLink>.
-        I&apos;m interested in distributed systems, programming languages, and
-        developer tools.
-      </p>
-    </div>
-  </section>
+  <Section.Simple name="About">
+    <p>
+      I&apos;m a software engineer in Los Angeles. I&apos;m currently working on{" "}
+      <InlineLink href="https://ofcourse.fyi">ofc.fyi</InlineLink>. I&apos;m
+      interested in distributed systems, programming languages, and developer
+      tools.
+    </p>
+  </Section.Simple>
 );
 
 const Experiences = () => (
-  <Section
+  <Section.Items
     name="Experiences"
     items={experiences.map((experience) => (
       <li key={`${experience.company.name}_${experience.date}`}>
@@ -74,7 +71,7 @@ const Experiences = () => (
 );
 
 const Projects = () => (
-  <Section
+  <Section.Items
     name="Projects"
     items={projects
       .filter((p) => p.feature)
@@ -106,27 +103,3 @@ const Footer = () => (
     </h3>
   </footer>
 );
-
-function Section({
-  name,
-  items,
-  link,
-}: {
-  name: string;
-  items: React.ReactNode[];
-  link?: React.ReactNode;
-}) {
-  return (
-    <section>
-      <Divider as="h2" text={name} className="py-4" sticky />
-      {link && (
-        <div className="flex flex-col gap-8 pt-4 lg:gap-12">
-          <ol className="flex flex-col gap-8 lg:gap-12">{items}</ol>
-          {link}
-        </div>
-      )}
-
-      {!link && <ol className="flex flex-col gap-8 lg:gap-12">{items}</ol>}
-    </section>
-  );
-}
