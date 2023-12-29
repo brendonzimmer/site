@@ -41,7 +41,7 @@ const Me = () => (
 
 const About = () => (
   <section>
-    <Divider text="About" className="py-4" sticky />
+    <Divider as="h2" text="About" className="py-4" sticky />
     <div className="flex flex-col gap-4 pt-4">
       <p>
         I&apos;m a software engineer in Los Angeles. I&apos;m currently working
@@ -55,7 +55,7 @@ const About = () => (
 
 const Experiences = () => (
   <section>
-    <Divider text="Experience" className="py-4" sticky />
+    <Divider as="h2" text="Experience" className="py-4" sticky />
     <div className="flex flex-col gap-8 pt-4 lg:gap-12">
       <ol className="flex flex-col gap-8 lg:gap-12">
         {experiences.map((experience) => (
@@ -78,7 +78,7 @@ const Experiences = () => (
 
 const Projects = () => (
   <section>
-    <Divider text="Projects" className="py-4" sticky />
+    <Divider as="h2" text="Projects" className="py-4" sticky />
     <div className="flex flex-col gap-8 pt-4 lg:gap-12">
       <ol className="flex flex-col gap-8 lg:gap-12">
         {projects

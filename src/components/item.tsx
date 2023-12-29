@@ -106,12 +106,12 @@ export function Project({
 }: Project) {
   links = [
     ...(blogID ? [{ name: "Blog", url: `/blog/${blogID}` }] : []),
-    ...(links?.length ? links : []),
+    ...(links ?? []),
   ];
 
   return (
     <Item
-      side={links?.length ? <Links items={links} title={title} /> : <div />}
+      side={links?.length ? <Links links={links} title={title} /> : <div />}
       title={<h3 className="font-medium leading-tight text-auto+">{title}</h3>}
       desc={description}
       tags={skills}
@@ -120,32 +120,42 @@ export function Project({
 }
 
 export function Links({
-  items,
+  links,
   title,
+  icon = "link",
   forceColumn = false,
   className,
 }: {
-  items: NonNullable<Project["links"]>;
+  links: NonNullable<Project["links"]>;
   title: string;
   forceColumn?: boolean;
+  icon?: "link" | "arrow-out";
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "flex gap-2 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2",
+        "flex gap-2.5 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2",
         forceColumn && "flex-col",
       )}
     >
-      {items.map(({ name, url }) => (
+      {links.map(({ name, url }) => (
         <InlineLink
           key={name}
+          target={name === "Blog" ? "_self" : "_blank"}
           href={url}
-          className={cn("flex items-center gap-1 text-clr", className)}
+          className={cn(
+            "flex items-center gap-1 text-clr",
+            icon === "arrow-out" && "group/link",
+            className,
+          )}
           ariaLabel={`${name} link for ${title}`}
         >
-          <LinkIcon className="size-4" />
+          {icon === "link" && <LinkIcon />}
           {name}
+          {icon === "arrow-out" && (
+            <ArrowOutIcon className="inline-block transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
+          )}
         </InlineLink>
       ))}
     </div>

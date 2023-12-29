@@ -1,5 +1,5 @@
+import { Links, Tags } from "@/components/item";
 import { BlockLink } from "@/components/link";
-import { Tags } from "@/components/item";
 import { projects } from "@/data";
 
 export default function Projects() {
@@ -21,63 +21,52 @@ export default function Projects() {
       <table className="mt-4 text-left">
         <thead className="sticky top-0 z-10 border-b border-auto/20 bg-auto--/75 px-6 py-5 backdrop-blur">
           <tr className="text-sm font-semibold uppercase text-clr *:py-4">
-            <th className="xs:hidden sm:table-cell">Year</th>
+            <th>Year</th>
             <th>Project</th>
-            <th className="xs:table-cell hidden"></th>
             <th className="hidden sm:table-cell">Skills</th>
-            <th>Links</th>
+            <th className="hidden sm:table-cell">Links</th>
           </tr>
         </thead>
         <tbody>
           {Array.from(projects)
             .sort((a, b) => b.year - a.year)
-            .map((p) => (
-              <tr
-                key={p.title}
-                className="border-b border-auto/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
-              >
-                <td className="xs:hidden translate-y-px sm:table-cell">
-                  {p.year}
-                </td>
-                <td className="text-base font-semibold leading-snug text-auto+">
-                  {p.title}
-                  {p.blogID && (
-                    <BlockLink
-                      text="Blog"
-                      href={`/blog/${p.blogID}`}
-                      underline={false}
-                      icon="right"
-                      className="xs:block hidden pt-2 text-xs font-medium uppercase text-clr"
+            .map((p) => {
+              const links = [
+                ...(p.blogID
+                  ? [{ name: "Blog", url: `/blog/${p.blogID}` }]
+                  : []),
+                ...(p.links ?? []),
+              ];
+              return (
+                <tr
+                  key={p.title}
+                  className="border-b border-auto/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
+                >
+                  <td className="translate-y-px">{p.year}</td>
+                  <td className="flex flex-col gap-1">
+                    <h2 className="text-base font-semibold leading-snug text-auto+">
+                      {p.title}
+                    </h2>
+                    <p className="text-pretty">{p.description}</p>
+                    <div className="sm:hidden">
+                      <Links links={links} title={p.title} />
+                    </div>
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    {p.skills && <Tags tags={p.skills} />}
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    <Links
+                      links={links}
+                      title={p.title}
+                      forceColumn
+                      icon="arrow-out"
+                      className="text-auto"
                     />
-                  )}
-                </td>
-                <td className="xs:table-cell hidden">{p.description}</td>
-                <td className="hidden sm:table-cell">
-                  {p.skills && <Tags tags={p.skills} />}
-                </td>
-                <td>
-                  {p.blogID && (
-                    <BlockLink
-                      text="Blog"
-                      href={`/blog/${p.blogID}`}
-                      underline={false}
-                      className="xs:hidden block whitespace-nowrap font-medium uppercase leading-tight tracking-tight text-auto hover:text-clr focus-visible:text-clr"
-                    />
-                  )}
-                  {p.links?.map(({ name, url }) => (
-                    <BlockLink
-                      text={name}
-                      target="_blank"
-                      key={name}
-                      href={url}
-                      underline={false}
-                      ariaLabel={`${name} link for ${p.title}`}
-                      className="group/link flex w-fit items-center font-medium uppercase leading-tight tracking-tight text-auto hover:text-clr focus-visible:text-clr"
-                    />
-                  ))}
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

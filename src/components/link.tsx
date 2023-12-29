@@ -4,19 +4,21 @@ import Link from "next/link";
 
 export function InlineLink({
   href,
-  children,
-  className,
+  target,
   ariaLabel,
+  className,
+  children,
 }: {
   href: string;
-  children: React.ReactNode;
-  className?: string;
+  target?: React.HTMLAttributeAnchorTarget;
   ariaLabel?: string;
+  className?: string;
+  children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
-      target="_blank"
+      target={target ?? "_blank"}
       className={cn(
         "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
         className,
