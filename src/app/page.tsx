@@ -20,8 +20,10 @@ export default function Home() {
         <Projects />
       </main>
 
-      <Separator className="my-8" />
-      <Footer />
+      <div className="col-start-2">
+        <Separator className="my-8" />
+        <Footer />
+      </div>
     </div>
   );
 }
