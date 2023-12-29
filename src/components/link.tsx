@@ -1,4 +1,4 @@
-import { ArrowOutIcon, ArrowRightIcon } from "@/icons";
+import { ArrowOutIcon, ArrowRightIcon, ChevronRightIcon } from "@/icons";
 import { cn } from "@/utils";
 import Link from "next/link";
 
@@ -44,7 +44,7 @@ export function BlockLink({
   italic?: string;
   href: string;
   target?: React.HTMLAttributeAnchorTarget;
-  icon?: "left" | "right" | "out";
+  icon?: "left" | "right" | "out" | "chevron-right";
   underline?: boolean;
   className?: string;
   ariaLabel?: string;
@@ -100,6 +100,17 @@ export function BlockLink({
             className={cn(
               icon_cn,
               "mb-0.5 ml-1 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
+            )}
+          />
+        </span>
+      )}
+
+      {icon === "chevron-right" && (
+        <span className="whitespace-nowrap">
+          <ChevronRightIcon
+            className={cn(
+              icon_cn,
+              "mb-0.5 ml-0.5 size-4 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
             )}
           />
         </span>

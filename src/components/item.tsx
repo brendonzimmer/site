@@ -105,7 +105,7 @@ export function Project({
   blogID,
 }: Project) {
   links = [
-    ...(blogID ? [{ name: "Blog", url: `/blog/${blogID}` }] : []),
+    ...(blogID ? [{ name: "Blog", url: `/projects/${blogID}` }] : []),
     ...(links ?? []),
   ];
 

@@ -1,10 +1,11 @@
 import { Links, Tags } from "@/components/item";
+import { Tooltip } from "@/components/tooltip";
 import { BlockLink } from "@/components/link";
 import { projects } from "@/data";
 
 export default function Projects() {
   return (
-    <div className="mx-auto flex max-w-screen-xl flex-col gap-2 p-6 lg:px-24 lg:pb-12 lg:pt-24">
+    <main className="mx-auto flex max-w-screen-xl flex-col gap-2 p-6 lg:px-24 lg:pb-12 lg:pt-24">
       <BlockLink
         text="Brendon Zimmer"
         href="/"
@@ -31,12 +32,6 @@ export default function Projects() {
           {Array.from(projects)
             .sort((a, b) => b.year - a.year)
             .map((p) => {
-              const links = [
-                ...(p.blogID
-                  ? [{ name: "Blog", url: `/blog/${p.blogID}` }]
-                  : []),
-                ...(p.links ?? []),
-              ];
               return (
                 <tr
                   key={p.title}
@@ -44,31 +39,73 @@ export default function Projects() {
                 >
                   <td className="translate-y-px">{p.year}</td>
                   <td className="flex flex-col gap-1">
-                    <h2 className="text-base font-semibold leading-snug text-auto+">
-                      {p.title}
-                    </h2>
+                    {p.blogID && (
+                      <div className="text-base font-semibold leading-snug text-auto+">
+                        <h2 className="hidden sm:block">
+                          <Tooltip
+                            trigger={
+                              <BlockLink
+                                href={`/projects/${p.blogID}`}
+                                ariaLabel={`Blog link for ${p.title}`}
+                                target="_self"
+                                text={p.title}
+                                icon="chevron-right"
+                                className="text-left"
+                              />
+                            }
+                            content={
+                              <div className="bg-auto--">
+                                <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
+                                  <span className="lowercase italic">
+                                    goto{" "}
+                                  </span>
+                                  Blog Post
+                                </p>
+                              </div>
+                            }
+                          />
+                        </h2>
+                        <h2 className="sm:hidden">{p.title}</h2>
+                      </div>
+                    )}
+
+                    {!p.blogID && (
+                      <h2 className="text-base font-semibold leading-snug text-auto+">
+                        {p.title}
+                      </h2>
+                    )}
                     <p className="text-pretty">{p.description}</p>
                     <div className="sm:hidden">
-                      <Links links={links} title={p.title} />
+                      <Links
+                        links={[
+                          ...(p.blogID
+                            ? [{ name: "Blog", url: `/projects/${p.blogID}` }]
+                            : []),
+                          ...(p.links ?? []),
+                        ]}
+                        title={p.title}
+                      />
                     </div>
                   </td>
                   <td className="hidden sm:table-cell">
                     {p.skills && <Tags tags={p.skills} />}
                   </td>
                   <td className="hidden sm:table-cell">
-                    <Links
-                      links={links}
-                      title={p.title}
-                      forceColumn
-                      icon="arrow-out"
-                      className="text-auto"
-                    />
+                    {p.links?.length && (
+                      <Links
+                        links={p.links}
+                        title={p.title}
+                        forceColumn
+                        icon="arrow-out"
+                        className="text-auto"
+                      />
+                    )}
                   </td>
                 </tr>
               );
             })}
         </tbody>
       </table>
-    </div>
+    </main>
   );
 }

@@ -79,16 +79,17 @@ export type Project = {
 };
 export const projects: Project[] = [
   {
+    blogID: "ofc",
     title: "USC Course Notifier",
     description:
       "A real-time seat availability checker for USC courses. Sends text messages when seats open up.",
     skills: ["USC API", "Playwright", "TypeScript", "Google Cloud", "Twilio"],
     links: [{ name: "Code", url: "" }],
-    blogID: "",
     feature: true,
     year: 2022,
   },
   {
+    blogID: "playlist-transfer",
     title: "Music Playlist Transfer Service (v1)",
     description:
       "A service to transfer your music between Spotify to Apple Music with added customization.",
@@ -106,31 +107,31 @@ export const projects: Project[] = [
       { name: "Site", url: "https://v1.music.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
     ],
-    blogID: "",
     feature: true,
     year: 2021,
   },
   {
+    blogID: "distributed-kv",
     title: "Distributed Key-Value Service",
     description:
       "A sharded and replicated KV service with using Paxos for consensus.",
     links: [{ name: "Code", url: "" }],
-    blogID: "",
     skills: ["Golang", "Paxos", "Distributed Systems", "RSMs", "RPCs"],
     feature: true,
     year: 2023,
   },
   {
+    blogID: "factor",
     title: "factor",
     description:
       "A CLI tool to easily derive the prime factors of any 64-bit number.",
     skills: ["Rust", "CLI", "Algorithms"],
     links: [{ name: "Code", url: "https://github.com/brendonzimmer/factor" }],
-    blogID: "",
     feature: true,
     year: 2023,
   },
   {
+    blogID: "ftov",
     title: "ftov",
     description:
       "A CLI tool to encode/decode files into/from their video representation.",
@@ -138,11 +139,11 @@ export const projects: Project[] = [
     links: [
       { name: "Code", url: "https://github.com/brendonzimmer/ftov/tree/bw" },
     ],
-    blogID: "",
     feature: true,
     year: 2023,
   },
   {
+    blogID: "status",
     title: "status",
     description: "A web app to share your status with friends and family.",
     skills: [
@@ -154,7 +155,6 @@ export const projects: Project[] = [
       "Prisma",
     ],
     links: [{ name: "Code", url: "https://github.com/brendonzimmer/status" }],
-    blogID: "",
     feature: false,
     year: 2023,
   },

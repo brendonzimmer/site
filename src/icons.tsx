@@ -77,3 +77,23 @@ export const ArrowRightIcon = ({ className }: { className?: string }) => (
     ></path>
   </svg>
 );
+
+export const ChevronRightIcon = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    width={16}
+    height={16}
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    stroke="currentColor"
+    className={cn("size-4", className)}
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m8.25 4.5 7.5 7.5-7.5 7.5"
+    />
+  </svg>
+);
