@@ -17,6 +17,7 @@ export default function Home() {
         <About />
         <Experiences />
         <Projects />
+        <Separator className="my-4" />
         <Footer />
       </main>
     </div>
@@ -101,7 +102,6 @@ const Projects = () => (
 
 const Footer = () => (
   <footer className="flex flex-col gap-4">
-    <Separator className="mt-4" />
     <h3>
       Coded in Visual Studio Code. Built with Next.js and Tailwind CSS. Deployed
       with Vercel. Inspired by{" "}
