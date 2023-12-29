@@ -13,12 +13,10 @@ export default function Home() {
         <SocialList className="py-4" />
       </header>
 
-      <main className="flex flex-col gap-8 pt-4 lg:gap-8">
+      <main className="flex flex-col gap-4 lg:gap-2">
         <About />
         <Experiences />
         <Projects />
-
-        <Separator />
         <Footer />
       </main>
     </div>
@@ -41,7 +39,7 @@ const Me = () => (
 
 const About = () => (
   <section>
-    <Divider text="About" sticky />
+    <Divider text="About" className="py-4 lg:py-2" sticky />
     <div className="flex flex-col gap-4">
       <p>
         I&apos;m a software engineer in Los Angeles. I&apos;m currently working
@@ -55,7 +53,7 @@ const About = () => (
 
 const Experiences = () => (
   <section>
-    <Divider text="Experience" sticky />
+    <Divider text="Experience" className="py-4 lg:py-2" sticky />
     <div className="flex flex-col gap-6 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {experiences.map((experience) => (
@@ -78,7 +76,7 @@ const Experiences = () => (
 
 const Projects = () => (
   <section>
-    <Divider text="Projects" sticky />
+    <Divider text="Projects" className="py-4 lg:py-2" sticky />
     <div className="flex flex-col gap-6 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {projects
@@ -103,6 +101,7 @@ const Projects = () => (
 
 const Footer = () => (
   <footer className="flex flex-col gap-4">
+    <Separator className="mt-4" />
     <h3>
       Coded in Visual Studio Code. Built with Next.js and Tailwind CSS. Deployed
       with Vercel. Inspired by{" "}

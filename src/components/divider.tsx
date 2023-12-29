@@ -16,17 +16,12 @@ export function Divider({
       className={cn(
         "flex items-center",
         pt,
-        sticky &&
-          "sticky top-0 z-10 bg-auto--/75 py-1 backdrop-blur-sm md:static",
+        sticky && "sticky top-0 z-10 bg-auto--/75 backdrop-blur md:static",
+        className,
       )}
     >
       <div className="w-full grow border-[0.5px] border-auto" />
-      <span
-        className={cn(
-          "shrink px-4 text-sm font-semibold uppercase text-clr",
-          className,
-        )}
-      >
+      <span className="shrink px-4 text-sm font-semibold uppercase text-clr">
         {text}
       </span>
       <div className="w-full grow border-[0.5px] border-auto" />
