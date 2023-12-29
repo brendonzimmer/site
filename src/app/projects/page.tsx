@@ -19,7 +19,7 @@ export default function Projects() {
 
       <table className="mt-4 text-left">
         <thead className="sticky top-0 z-10 border-b border-clr/20 bg-auto--/75 px-6 py-5 backdrop-blur">
-          <tr className="text-sm font-semibold text-clr *:py-4">
+          <tr className="text-sm font-semibold uppercase text-clr *:py-4">
             <th className="xs:hidden sm:table-cell">Year</th>
             <th>Project</th>
             <th className="xs:table-cell hidden"></th>
