@@ -1,7 +1,6 @@
-import { Links, Tags } from "@/components/item";
-import { BlockLink, InlineLink } from "@/components/link";
+import { BlockLink } from "@/components/link";
+import { Tags } from "@/components/item";
 import { projects } from "@/data";
-import { ArrowOutIcon } from "@/icons";
 
 export default function Projects() {
   return (
