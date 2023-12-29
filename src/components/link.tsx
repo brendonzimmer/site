@@ -30,33 +30,72 @@ export function BlockLink({
   href,
   target,
   italic,
+  icon = "out",
+  underline = true,
+  className,
 }: {
   text: string;
   italic?: string;
   href: string;
   target?: React.HTMLAttributeAnchorTarget;
+  icon?: "left" | "right" | "out";
+  underline?: boolean;
+  className?: string;
 }) {
   const icon_cn =
-    "inline-block size-3 transition-colors group-hover/link:text-clr group-focus-visible/link:text-clr motion-reduce:transition-none";
+    "inline-block size-3 transition-transform group-hover/link:translate-x-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none";
   return (
     <Link
-      className="group/link w-fit font-semibold leading-tight text-auto+"
+      className={cn(
+        "group/link w-fit font-semibold leading-tight text-auto+",
+        className,
+      )}
       href={href}
       target={target}
       prefetch={target !== "_blank"}
     >
-      <span className="border-b-[1.5px] border-transparent pb-px transition group-hover/link:border-clr motion-reduce:transition-none">
+      {icon === "left" && (
+        <span className="whitespace-nowrap">
+          <ArrowRightIcon
+            className={cn(
+              icon_cn,
+              "mb-0.5 mr-1 rotate-180 group-hover/link:-translate-x-[0.175rem] group-focus-visible/link:-translate-x-[0.175rem]",
+            )}
+          />
+        </span>
+      )}
+
+      <span
+        className={cn(
+          "border-b-[1.5px] border-transparent pb-px transition motion-reduce:transition-none",
+          underline && "group-hover/link:border-clr",
+        )}
+      >
         {italic && <span className="text-xs lowercase italic">{italic} </span>}
         {text}
       </span>
 
-      <span className="whitespace-nowrap">
-        {target === "_blank" ? (
-          <ArrowOutIcon className={cn(icon_cn, "mb-2.5 ml-0.5")} />
-        ) : (
-          <ArrowRightIcon className={cn(icon_cn, "mb-0.5 ml-1")} />
-        )}
-      </span>
+      {icon === "out" && (
+        <span className="whitespace-nowrap">
+          <ArrowOutIcon
+            className={cn(
+              icon_cn,
+              "mb-2.5 ml-0.5 group-hover/link:-translate-y-0.5 group-focus-visible/link:-translate-y-0.5",
+            )}
+          />
+        </span>
+      )}
+
+      {icon === "right" && (
+        <span className="whitespace-nowrap">
+          <ArrowRightIcon
+            className={cn(
+              icon_cn,
+              "mb-0.5 ml-1 group-hover/link:translate-x-[0.175rem] group-focus-visible/link:translate-x-[0.175rem]",
+            )}
+          />
+        </span>
+      )}
     </Link>
   );
 }

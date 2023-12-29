@@ -13,8 +13,7 @@ export const experiences: Experience[] = [
     roles: [{ role: "Founder & President", current: true }],
     date: "Aug 2023 — Present",
     company: { name: "ofCourse", url: "https://ofcourse.fyi" },
-    description:
-      "ofCourse is a platform to simplify USC course exploration. We are a USC-recognized student-organization focused on its development. ofcourse.fyi is a platform for students to share their experiences with courses and professors to help others make informed decisions.",
+    description: "",
     skills: [
       "React",
       "TypeScript",
@@ -36,8 +35,7 @@ export const experiences: Experience[] = [
     ],
     date: "Jan 2023 — Present",
     company: { name: "TroyLabs", url: "https://troylabs.vc" },
-    description:
-      "TroyLabs is a venture platform at USC, empowering the Trojan community to transform ideas into reality with funding resources, startup guidance, and community involvement.",
+    description: "",
     skills: [
       "Consulting",
       "Leadership",
@@ -50,8 +48,7 @@ export const experiences: Experience[] = [
     roles: [{ role: "Software Engineer Intern", current: false }],
     date: "May — Aug 2023",
     company: { name: "Crabel Capital Management", url: "https://crabel.com" },
-    description:
-      "Crabel Capital Management is a quantitative asset management firm with a focus on algorithmic trading in global futures.",
+    description: "",
     skills: [
       "Python",
       "C++",
@@ -72,11 +69,13 @@ export const experiences: Experience[] = [
 ] satisfies Experience[];
 
 export type Project = {
-  links: [{ name: string; url: string }, ...{ name: string; url: string }[]];
+  links?: { name: string; url: string }[];
   title: string;
   description: string;
   skills?: string[];
   feature: boolean;
+  year: number;
+  blogID?: string;
 };
 export const projects: Project[] = [
   {
@@ -84,16 +83,15 @@ export const projects: Project[] = [
     description:
       "A real-time seat availability checker for USC courses. Sends text messages when seats open up.",
     skills: ["USC API", "Playwright", "TypeScript", "Google Cloud", "Twilio"],
-    links: [
-      { name: "Code", url: "" },
-      { name: "Blog", url: "" },
-    ],
+    links: [{ name: "Code", url: "" }],
+    blogID: "none",
     feature: true,
+    year: 2022,
   },
   {
     title: "Music Playlist Transfer Service (v1)",
     description:
-      "A service to transfer your music from Spotify to Apple Music and vice versa with added customization.",
+      "A service to transfer your music between Spotify to Apple Music with added customization.",
     skills: [
       "Spotify API",
       "Apple Music API",
@@ -107,31 +105,30 @@ export const projects: Project[] = [
     links: [
       { name: "Site", url: "https://v1.music.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
-      { name: "Blog", url: "" },
     ],
+    blogID: "none",
     feature: true,
+    year: 2021,
   },
   {
     title: "Distributed Key-Value Service",
     description:
       "A sharded and replicated KV service with using Paxos for consensus.",
-    links: [
-      { name: "Code", url: "" },
-      { name: "Blog", url: "" },
-    ],
+    links: [{ name: "Code", url: "" }],
+    blogID: "none",
     skills: ["Golang", "Paxos", "Distributed Systems", "RSMs", "RPCs"],
     feature: true,
+    year: 2023,
   },
   {
     title: "factor",
     description:
       "A CLI tool to easily derive the prime factors of any 64-bit number.",
     skills: ["Rust", "CLI", "Algorithms"],
-    links: [
-      { name: "Code", url: "https://github.com/brendonzimmer/factor" },
-      { name: "Blog", url: "" },
-    ],
+    links: [{ name: "Code", url: "https://github.com/brendonzimmer/factor" }],
+    blogID: "none",
     feature: true,
+    year: 2023,
   },
   {
     title: "ftov",
@@ -140,9 +137,10 @@ export const projects: Project[] = [
     skills: ["Rust", "CLI", "FFmpeg", "Iterators"],
     links: [
       { name: "Code", url: "https://github.com/brendonzimmer/ftov/tree/bw" },
-      { name: "Blog", url: "" },
     ],
+    blogID: "none",
     feature: true,
+    year: 2023,
   },
   {
     title: "status",
@@ -155,11 +153,10 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Prisma",
     ],
-    links: [
-      { name: "Code", url: "https://github.com/brendonzimmer/status" },
-      { name: "Blog", url: "" },
-    ],
+    links: [{ name: "Code", url: "https://github.com/brendonzimmer/status" }],
+    blogID: "none",
     feature: false,
+    year: 2023,
   },
   {
     title: "Concordance",
@@ -171,6 +168,7 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/concordance" },
     ],
     feature: false,
+    year: 2021,
   },
   {
     title: "Semationary",
@@ -182,5 +180,6 @@ export const projects: Project[] = [
       { name: "Code", url: "https://github.com/brendonzimmer/semagrams" },
     ],
     feature: false,
+    year: 2021,
   },
 ] satisfies Project[];

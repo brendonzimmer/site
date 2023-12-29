@@ -21,21 +21,25 @@ function Item({
       <div className="flex flex-col gap-2">
         {title}
 
-        {desc?.length && <p className="text-sm text-auto">{desc}</p>}
+        {desc && <p className="text-sm text-auto">{desc}</p>}
 
-        {tags?.length && (
-          <ul className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <li key={tag}>
-                <div className="rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
-                  {tag}
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        {tags?.length && <Tags tags={tags} />}
       </div>
     </div>
+  );
+}
+
+export function Tags({ tags }: { tags: string[] }) {
+  return (
+    <ul className="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <li key={tag}>
+          <div className="whitespace-nowrap rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
+            {tag}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -49,7 +53,7 @@ export function Experience({
   return (
     <Item
       side={
-        <div className="text-xs font-semibold uppercase text-clr lg:mt-1 lg:pr-2">
+        <div className="text-balance text-xs font-semibold uppercase text-clr lg:mt-1 lg:pr-2">
           {date}
         </div>
       }
@@ -93,10 +97,21 @@ function Title({
   );
 }
 
-export function Project({ title, description, skills, links }: Project) {
+export function Project({
+  title,
+  description,
+  skills,
+  links,
+  blogID,
+}: Project) {
+  links = [
+    ...(blogID ? [{ name: "Blog", url: `/blog/${blogID}` }] : []),
+    ...(links?.length ? links : []),
+  ];
+
   return (
     <Item
-      side={<Links items={links} />}
+      side={links?.length ? <Links items={links} /> : <div />}
       title={<h3 className="font-medium leading-tight text-auto+">{title}</h3>}
       desc={description}
       tags={skills}
@@ -104,14 +119,27 @@ export function Project({ title, description, skills, links }: Project) {
   );
 }
 
-function Links({ items }: { items: Project["links"] }) {
+export function Links({
+  items,
+  forceColumn = false,
+  className,
+}: {
+  items: NonNullable<Project["links"]>;
+  forceColumn?: boolean;
+  className?: string;
+}) {
   return (
-    <div className="flex gap-2 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2">
+    <div
+      className={cn(
+        "flex gap-2 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2",
+        forceColumn && "flex-col",
+      )}
+    >
       {items.map(({ name, url }) => (
         <InlineLink
           key={name}
           href={url}
-          className="flex items-center gap-1 text-clr"
+          className={cn("flex items-center gap-1 text-clr", className)}
         >
           <LinkIcon className="size-4" />
           {name}

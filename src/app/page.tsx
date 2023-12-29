@@ -86,14 +86,19 @@ const Projects = () => (
         {projects
           .filter((p) => p.feature)
           .map((project) => (
-            <li key={`${project.title}_${project.links[0].url}`}>
+            <li key={`${project.title}_${project.year}`}>
               <Project {...project} />
             </li>
           ))}
       </ol>
 
       {/* Project Archive */}
-      <BlockLink italic="view" text="Project Archive" href="/projects" />
+      <BlockLink
+        italic="view"
+        text="Project Archive"
+        href="/projects"
+        icon="right"
+      />
     </div>
   </section>
 );
