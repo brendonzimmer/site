@@ -14,13 +14,8 @@ export default function Home() {
       </header>
 
       <main className="flex flex-col gap-8 pt-4 lg:gap-8">
-        <Divider text="About" />
         <About />
-
-        <Divider text="Experience" />
         <Experiences />
-
-        <Divider text="Projects" />
         <Projects />
 
         <Separator />
@@ -46,6 +41,7 @@ const Me = () => (
 
 const About = () => (
   <section>
+    <Divider text="About" sticky />
     <div className="flex flex-col gap-4">
       <p>
         I&apos;m a software engineer in Los Angeles. I&apos;m currently working
@@ -59,6 +55,7 @@ const About = () => (
 
 const Experiences = () => (
   <section>
+    <Divider text="Experience" sticky />
     <div className="flex flex-col gap-6 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {experiences.map((experience) => (
@@ -81,6 +78,7 @@ const Experiences = () => (
 
 const Projects = () => (
   <section>
+    <Divider text="Projects" sticky />
     <div className="flex flex-col gap-6 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {projects

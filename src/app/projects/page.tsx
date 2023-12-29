@@ -33,10 +33,12 @@ export default function Projects() {
             .map((p) => (
               <tr
                 key={p.title}
-                className="border-b border-clr/20 align-top text-sm *:py-4 *:pr-4 last:border-none"
+                className="border-b border-clr/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
               >
-                <td className="xs:hidden sm:table-cell">{p.year}</td>
-                <td className="font-semibold leading-snug text-auto+">
+                <td className="xs:hidden translate-y-px sm:table-cell">
+                  {p.year}
+                </td>
+                <td className="text-base font-semibold leading-snug text-auto+">
                   {p.title}
                   {p.blogID && (
                     <BlockLink
