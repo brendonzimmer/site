@@ -27,10 +27,10 @@ export default function Home() {
 
 const Me = () => (
   <>
-    <h1 className="text-5xl font-bold tracking-tight text-auto+">
+    <h1 className="text-4xl font-bold tracking-tight text-auto+ sm:text-5xl">
       Brendon Zimmer
     </h1>
-    <h2 className="pt-3 text-lg font-medium text-auto+">
+    <h2 className="pt-3 text-lg font-medium text-auto+ sm:text-xl">
       Undergraduate Full-Stack Engineer
     </h2>
     <p className="pt-4">
@@ -56,8 +56,8 @@ const About = () => (
 const Experiences = () => (
   <section>
     <Divider text="Experience" className="py-4" sticky />
-    <div className="flex flex-col gap-6 pt-4 lg:gap-12">
-      <ol className="flex flex-col gap-6 lg:gap-12">
+    <div className="flex flex-col gap-8 pt-4 lg:gap-12">
+      <ol className="flex flex-col gap-8 lg:gap-12">
         {experiences.map((experience) => (
           <li key={`${experience.company.name}_${experience.date}`}>
             <Experience {...experience} />
@@ -79,8 +79,8 @@ const Experiences = () => (
 const Projects = () => (
   <section>
     <Divider text="Projects" className="py-4" sticky />
-    <div className="flex flex-col gap-6 pt-4 lg:gap-12">
-      <ol className="flex flex-col gap-6 lg:gap-12">
+    <div className="flex flex-col gap-8 pt-4 lg:gap-12">
+      <ol className="flex flex-col gap-8 lg:gap-12">
         {projects
           .filter((p) => p.feature)
           .map((project) => (
