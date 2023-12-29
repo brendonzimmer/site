@@ -11,6 +11,7 @@ export default function Projects() {
         icon="left"
         className="text-clr"
         underline={false}
+        ariaLabel="Homepage"
       />
 
       <h1 className="text-5xl font-bold tracking-tight text-auto+">
@@ -70,6 +71,7 @@ export default function Projects() {
                       key={name}
                       href={url}
                       underline={false}
+                      ariaLabel={`${name} link for ${p.title}`}
                       className="group/link flex w-fit items-center font-medium uppercase leading-tight tracking-tight text-auto hover:text-clr focus-visible:text-clr"
                     />
                   ))}

@@ -6,10 +6,12 @@ export function InlineLink({
   href,
   children,
   className,
+  ariaLabel,
 }: {
   href: string;
   children: React.ReactNode;
   className?: string;
+  ariaLabel?: string;
 }) {
   return (
     <Link
@@ -19,6 +21,7 @@ export function InlineLink({
         "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
         className,
       )}
+      aria-label={ariaLabel}
     >
       {children}
     </Link>
@@ -33,6 +36,7 @@ export function BlockLink({
   icon = "out",
   underline = true,
   className,
+  ariaLabel,
 }: {
   text: string;
   italic?: string;
@@ -41,11 +45,13 @@ export function BlockLink({
   icon?: "left" | "right" | "out";
   underline?: boolean;
   className?: string;
+  ariaLabel?: string;
 }) {
   const icon_cn =
     "inline-block size-3 transition-transform group-hover/link:translate-x-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none";
   return (
     <Link
+      aria-label={ariaLabel}
       className={cn(
         "group/link w-fit font-semibold leading-tight text-auto+",
         className,

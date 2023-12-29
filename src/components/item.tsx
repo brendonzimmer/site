@@ -111,7 +111,7 @@ export function Project({
 
   return (
     <Item
-      side={links?.length ? <Links items={links} /> : <div />}
+      side={links?.length ? <Links items={links} title={title} /> : <div />}
       title={<h3 className="font-medium leading-tight text-auto+">{title}</h3>}
       desc={description}
       tags={skills}
@@ -121,10 +121,12 @@ export function Project({
 
 export function Links({
   items,
+  title,
   forceColumn = false,
   className,
 }: {
   items: NonNullable<Project["links"]>;
+  title: string;
   forceColumn?: boolean;
   className?: string;
 }) {
@@ -140,6 +142,7 @@ export function Links({
           key={name}
           href={url}
           className={cn("flex items-center gap-1 text-clr", className)}
+          ariaLabel={`${name} link for ${title}`}
         >
           <LinkIcon className="size-4" />
           {name}
