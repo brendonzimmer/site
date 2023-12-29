@@ -13,7 +13,7 @@ export default function Home() {
         <SocialList className="py-4" />
       </header>
 
-      <main className="flex flex-col gap-4 lg:gap-2">
+      <main className="flex flex-col gap-4">
         <About />
         <Experiences />
         <Projects />
@@ -39,8 +39,8 @@ const Me = () => (
 
 const About = () => (
   <section>
-    <Divider text="About" className="py-4 lg:py-2" sticky />
-    <div className="flex flex-col gap-4">
+    <Divider text="About" className="py-4" sticky />
+    <div className="flex flex-col gap-4 pt-4">
       <p>
         I&apos;m a software engineer in Los Angeles. I&apos;m currently working
         on <InlineLink href="https://ofcourse.fyi">ofc.fyi</InlineLink>.
@@ -53,8 +53,8 @@ const About = () => (
 
 const Experiences = () => (
   <section>
-    <Divider text="Experience" className="py-4 lg:py-2" sticky />
-    <div className="flex flex-col gap-6 lg:gap-12">
+    <Divider text="Experience" className="py-4" sticky />
+    <div className="flex flex-col gap-6 pt-4 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {experiences.map((experience) => (
           <li key={`${experience.company.name}_${experience.date}`}>
@@ -76,8 +76,8 @@ const Experiences = () => (
 
 const Projects = () => (
   <section>
-    <Divider text="Projects" className="py-4 lg:py-2" sticky />
-    <div className="flex flex-col gap-6 lg:gap-12">
+    <Divider text="Projects" className="py-4" sticky />
+    <div className="flex flex-col gap-6 pt-4 lg:gap-12">
       <ol className="flex flex-col gap-6 lg:gap-12">
         {projects
           .filter((p) => p.feature)
