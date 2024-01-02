@@ -24,7 +24,7 @@ export function Divider({
       )}
     >
       <div className="w-full grow border-[0.5px] border-auto" />
-      <As className="shrink px-4 text-sm font-semibold uppercase text-clr">
+      <As className="min-w-fit shrink px-4 text-sm font-semibold uppercase text-clr">
         {text}
       </As>
       <div className="w-full grow border-[0.5px] border-auto" />
