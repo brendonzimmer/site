@@ -32,7 +32,7 @@ Project.Title = ({
           trigger={
             <BlockLink
               href={`/projects/${id}`}
-              ariaLabel={`Blog link for ${title}`}
+              ariaLabel={`Blog post for ${title}`}
               target="_self"
               text={title}
               icon="chevron-right"
@@ -43,8 +43,8 @@ Project.Title = ({
           content={
             <div className="bg-auto--">
               <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
-                <span className="lowercase italic">goto </span>
-                Blog Post
+                <span className="lowercase italic">view </span>
+                Details
               </p>
             </div>
           }
