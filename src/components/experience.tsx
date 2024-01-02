@@ -18,14 +18,14 @@ export function Experience({
           {date}
         </div>
       }
-      title={<Title roles={roles} company={company} />}
+      title={<Experience.Title roles={roles} company={company} />}
       desc={description}
       tags={skills}
     />
   );
 }
 
-function Title({
+Experience.Title = function Title({
   roles: [role, ...roles],
   company,
 }: {
@@ -56,6 +56,4 @@ function Title({
       ))}
     </h3>
   );
-}
-
-Experience.Title = Title;
+};

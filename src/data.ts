@@ -121,7 +121,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    id: "factor",
+    // id: "factor",
     title: "factor",
     description:
       "A CLI tool to easily derive the prime factors of any 64-bit number.",
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    id: "ftov",
+    // id: "ftov",
     title: "ftov",
     description:
       "A CLI tool to encode/decode files into/from their video representation.",
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    id: "status",
+    // id: "status",
     title: "status",
     description: "A web app to share your status with friends and family.",
     skills: [

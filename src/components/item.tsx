@@ -24,17 +24,17 @@ export function Item({
   );
 }
 
-Item.Side = ({ node }: { node?: React.ReactNode }) => {
+Item.Side = function Side({ node }: { node?: React.ReactNode }) {
   if (!node) return <div />;
   return node;
 };
 
-Item.Description = ({ text }: { text?: string }) => {
+Item.Description = function ({ text }: { text?: string }) {
   if (!text) return null;
   return <p className="text-sm text-auto">{text}</p>;
 };
 
-Item.Tags = ({
+Item.Tags = function ({
   list,
   tagCn,
   pCn,
@@ -42,7 +42,7 @@ Item.Tags = ({
   list?: string[];
   tagCn?: string;
   pCn?: string;
-}) => {
+}) {
   if (!list?.length) return null;
   return (
     <ul className={cn("flex flex-wrap gap-2", pCn)}>

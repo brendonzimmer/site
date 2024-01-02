@@ -16,7 +16,7 @@ export function Project({ title, description, skills, links, id }: Project) {
   );
 }
 
-Project.Title = ({
+Project.Title = function ({
   title,
   id,
   as: As,
@@ -24,7 +24,7 @@ Project.Title = ({
   id?: string;
   title: string;
   as: "h2" | "h3";
-}) => {
+}) {
   const link = (
     <div className="w-fit">
       <span>
@@ -61,7 +61,7 @@ Project.Title = ({
   );
 };
 
-Project.Links = ({
+Project.Links = function ({
   links,
   title,
   icon = "link",
@@ -73,7 +73,7 @@ Project.Links = ({
   forceColumn?: boolean;
   icon?: "link" | "arrow-out";
   className?: string;
-}) => {
+}) {
   if (!links?.length) return null;
   return (
     <div
