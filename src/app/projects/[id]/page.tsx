@@ -8,7 +8,7 @@ export default async function Project({ params }: { params: { id: string } }) {
   if (!p) notFound();
 
   return (
-    <div className="mx-auto flex max-w-screen-xl flex-col gap-2 p-6 font-sans lg:px-24 lg:pb-12 lg:pt-24">
+    <div className="mx-auto flex max-w-screen-xl flex-col gap-2 p-6 lg:px-24 lg:pb-12 lg:pt-24">
       <BlockLink
         text="All Projects"
         href="/projects"
@@ -21,7 +21,7 @@ export default async function Project({ params }: { params: { id: string } }) {
         {p.title}
       </h1>
 
-      <main>
+      <main className="font-sans">
         <Article id={p.id!} />
       </main>
     </div>

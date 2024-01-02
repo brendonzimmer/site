@@ -1,45 +1,13 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import type { MDXComponents } from "mdx/types";
 import { Divider } from "@/components/divider";
-import { Section } from "@/components/section";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import fs from "fs/promises";
-import Image from "next/image";
 import { Separator } from "./separator";
-
-const components: MDXComponents = {
-  Section,
-  Divider: (p) => Article.Divider(p),
-  a: (p) => Article.Link(p),
-  h1: () => Article.DoNotUse(),
-  h2: (p) => Article.H2(p),
-  h3: (p) => Article.H3(p),
-  h4: (p) => Article.H4(p),
-  h5: () => Article.DoNotUse(),
-  h6: () => Article.DoNotUse(),
-  p: (p) => Article.P(p),
-  blockquote: (p) => Article.Blockquote(p),
-  pre: (p) => Article.Pre(p),
-  code: (p) => Article.Code(p),
-  ul: (p) => Article.Ul(p),
-  ol: (p) => Article.Ol(p),
-  li: (p) => Article.Li(p),
-  hr: () => Article.Hr(),
-  img: (p) => Article.Img(p),
-};
-
-async function MDX(id: string) {
-  return fs
-    .readFile(`./src/posts/${id}.mdx`, "utf8")
-    .then((s) => <MDXRemote options={{}} components={components} source={s} />)
-    .catch(() => notFound());
-}
+import { MDX, cn } from "@/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 export async function Article({ id }: { id: string }) {
-  return (
-    <article className="pros flex flex-col gap-2">{await MDX(id)}</article>
-  );
+  const { mdx } = await MDX(id).catch(notFound);
+  return <article className="pros flex flex-col gap-2">{mdx}</article>;
 }
 
 Article.Link = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
@@ -47,7 +15,13 @@ Article.Link = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     href={p.href ?? ""}
     prefetch={false}
     {...p}
-    className="font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr"
+    className={cn(
+      "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
+      "group-[.sup]/sup:font-medium group-[.sup]/sup:text-clr group-[.sup]/sup:hover:underline",
+      "data-[footnote-backref]:invisible data-[footnote-backref]:relative data-[footnote-backref]:font-normal data-[footnote-backref]:text-clr",
+      "data-[footnote-backref]:before:visible data-[footnote-backref]:before:content-['^'] data-[footnote-backref]:hover:underline",
+      "data-[footnote-backref]:group-[.sec]/sec:col-start-1 data-[footnote-backref]:group-[.sec]/sec:row-start-1",
+    )}
   />
 );
 
@@ -70,14 +44,17 @@ Article.DoNotUse = () => (
 Article.P = (p: React.HTMLAttributes<HTMLParagraphElement>) => (
   <p
     {...p}
-    className="group-[.bq]/bq:before:content-[open-quote] group-[.bq]/bq:after:content-[close-quote]"
+    className={cn(
+      "group-[.bq]/bq:before:content-[open-quote] group-[.bq]/bq:after:content-[close-quote]",
+      "group-[.sec]/sec:-mr-5 group-[.sec]/sec:grid group-[.sec]/sec:grid-cols-[0.5rem_auto]",
+    )}
   />
 );
 
 Article.Blockquote = (p: React.HTMLAttributes<HTMLQuoteElement>) => (
   <blockquote
     {...p}
-    className="group/bq bq border-l-[0.25rem] border-clr py-4 pl-4 font-medium italic"
+    className="group/bq bq flex flex-col gap-2 border-l-[0.25rem] border-clr py-4 pl-4 font-medium italic"
   />
 );
 
@@ -118,7 +95,7 @@ Article.Img = ({ alt, src }: React.ImgHTMLAttributes<HTMLImageElement>) => (
 );
 
 Article.Divider = (p: any) => (
-  <Divider {...p} sticky className="py-4 font-mono backdrop-blur" />
+  <Divider {...p} sticky className="py-4 font-mono" />
 );
 
 Article.Hr = () => <Separator className="my-2" />;

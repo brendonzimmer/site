@@ -1,14 +1,32 @@
-export const authors = "Brendon Zimmer";
+---
+authors: [Brendon Zimmer, Jow Shmow]
+title: Test
+---
 
-By {authors}
+## This is a subheading
 
 ### This is a subsubheading
 
 #### This is a subsubsubheading
 
+- [ ] to do
+- [x] done
+
+### Footnote
+
+A note[^1]
+
+[^1]: Big note
+
 para
 
+reuse note [^1]
+
 > blockquote
+>
+> > more
+> >
+> > > moeree
 
 <Divider text="divider" as="h2" />
 
@@ -40,6 +58,10 @@ ordered:
 
 ---
 
-ttest
+### Autolink literals
 
-es
+www.example.com, https://example.com, and contact@example.com.
+
+### Strikethrough
+
+~one~ or ~~two~~ tildes.
