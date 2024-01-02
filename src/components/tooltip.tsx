@@ -37,6 +37,7 @@ export const Tooltip = ({
     <TooltipRoot>
       <TooltipTrigger asChild>{trigger}</TooltipTrigger>
       <TooltipContent>{content}</TooltipContent>
+      {/* <TooltipContent className="hidden sm:block">{content}</TooltipContent> */}
     </TooltipRoot>
   </TooltipProvider>
 );

@@ -1,8 +1,8 @@
 import { BlockLink, InlineLink } from "@/components/link";
 import { Experience } from "@/components/experience";
 import { Separator } from "@/components/separator";
-import { SocialList } from "@/components/socials";
 import { experiences, projects } from "@/data";
+import { Socials } from "@/components/socials";
 import { Project } from "@/components/project";
 import { Section } from "@/components/section";
 
@@ -11,7 +11,7 @@ export default function Home() {
     <div className="mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
       <header className="h-min lg:sticky lg:top-24">
         <Me />
-        <SocialList className="py-4" />
+        <Socials className="py-4" />
       </header>
 
       <main className="flex flex-col gap-4">
@@ -20,10 +20,10 @@ export default function Home() {
         <Projects />
       </main>
 
-      <div className="col-start-2">
+      <footer className="col-start-2">
         <Separator className="my-8" />
-        <Footer />
-      </div>
+        <Thanks />
+      </footer>
     </div>
   );
 }
@@ -93,8 +93,8 @@ const Projects = () => (
   />
 );
 
-const Footer = () => (
-  <footer className="flex flex-col gap-4">
+const Thanks = () => (
+  <div className="flex flex-col gap-4">
     <h3>
       Coded in Visual Studio Code. Built with Next.js and Tailwind CSS. Deployed
       with Vercel. Inspired by{" "}
@@ -103,5 +103,5 @@ const Footer = () => (
       </InlineLink>
       .
     </h3>
-  </footer>
+  </div>
 );

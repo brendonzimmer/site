@@ -2,107 +2,79 @@ import { ArrowOutIcon, LinkIcon } from "@/icons";
 import { BlockLink, InlineLink } from "./link";
 import type { Project } from "@/data";
 import { Tooltip } from "./tooltip";
+import { If, cn } from "@/utils";
 import { Item } from "./item";
-import { cn } from "@/utils";
 
-export function Project({
-  title,
-  description,
-  skills,
-  links,
-  blogID,
-}: Project) {
-  const combolinks = [
-    ...(blogID ? [{ name: "Blog", url: `/projects/${blogID}` }] : []),
-    ...(links ?? []),
-  ];
-
+export function Project({ title, description, skills, links, id }: Project) {
   return (
     <Item
-      side={
-        links?.length ? (
-          <>
-            <div className="sm:hidden">
-              <Links links={combolinks} title={title} />
-            </div>
-            <div className="hidden sm:block">
-              {links?.length && (
-                <Links links={links} title={title} icon="link" />
-              )}
-            </div>
-          </>
-        ) : (
-          <div />
-        )
-      }
-      title={<Title as="h3" {...{ title, blogID }} />}
+      side={<Project.Links {...{ links, title }} />}
+      title={<Project.Title as="h3" {...{ title, id }} />}
       desc={description}
       tags={skills}
     />
   );
 }
 
-function Title({
+Project.Title = ({
   title,
-  blogID,
+  id,
   as: As,
 }: {
-  blogID?: string;
+  id?: string;
   title: string;
   as: "h2" | "h3";
-}) {
-  return (
-    <As className="font-medium leading-tight text-auto+">
-      {blogID && (
-        <div className="w-fit text-base font-semibold leading-snug text-auto+">
-          <span className="hidden sm:block">
-            <Tooltip
-              trigger={
-                <BlockLink
-                  href={`/projects/${blogID}`}
-                  ariaLabel={`Blog link for ${title}`}
-                  target="_self"
-                  text={title}
-                  icon="chevron-right"
-                  className="text-left"
-                />
-              }
-              content={
-                <div className="bg-auto--">
-                  <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
-                    <span className="lowercase italic">goto </span>
-                    Blog Post
-                  </p>
-                </div>
-              }
+}) => {
+  const link = (
+    <div className="w-fit">
+      <span>
+        <Tooltip
+          trigger={
+            <BlockLink
+              href={`/projects/${id}`}
+              ariaLabel={`Blog link for ${title}`}
+              target="_self"
+              text={title}
+              icon="chevron-right"
+              underline={false}
+              className="hover:text-clr focus-visible:text-clr"
             />
-          </span>
-          <span className="sm:hidden">{title}</span>
-        </div>
-      )}
+          }
+          content={
+            <div className="bg-auto--">
+              <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
+                <span className="lowercase italic">goto </span>
+                Blog Post
+              </p>
+            </div>
+          }
+        />
+      </span>
+      {/* <span className="sm:hidden">{title}</span> */}
+    </div>
+  );
 
-      {!blogID && (
-        <span className="text-base font-semibold leading-snug text-auto+">
-          {title}
-        </span>
-      )}
+  return (
+    <As className="text-base font-semibold leading-snug text-auto+">
+      <If this={!!id} then={link} else={title} />
     </As>
   );
-}
+};
 
-function Links({
+Project.Links = ({
   links,
   title,
   icon = "link",
   forceColumn = false,
   className,
 }: {
-  links: NonNullable<Project["links"]>;
+  links: Project["links"];
   title: string;
   forceColumn?: boolean;
   icon?: "link" | "arrow-out";
   className?: string;
-}) {
+}) => {
+  if (!links?.length) return null;
   return (
     <div
       className={cn(
@@ -131,7 +103,4 @@ function Links({
       ))}
     </div>
   );
-}
-
-Project.Title = Title;
-Project.Links = Links;
+};

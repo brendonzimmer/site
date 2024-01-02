@@ -75,11 +75,11 @@ export type Project = {
   skills?: string[];
   feature: boolean;
   year: number;
-  blogID?: string;
+  id?: string;
 };
 export const projects: Project[] = [
   {
-    blogID: "ofc",
+    id: "ofc",
     title: "USC Course Notifier",
     description:
       "A real-time seat availability checker for USC courses. Sends text messages when seats open up.",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     year: 2022,
   },
   {
-    blogID: "playlist-transfer",
+    // id: "playlist-transfer",
     title: "Music Playlist Transfer Service (v1)",
     description:
       "A service to transfer your music between Spotify to Apple Music with added customization.",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     year: 2021,
   },
   {
-    blogID: "distributed-kv",
+    // id: "distributed-kv",
     title: "Distributed Key-Value Service",
     description:
       "A sharded and replicated KV service with using Paxos for consensus.",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    blogID: "factor",
+    id: "factor",
     title: "factor",
     description:
       "A CLI tool to easily derive the prime factors of any 64-bit number.",
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    blogID: "ftov",
+    id: "ftov",
     title: "ftov",
     description:
       "A CLI tool to encode/decode files into/from their video representation.",
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     year: 2023,
   },
   {
-    blogID: "status",
+    id: "status",
     title: "status",
     description: "A web app to share your status with friends and family.",
     skills: [
