@@ -1,13 +1,22 @@
 import { Divider } from "@/components/divider";
 import { notFound } from "next/navigation";
 import { Separator } from "./separator";
-import { MDX, cn } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/utils";
+import { MDX } from "@/mdx";
 
 export async function Article({ id }: { id: string }) {
-  const { mdx } = await MDX(id).catch(notFound);
-  return <article className="pros flex flex-col gap-2">{mdx}</article>;
+  const { mdx, data } = await MDX(id).catch(notFound);
+  return (
+    <article className="pros flex flex-col gap-2">
+      <h2 className="text-5xl">{data.title}</h2>
+      <address className="text-xl font-medium not-italic">
+        By {data.authors.join(", ")}
+      </address>
+      {mdx}
+    </article>
+  );
 }
 
 Article.Link = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
