@@ -1,61 +1,43 @@
 ---
-authors: [Brendon Zimmer, Jow Shmow]
-title: Test
+title: A Lesson in Memory Management
+authors:
+  - Brendon Zimmer
 ---
 
-## This is a subheading
+<Divider text="Summary" as="h3" />
 
-### This is a subsubheading
+A while back I tried to register for my next semester classes, but i ran into some pain points.
+The lorem ipsum generator I was using was not working properly. I was getting a lot of errors and I couldn't figure out why.
+I tried to debug it, but I couldn't find the problem. I was getting a lot of errors and I couldn't figure out why.
+I tried to debug it, but I couldn't find the problem. I was getting a lot of errors and I couldn't figure out why.
 
-#### This is a subsubsubheading
+<Divider text="First Approach" as="h3" />
 
-para
+My first idea was to use a headless chrome browser.
+It was pretty simple to program and it was pretty much guranteed to work as if I was using a real browser.
+I was able to get it to work, but it was very slow and it was very slow.
+I was able to get it to work, but it was very slow and it was very slow.
+Overall though, it was pretty good! Only after running for a few minutes did I realize something was up.
 
-[MDX](https://mdxjs.com "title")
+### The Problem
 
-> A greater than…
+The RAM usuage was going up too fast, and not going back down! This had me puzzled.
+Where could I be casuing a memory leak?
+I did a lot of research in the [playwright repo](), but I couldn't find much [besides this post]().
+My idea to workaroud this was to restart the browser every 10 minutes. It wasn't the best solution, but it worked.
+That meant I would lose my context and have to redo 2FA every 10 minutes, but it was better than nothing.
 
-A backslash\
-before a line break…
+In the meantime, I <span>[opened a new issue ↗]()</span> on the playwright repo. I was hoping someone would have a better solution.
 
-Some _asterisks_ for emphasis.
+### The ...Working Solution?
 
-Two **asterisks** for strong.
+Soon a contributor replied to my issue. They said that I should use the `chromium.launchPersistentContext()` function.
+This and another would allow me to save my context after restarts! I was so excited to try it out.
 
-Both _**combined**_.
+I was able to use it so that I would not have to redo 2FA every 10 minutes!
+But still, running a headless browser for days on end was unreliable.
+I wanted to do better and save memory, because any single chrome instance is a memory hog.
 
-> blockquote
->
-> > more
-> >
-> > > moeree
+<Divider text="Reverse Engineering the API" as="h3" />
 
-<Divider text="divider" as="h2" />
-
-Hi! This [is a link](https://google.com) next to normal text.
-
-this is `inlineCode` block
-
-```js
-const code = "block";
-```
-
-list here:
-
-- item 1
-- item 2
-  - item 2.1
-  - item 2.2
-- item 3
-
-![alt text](/1.png "testing")
-
-ordered:
-
-1. item 1
-2. item 2
-   1. item 2.1
-   1. item 2.2
-3. item 3
-
----
+In my quest to find a better solution, I decided to look at the network requests I was making and receiving for course access.

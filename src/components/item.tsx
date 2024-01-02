@@ -1,3 +1,5 @@
+import { cn } from "@/utils";
+
 export function Item({
   side,
   title,
@@ -32,13 +34,26 @@ Item.Description = ({ text }: { text?: string }) => {
   return <p className="text-sm text-auto">{text}</p>;
 };
 
-Item.Tags = ({ list }: { list?: string[] }) => {
+Item.Tags = ({
+  list,
+  tagCn,
+  pCn,
+}: {
+  list?: string[];
+  tagCn?: string;
+  pCn?: string;
+}) => {
   if (!list?.length) return null;
   return (
-    <ul className="flex flex-wrap gap-2">
+    <ul className={cn("flex flex-wrap gap-2", pCn)}>
       {list.map((tag) => (
         <li key={tag}>
-          <div className="whitespace-nowrap rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+">
+          <div
+            className={cn(
+              "whitespace-nowrap rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+",
+              tagCn,
+            )}
+          >
             {tag}
           </div>
         </li>
