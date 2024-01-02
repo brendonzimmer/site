@@ -18,9 +18,6 @@ Article.Link = (p: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     className={cn(
       "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
       "group-[.sup]/sup:font-medium group-[.sup]/sup:text-clr group-[.sup]/sup:hover:underline",
-      "data-[footnote-backref]:invisible data-[footnote-backref]:relative data-[footnote-backref]:font-normal data-[footnote-backref]:text-clr",
-      "data-[footnote-backref]:before:visible data-[footnote-backref]:before:content-['^'] data-[footnote-backref]:hover:underline",
-      "data-[footnote-backref]:group-[.sec]/sec:col-start-1 data-[footnote-backref]:group-[.sec]/sec:row-start-1",
     )}
   />
 );
@@ -46,7 +43,6 @@ Article.P = (p: React.HTMLAttributes<HTMLParagraphElement>) => (
     {...p}
     className={cn(
       "group-[.bq]/bq:before:content-[open-quote] group-[.bq]/bq:after:content-[close-quote]",
-      "group-[.sec]/sec:-mr-5 group-[.sec]/sec:grid group-[.sec]/sec:grid-cols-[0.5rem_auto]",
     )}
   />
 );

@@ -28,16 +28,11 @@ export function If(
 
 import { getMDXComponent } from "mdx-bundler/client";
 import { bundleMDX } from "mdx-bundler";
-import remarkGFM from "remark-gfm";
 import fs from "fs/promises";
 
 export async function MDX(id: string) {
   const bundle = await bundleMDX<{ authors: string[]; title: string }>({
     source: await fs.readFile(`./src/posts/${id}.mdx`, "utf8"),
-    mdxOptions: ({ remarkPlugins, rehypePlugins }) => ({
-      remarkPlugins: [...(remarkPlugins ?? []), remarkGFM],
-      rehypePlugins: [...(rehypePlugins ?? [])],
-    }),
   });
 
   return {
@@ -69,10 +64,4 @@ const components: MDXContentProps["components"] = {
   li: (p) => Article.Li(p),
   hr: () => Article.Hr(),
   img: (p) => Article.Img(p),
-  sup: (p) => <sup {...p} className="sup group/sup text-sm font-light" />,
-
-  table: () => Article.DoNotUse(),
-  section: (p) => (
-    <section {...p} className={cn(p.className, "group/sec sec")} />
-  ),
 };
