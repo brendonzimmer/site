@@ -16,7 +16,7 @@ export function Project({ title, description, skills, links, id }: Project) {
   );
 }
 
-Project.Title = function ({
+Project.Title = function Title({
   title,
   id,
   as: As,
@@ -61,7 +61,7 @@ Project.Title = function ({
   );
 };
 
-Project.Links = function ({
+Project.Links = function Links({
   links,
   title,
   icon = "link",

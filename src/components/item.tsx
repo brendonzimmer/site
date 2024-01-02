@@ -29,12 +29,12 @@ Item.Side = function Side({ node }: { node?: React.ReactNode }) {
   return node;
 };
 
-Item.Description = function ({ text }: { text?: string }) {
+Item.Description = function Description({ text }: { text?: string }) {
   if (!text) return null;
   return <p className="text-sm text-auto">{text}</p>;
 };
 
-Item.Tags = function ({
+Item.Tags = function Tags({
   list,
   tagCn,
   pCn,
