@@ -37,8 +37,12 @@ const article: MDXContentProps["components"] = {
     />
   ),
   h1: () => DoNotUse(),
-  h2: (p) => <h2 className="text-2xl font-bold leading-[1.33]" {...p} />,
-  h3: (p) => <h3 className="text-xl font-semibold leading-[1.6]" {...p} />,
+  h2: (p) => (
+    <h2 className="text-[calc(1.1875rem)] font-bold leading-[1.33]" {...p} />
+  ),
+  h3: (p) => (
+    <h3 className="text-[calc(1.1875rem)] font-semibold leading-[1.6]" {...p} />
+  ),
   h4: (p) => <h4 className="font-semibold leading-[1.5]" {...p} />,
   h5: () => DoNotUse(),
   h6: () => DoNotUse(),

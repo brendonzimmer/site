@@ -12,34 +12,34 @@ export default async function Blog({ params }: { params: { id: string } }) {
 
   const { mdx, data } = await MDX(p.id!);
   return (
-    <div className="mx-auto flex max-w-screen-xl flex-col gap-2 py-6 lg:px-24 lg:pb-12 lg:pt-24">
+    <div className="mx-auto flex max-w-[680px] flex-col gap-2 p-6 lg:pb-12 lg:pt-24">
       <BlockLink
         text="All Projects"
         href="/projects"
         icon="left"
-        className="px-6 text-clr lg:px-0"
+        className=" text-clr "
         underline={false}
       />
 
-      <div className="flex flex-col lg:*:px-0">
-        <h1 className="px-6 pb-1 text-4xl font-bold tracking-tight text-auto+ sm:text-5xl">
+      <div className="flex flex-col ">
+        <h1 className="pb-1 text-4xl font-bold tracking-tight text-auto+ sm:text-5xl">
           {data.title}
         </h1>
-        <h2 className="px-6 text-xl font-medium text-auto+">
+        <h2 className="text-xl font-medium text-auto+">
           <span className="text-lg italic">about</span> {p.title}
         </h2>
-        <address className="px-6 pb-2 text-xl font-medium not-italic">
+        <address className="pb-2 text-xl font-medium not-italic">
           <span className="text-lg italic">by</span> {data.authors.join(", ")}
         </address>
         <div
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          className="flex items-center justify-start gap-2 overflow-x-scroll px-6 [&::-webkit-scrollbar]:hidden "
+          className="-mx-6 flex items-center justify-start gap-2 overflow-x-scroll px-6 [&::-webkit-scrollbar]:hidden"
         >
           <Project.Links
             links={p.links}
             icon="arrow-out"
             title={p.title}
-            className="pt-1"
+            className="pt-1 lg:h-5 lg:pb-1.5"
           />
           <Item.Tags
             list={p.skills}
@@ -49,7 +49,7 @@ export default async function Blog({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      <main className="px-6 font-sans lg:px-0">
+      <main className="font-sans text-[calc(1.1875rem)]">
         <article className="pros flex flex-col gap-2">{mdx}</article>
       </main>
     </div>
