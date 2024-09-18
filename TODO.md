@@ -6,4 +6,5 @@
 - Add github links
 - Order tags by most important
 - Write blogs abt projects
-- add fun stuff like music
+- Add photos, restraunts to brendon's corner
+- landing page is my name in 3d rotating and when scroll down if falls into current layout

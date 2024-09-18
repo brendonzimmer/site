@@ -11,60 +11,43 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     roles: [{ role: "Founder & President", current: true }],
-    date: "Aug 2023 — Present",
+    date: "Jan 2024 — Present",
     company: { name: "ofCourse", url: "https://ofcourse.fyi" },
-    description: "",
-    skills: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "PostgreSQL",
-      "Google Cloud",
-      "USC API",
-      "Bun",
-      "Tailwind CSS",
-      "Teamwork",
-      "Vercel",
-      "Event Planning",
-    ],
+    description:
+      "Led team of 12 in collaboration with Student Government to develop platform to simplify USC course registration and exploration for students. Enabled students to enroll in previously full courses, access reviews to gain better understanding of courses without syllabi.",
   },
   {
     roles: [
+      { role: "Software Engineer", current: true }, // move descriptions into here, maybe date too?
+      { role: "Executive Board Member", current: true },
       { role: "Director of Recruitment", current: true },
-      { role: "Engineer & Consultant", current: true },
     ],
     date: "Jan 2023 — Present",
     company: { name: "TroyLabs", url: "https://troylabs.vc" },
-    description: "",
-    skills: [
-      "Consulting",
-      "Leadership",
-      "Event Planning",
-      "Teamwork",
-      "DB Management",
-    ],
+    description:
+      "Delivered new features, tailored tech solutions, and strategic consultation to startups in weekly BUILD meetings. Oversaw full recruitment cycle, managing applicant events, group interviews, and facilitating weekly onboarding sessions to ensure cultural integration and support for new members.",
   },
+  {
+    company: { name: "Spotlight Media", url: "https://tryspotlight.co" },
+    date: "Apr — Jul 2024",
+    roles: [{ role: "Software Engineer", current: false }],
+    description:
+      "Increased TikTok influencer outreach from 350 to 2,000 messages per account daily by building a highly optimized Python web scraper. Found thousands of new potential clients daily, up from 300 by analyzing internal TikTok APIs. Launched a subscription service using Google Cloud Platform and generated $2,500 in the first week.",
+  },
+
   {
     roles: [{ role: "Software Engineer Intern", current: false }],
     date: "May — Aug 2023",
     company: { name: "Crabel Capital Management", url: "https://crabel.com" },
-    description: "",
-    skills: [
-      "Python",
-      "C++",
-      "GDB",
-      "OOP Design",
-      "Agile",
-      "Docker",
-      "Podman",
-      "RHEL",
-    ],
+    description:
+      "Streamlined developer efficiency by developing Python library to programmatically run Docker containers & build images. Presented library and onboarded whole team. Fixed bugs and added new fetaures in a large C++ codebase by completing over 20 Jira tickets.",
   },
   {
     roles: [{ role: "Web Developer", current: false }],
     date: "Jan — Aug 2022",
     company: { name: "METRANS TSA", url: "https://www.metrans.org" },
-    skills: ["HTML", "CSS", "JavaScript", "Squarespace"],
+    description:
+      "Improved UX and accessibility on Squarespace site using custom JS, HTML, and CSS.",
   },
 ] satisfies Experience[];
 
