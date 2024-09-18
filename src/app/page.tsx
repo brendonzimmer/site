@@ -12,10 +12,11 @@ import { Show } from "@/components/fun/show";
 export default function Home() {
   return (
     <>
-      <div className="h-1 snap-none" />
+      <div className="h-0 snap-none" />
+      <div className="h-0 snap-start" />
 
       {/* Professional */}
-      <div className="mx-auto max-w-screen-xl snap-start p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
+      <div className="mx-auto max-w-screen-xl snap-end p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
         <header className="flex h-min flex-col lg:sticky lg:top-24 ">
           <Me />
           <Socials className="py-4" />
@@ -40,7 +41,9 @@ export default function Home() {
       <div className="snap-start bg-[#25283D] font-sans text-[#e5e5e5]">
         <Fun />
       </div>
-      <div className="h-1 snap-none" />
+
+      <div className="h-0 snap-end" />
+      <div className="h-0 snap-none" />
     </>
   );
 }
@@ -142,28 +145,31 @@ const Thanks = () => (
 );
 
 const Fun = () => (
-  <div className="flex min-h-screen flex-col gap-4 p-6 lg:px-24 lg:py-12">
-    <div className="pb-4">
+  <>
+    <div className="hidden pt-8 lg:block"></div>
+    <div className="sticky top-0 z-10 bg-[#25283D]/90 px-6 pb-4 pt-6 backdrop-blur-md lg:px-24 lg:pt-4">
       <h1 className="text-3xl font-medium">🏡 brendon&apos;s corner</h1>
       <p>some things i like 🙂</p>
     </div>
-    <div className="">
-      <h2 className="py-1 text-2xl">🎶 Albums</h2>
-      <Albums />
+    <div className="flex min-h-screen flex-col gap-4 px-6 pb-6 pt-4 lg:px-24 lg:pb-12 lg:pt-4">
+      <div className="">
+        <h2 className="py-1 text-2xl">🎶 Albums</h2>
+        <Albums />
+      </div>
+      <div className="">
+        <h2 className="py-1 text-2xl">🎥 Movies </h2>
+        <Movies />
+      </div>
+      <div className="">
+        <h2 className="py-1 text-2xl">📺 Series</h2>
+        <Series />
+      </div>
     </div>
-    <div className="">
-      <h2 className="py-1 text-2xl">🎥 Movies </h2>
-      <Movies />
-    </div>
-    <div className="">
-      <h2 className="py-1 text-2xl">📺 Series</h2>
-      <Series />
-    </div>
-  </div>
+  </>
 );
 
 const Movies = () => (
-  <div className="-mx-24 overflow-x-scroll px-24">
+  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
     <div className="flex min-w-min gap-4 py-2">
       {movies.map((m) => (
         <Show key={m.title} image={m.image} title={m.title} />
@@ -173,7 +179,7 @@ const Movies = () => (
 );
 
 const Series = () => (
-  <div className="-mx-24 overflow-x-scroll px-24">
+  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
     <div className="flex min-w-min gap-4 py-2">
       {series.map((tv) => (
         <Show key={tv.title} image={tv.image} title={tv.title} />
@@ -183,7 +189,7 @@ const Series = () => (
 );
 
 const Albums = () => (
-  <div className="-mx-24 overflow-x-scroll px-24">
+  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
     <div className="flex min-w-min gap-4 py-2">
       {albums.map((a) => (
         <Album
