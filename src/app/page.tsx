@@ -169,7 +169,7 @@ const Fun = () => (
 );
 
 const Movies = () => (
-  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
+  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
     <div className="flex min-w-min gap-4 py-2">
       {movies.map((m) => (
         <Show key={m.title} image={m.image} title={m.title} />
@@ -179,7 +179,7 @@ const Movies = () => (
 );
 
 const Series = () => (
-  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
+  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
     <div className="flex min-w-min gap-4 py-2">
       {series.map((tv) => (
         <Show key={tv.title} image={tv.image} title={tv.title} />
@@ -189,7 +189,7 @@ const Series = () => (
 );
 
 const Albums = () => (
-  <div className="-mx-24 overflow-x-scroll px-24 scrollbar-none">
+  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
     <div className="flex min-w-min gap-4 py-2">
       {albums.map((a) => (
         <Album
