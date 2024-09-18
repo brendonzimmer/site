@@ -13,10 +13,10 @@ export default function Home() {
   return (
     <>
       <div className="h-1 snap-none bg-red-300" />
-      <div className="h-1 snap-start bg-green-300" />
+      <div className="h-0 snap-start snap-always bg-green-300" />
 
       {/* Professional */}
-      <div className="mx-auto max-w-screen-xl snap-end p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
+      <div className="mx-auto max-w-screen-xl snap-end snap-always p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
         <header className="flex h-min flex-col lg:sticky lg:top-24 ">
           <Me />
           <Socials className="py-4" />
@@ -35,16 +35,15 @@ export default function Home() {
       </div>
 
       {/* Transition */}
-      <div className="h-1 snap-end bg-green-300" />
       <div className="h-[300vh] snap-none bg-gradient-to-b from-auto-- to-[#25283D]" />
 
       {/* Fun */}
-      <div className="h-1 snap-start bg-green-300" />
-      <div className="snap-start bg-[#25283D] font-sans text-[#e5e5e5]">
+      {/* <div className="h-96 snap-start snap-always bg-green-300" /> */}
+      <div className="snap-start snap-always bg-[#25283D] font-sans text-[#e5e5e5]">
         <Fun />
       </div>
 
-      <div className="h-1 snap-end bg-green-300" />
+      <div className="h-0 snap-end snap-always bg-green-300" />
       <div className="h-1 snap-none bg-red-300" />
     </>
   );
@@ -171,7 +170,7 @@ const Fun = () => (
 );
 
 const Movies = () => (
-  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
+  <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
       {movies.map((m) => (
         <Show key={m.title} image={m.image} title={m.title} />
@@ -181,7 +180,7 @@ const Movies = () => (
 );
 
 const Series = () => (
-  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
+  <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
       {series.map((tv) => (
         <Show key={tv.title} image={tv.image} title={tv.title} />
@@ -191,7 +190,7 @@ const Series = () => (
 );
 
 const Albums = () => (
-  <div className="-ml-24 -mr-6 overflow-x-scroll px-24 scrollbar-none lg:-mx-24">
+  <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
       {albums.map((a) => (
         <Album
