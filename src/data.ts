@@ -87,7 +87,7 @@ export const projects: Project[] = [
       "Vercel",
     ],
     links: [
-      { name: "Site", url: "https://v1.music.brendon.app" },
+      { name: "Site", url: "https://oldmusic.brendon.app" },
       { name: "Code", url: "https://github.com/brendonzimmer/music-garage" },
     ],
     feature: true,
