@@ -40,7 +40,7 @@ export const experiences: Experience[] = [
     date: "May — Aug 2023",
     company: { name: "Crabel Capital Management", url: "https://crabel.com" },
     description:
-      "Streamlined developer efficiency by developing Python library to programmatically run Docker containers & build images. Presented library and onboarded whole team. Fixed bugs and added new fetaures in a large C++ codebase by completing over 20 Jira tickets.",
+      "Streamlined developer efficiency by developing Python library to programmatically run Docker containers & build images. Presented library and onboarded whole team. Fixed bugs and added new features in a large C++ codebase by completing over 20 Jira tickets.",
   },
   {
     roles: [{ role: "Web Developer", current: false }],

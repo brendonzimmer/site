@@ -12,9 +12,11 @@ import { Show } from "@/components/fun/show";
 export default function Home() {
   return (
     <>
+      <div className="h-1 snap-none" />
+
       {/* Professional */}
       <div className="mx-auto max-w-screen-xl snap-start p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
-        <header className="h-min lg:sticky lg:top-24">
+        <header className="flex h-min flex-col lg:sticky lg:top-24 ">
           <Me />
           <Socials className="py-4" />
         </header>
@@ -66,22 +68,22 @@ const About = () => (
       students navigate university course registration.
     </p>
     <p>
-      Currently, I'm working on Sidenote, a music app that bridges Spotify and
-      Apple Music, allowing friends to review, share, and discover music.
+      Currently, I&apos;m working on Sidenote, a music app that bridges Spotify
+      and Apple Music, allowing friends to review, share, and discover music.
     </p>
     <p>
       My interests span full-stack web development, backend systems, distributed
       computing, and programming languages.
     </p>
     <p>
-      When I'm not coding, you'll find me out enjoying nature, hiking LA's
-      trails, or trying new restaurants.
+      When I&apos;m not coding, you&apos;ll find me out enjoying nature, hiking
+      LA&apos;s trails, or trying new restaurants.
     </p>
     <p>
-      As I approach graduation in May 2025, I'm seeking full-time software
+      As I approach graduation in May 2025, I&apos;m seeking full-time software
       engineering positions where I can contribute my skills and passion. If
-      you're interested in collaborating or just want to chat about tech, music,
-      or the best hiking spots, feel free to reach out.
+      you&apos;re interested in collaborating or just want to chat about tech,
+      music, or the best hiking spots, feel free to reach out.
     </p>
   </Section.Simple>
 );
@@ -142,7 +144,7 @@ const Thanks = () => (
 const Fun = () => (
   <div className="flex min-h-screen flex-col gap-4 p-6 lg:px-24 lg:py-12">
     <div className="pb-4">
-      <h1 className="text-3xl font-medium">🏡 brendon's corner</h1>
+      <h1 className="text-3xl font-medium">🏡 brendon&apos;s corner</h1>
       <p>some things i like 🙂</p>
     </div>
     <div className="">

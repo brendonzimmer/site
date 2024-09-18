@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 :root {
-  font-synthesis-weight: none /* Safari Variable Font Issue */
+  font-synthesis-weight: none; /* Safari Variable Font Issue */
 }
