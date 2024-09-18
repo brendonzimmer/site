@@ -12,8 +12,8 @@ import { Show } from "@/components/fun/show";
 export default function Home() {
   return (
     <>
-      <div className="h-0 snap-none" />
-      <div className="h-0 snap-start" />
+      <div className="h-1 snap-none bg-red-300" />
+      <div className="h-1 snap-start bg-green-300" />
 
       {/* Professional */}
       <div className="mx-auto max-w-screen-xl snap-end p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pb-12 lg:pt-24">
@@ -35,15 +35,17 @@ export default function Home() {
       </div>
 
       {/* Transition */}
-      <div className="h-[300vh] snap-none bg-gradient-to-b from-auto-- to-[#25283D]"></div>
+      <div className="h-1 snap-end bg-green-300" />
+      <div className="h-[300vh] snap-none bg-gradient-to-b from-auto-- to-[#25283D]" />
 
       {/* Fun */}
+      <div className="h-1 snap-start bg-green-300" />
       <div className="snap-start bg-[#25283D] font-sans text-[#e5e5e5]">
         <Fun />
       </div>
 
-      <div className="h-0 snap-end" />
-      <div className="h-0 snap-none" />
+      <div className="h-1 snap-end bg-green-300" />
+      <div className="h-1 snap-none bg-red-300" />
     </>
   );
 }
