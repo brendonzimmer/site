@@ -185,6 +185,11 @@ export const albums: Album[] = [
     "https://lastfm.freetls.fastly.net/i/u/500x500/7ebd8b6f8ac6766fb26303245a265a2e.jpg",
   ),
   album(
+    "If This Isn't Nice, I Don't Know What Is",
+    "Still Woozy",
+    "https://lastfm.freetls.fastly.net/i/u/500x500/d3626881a0814341d0a158638720311b.jpg",
+  ),
+  album(
     "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
     "Billie Eilish",
     "https://lastfm.freetls.fastly.net/i/u/500x500/c2652de4809e5b4349565518b34b85ca.jpg",
