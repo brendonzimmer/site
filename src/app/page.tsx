@@ -2,7 +2,7 @@ import { BlockLink, InlineLink } from "@/components/link";
 import { Experience } from "@/components/experience";
 import { albums, movies, series } from "@/fun_data";
 import { Separator } from "@/components/separator";
-import { experiences, projects } from "@/data";
+import { educationLine, experiences, projects } from "@/data";
 import { Socials } from "@/components/socials";
 import { Project } from "@/components/project";
 import { Section } from "@/components/section";
@@ -38,7 +38,6 @@ export default function Home() {
       <div className="h-[300vh] snap-none bg-gradient-to-b from-auto-- to-[#25283D]" />
 
       {/* Fun */}
-      {/* <div className="h-96 snap-start snap-always bg-green-300" /> */}
       <div className="snap-start snap-always bg-[#25283D] font-sans text-[#e5e5e5]">
         <Fun />
       </div>
@@ -55,10 +54,11 @@ const Me = () => (
       Brendon Zimmer
     </h1>
     <h2 className="pt-3 text-lg font-medium text-auto+ sm:text-xl">
-      Full-Stack Software Engineer
+      Software Engineer
     </h2>
     <p className="max-w-72 pt-4">
-      I build to make the world a more enjoyable, better place.
+      I like building useful software that feels good to use and holds up in the
+      real world.
     </p>
   </>
 );
@@ -66,29 +66,18 @@ const Me = () => (
 const About = () => (
   <Section.Simple name="About">
     <p>
-      My journey into computer science began with curiosity about how software
-      can solve real-world problems, and it has led me to work on projects that
-      range from optimizing Docker containers to creating platforms that help
-      students navigate university course registration.
+      I&apos;m currently a Software Engineer at Bloomberg in New York, where I
+      focus on building reliable systems and clean product experiences.
     </p>
     <p>
-      Currently, I&apos;m working on Sidenote, a music app that bridges Spotify
-      and Apple Music, allowing friends to review, share, and discover music.
+      Outside of work, I spend most of my time building projects that start as
+      curiosity and turn into tools I actually use.
     </p>
     <p>
-      My interests span full-stack web development, backend systems, distributed
-      computing, and programming languages.
+      I care most about full-stack product development, backend reliability, and
+      thoughtful software design.
     </p>
-    <p>
-      When I&apos;m not coding, you&apos;ll find me out enjoying nature, hiking
-      LA&apos;s trails, or trying new restaurants.
-    </p>
-    <p>
-      As I approach graduation in May 2025, I&apos;m seeking full-time software
-      engineering positions where I can contribute my skills and passion. If
-      you&apos;re interested in collaborating or just want to chat about tech,
-      music, or the best hiking spots, feel free to reach out.
-    </p>
+    <p>{educationLine}</p>
   </Section.Simple>
 );
 
@@ -96,7 +85,9 @@ const Experiences = () => (
   <Section.Items
     name="Experiences"
     items={experiences.map((experience) => (
-      <li key={`${experience.company.name}_${experience.date}`}>
+      <li
+        key={`${experience.company.name}_${experience.date}_${experience.roles[0].role}`}
+      >
         <Experience {...experience} />
       </li>
     ))}
@@ -115,7 +106,7 @@ const Projects = () => (
   <Section.Items
     name="Projects"
     items={projects
-      .filter((p) => p.feature)
+      .filter((project) => project.group === "current")
       .map((project) => (
         <li key={`${project.title}_${project.year}`}>
           <Project {...project} />
@@ -135,11 +126,8 @@ const Projects = () => (
 const Thanks = () => (
   <div className="flex flex-col gap-4">
     <h3>
-      Coded in Visual Studio Code. Built with Next.js and Tailwind CSS. Deployed
-      with Vercel. Inspired by{" "}
-      <InlineLink href="https://brittanychiang.com/">
-        Brittany Chiang
-      </InlineLink>
+      Built with Next.js and Tailwind CSS. Deployed with Vercel. Inspired by{" "}
+      <InlineLink href="https://brittanychiang.com/">Brittany Chiang</InlineLink>
       .
     </h3>
   </div>
@@ -153,15 +141,15 @@ const Fun = () => (
       <p>some things i like 🙂</p>
     </div>
     <div className="flex min-h-screen flex-col gap-4 px-6 pb-6 pt-4 lg:px-24 lg:pb-12 lg:pt-4">
-      <div className="">
+      <div>
         <h2 className="py-1 text-2xl">🎶 Albums</h2>
         <Albums />
       </div>
-      <div className="">
+      <div>
         <h2 className="py-1 text-2xl">🎥 Movies </h2>
         <Movies />
       </div>
-      <div className="">
+      <div>
         <h2 className="py-1 text-2xl">📺 Series</h2>
         <Series />
       </div>
@@ -172,8 +160,8 @@ const Fun = () => (
 const Movies = () => (
   <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
-      {movies.map((m) => (
-        <Show key={m.title} image={m.image} title={m.title} />
+      {movies.map((movie) => (
+        <Show key={movie.title} image={movie.image} title={movie.title} />
       ))}
     </div>
   </div>
@@ -182,8 +170,8 @@ const Movies = () => (
 const Series = () => (
   <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
-      {series.map((tv) => (
-        <Show key={tv.title} image={tv.image} title={tv.title} />
+      {series.map((show) => (
+        <Show key={show.title} image={show.image} title={show.title} />
       ))}
     </div>
   </div>
@@ -192,12 +180,12 @@ const Series = () => (
 const Albums = () => (
   <div className="-ml-24 -mr-6 overflow-x-scroll pl-24 pr-6 scrollbar-none lg:-ml-24 lg:-mr-24">
     <div className="flex min-w-min gap-4 py-2">
-      {albums.map((a) => (
+      {albums.map((album) => (
         <Album
-          key={a.title}
-          image={a.image}
-          title={a.title}
-          author={a.author}
+          key={album.title}
+          image={album.image}
+          title={album.title}
+          author={album.author}
         />
       ))}
     </div>

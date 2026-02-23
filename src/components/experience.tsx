@@ -36,7 +36,7 @@ Experience.Title = function Title({
     <h3>
       <InlineLink
         href={company.url}
-        className="group/link font-medium leading-tight"
+        className="group/link font-medium leading-tight text-auto+"
       >
         {role.role}
         <span className="text-xs italic"> at </span>
@@ -47,8 +47,9 @@ Experience.Title = function Title({
         <div
           key={role}
           className={cn(
-            "font-medium text-auto-",
-            current && "leading-tight text-auto+",
+            current
+              ? "font-medium leading-tight text-auto+"
+              : "ml-2 text-sm font-medium text-auto+",
           )}
         >
           {role}

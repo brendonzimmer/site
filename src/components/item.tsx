@@ -45,12 +45,12 @@ Item.Tags = function Tags({
 }) {
   if (!list?.length) return null;
   return (
-    <ul className={cn("flex flex-wrap gap-2", pCn)}>
+    <ul className={cn("flex flex-wrap gap-1.5", pCn)}>
       {list.map((tag) => (
         <li key={tag}>
           <div
             className={cn(
-              "whitespace-nowrap rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+",
+              "whitespace-nowrap rounded-full bg-clr++/10 px-2 py-0.5 text-xs leading-5 text-clr+",
               tagCn,
             )}
           >

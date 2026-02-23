@@ -1,106 +1,104 @@
-import { ArrowOutIcon, LinkIcon } from "@/icons";
-import { BlockLink, InlineLink } from "./link";
-import type { Project } from "@/data";
-import { Tooltip } from "./tooltip";
-import { If, cn } from "@/utils";
-import { Item } from "./item";
+import { ArrowOutIcon } from "@/icons";
+import type { Project as ProjectType } from "@/data";
+import { InlineLink } from "./link";
+import { cn } from "@/utils";
 
-export function Project({ title, description, skills, links, id }: Project) {
+const statusLabel: Record<ProjectType["status"], string> = {
+  active: "Active",
+  backlog: "Backlog",
+  archive: "Archive",
+};
+
+export function Project(project: ProjectType) {
+  const { title, year, description, skills, links, status, visibility } =
+    project;
+
   return (
-    <Item
-      side={<Project.Links {...{ links, title }} />}
-      title={<Project.Title as="h3" {...{ title, id }} />}
-      desc={description}
-      tags={skills}
-    />
+    <div className="flex flex-col gap-2 text-pretty">
+      <Project.TitleRow
+        as="h3"
+        title={title}
+        links={links}
+        year={year}
+        status={status}
+        visibility={visibility}
+      />
+      <Project.Description description={description} />
+    </div>
   );
 }
 
 Project.Title = function Title({
   title,
-  id,
   as: As,
 }: {
-  id?: string;
   title: string;
   as: "h2" | "h3";
 }) {
-  const link = (
-    <div className="w-fit">
-      <span>
-        <Tooltip
-          trigger={
-            <BlockLink
-              href={`/projects/${id}`}
-              ariaLabel={`Blog post for ${title}`}
-              target="_self"
-              text={title}
-              icon="chevron-right"
-              underline={false}
-              className="hover:text-clr focus-visible:text-clr"
-            />
-          }
-          content={
-            <div className="bg-auto--">
-              <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
-                <span className="lowercase italic">view </span>
-                Details
-              </p>
-            </div>
-          }
-        />
-      </span>
-      {/* <span className="sm:hidden">{title}</span> */}
-    </div>
-  );
-
   return (
     <As className="text-base font-semibold leading-snug text-auto+">
-      <If this={!!id} then={link} else={title} />
+      {title}
     </As>
   );
 };
 
-Project.Links = function Links({
-  links,
+Project.TitleRow = function TitleRow({
   title,
-  icon = "link",
-  forceColumn = false,
-  className,
+  links,
+  year,
+  status,
+  visibility,
+  as: As,
 }: {
-  links: Project["links"];
   title: string;
-  forceColumn?: boolean;
-  icon?: "link" | "arrow-out";
-  className?: string;
+  links?: ProjectType["links"];
+  year?: number;
+  status?: ProjectType["status"];
+  visibility?: ProjectType["visibility"];
+  as: "h2" | "h3";
 }) {
-  if (!links?.length) return null;
   return (
-    <div
-      className={cn(
-        "flex gap-2.5 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2",
-        forceColumn && "flex-col",
+    <div className="flex flex-wrap items-baseline gap-1.5">
+      <As className="mr-0.5 text-base font-semibold leading-snug text-auto+">
+        {title}
+      </As>
+      {year && (
+        <span className="rounded bg-clr++/10 px-1.5 py-0.5 text-xs font-semibold text-clr+">
+          {year}
+        </span>
       )}
-    >
-      {links.map(({ name, url }) => (
+      {status && (
+        <span className="rounded bg-clr++/10 px-1.5 py-0.5 text-xs font-semibold text-clr+">
+          {statusLabel[status]}
+        </span>
+      )}
+      {visibility === "private" && (
+        <span className="rounded border border-auto/25 px-1.5 py-0.5 text-xs font-semibold text-auto-">
+          Private
+        </span>
+      )}
+      {links?.map(({ name, url }) => (
         <InlineLink
-          key={name}
-          target={name === "Blog" ? "_self" : "_blank"}
+          key={`${name}_${url}`}
           href={url}
-          className={cn(
-            "flex items-center gap-1 text-clr",
-            icon === "arrow-out" && "group/link",
-            className,
-          )}
+          target={url.startsWith("/") ? "_self" : "_blank"}
+          className="group/link rounded bg-clr++/10 px-1.5 py-0.5 text-xs font-semibold text-clr+"
           ariaLabel={`${name} link for ${title}`}
         >
-          {icon === "link" && <LinkIcon />}
           {name}
-          {icon === "arrow-out" && (
-            <ArrowOutIcon className="inline-block transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
-          )}
+          <ArrowOutIcon className="mb-px ml-0.5 inline-block size-2.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
         </InlineLink>
       ))}
     </div>
   );
+};
+
+Project.Description = function Description({
+  description,
+  className,
+}: {
+  description: string;
+  className?: string;
+}) {
+  return <p className={cn("text-sm text-auto", className)}>{description}</p>;
 };
