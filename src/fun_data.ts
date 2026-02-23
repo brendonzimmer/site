@@ -90,12 +90,12 @@ export const series: Show[] = [
   {
     title: "The Queen's Gambit",
     image:
-      "https://m.media-amazon.com/images/M/MV5BM2EwMmRhMmUtMzBmMS00ZDQ3LTg4OGEtNjlkODk3ZTMxMmJlXkEyXkFqcGdeQXVyMjM5ODk1NDU@._V1_.jpg",
+      "https://media.themoviedb.org/t/p/w500/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
   },
   {
     title: "Russian Doll",
     image:
-      "https://m.media-amazon.com/images/M/MV5BMzRjYzA2YzgtYmEyYy00YzZjLTkzMGEtMWQ1M2Y2MTA2ZjcwXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg",
+      "https://media.themoviedb.org/t/p/w500/1ju4vQ1EwlIkQxEgWiYmxOs3iBG.jpg",
   },
   {
     title: "Avatar: The Last Airbender",
@@ -105,7 +105,7 @@ export const series: Show[] = [
   {
     title: "Adventure Time",
     image:
-      "https://m.media-amazon.com/images/M/MV5BMGFkNGY4NGMtZjY0NC00YTI0LThiZjMtMjBmZGMzOGU3YTdmXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_FMjpg_UX1000_.jpg",
+      "https://media.themoviedb.org/t/p/w500/qk3eQ8jW4opJ48gFWYUXWaMT4l.jpg",
   },
 ] satisfies Show[];
 
@@ -172,7 +172,7 @@ export const albums: Album[] = [
   album(
     "HIT ME HARD AND SOFT",
     "Billie Eilish",
-    "https://lastfm.freetls.fastly.net/i/u/500x500/e69971625c379772fb79213dccfa194f.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/a/aa/Billie_Eilish_-_Hit_Me_Hard_and_Soft.png",
   ),
   album(
     "Currents",
