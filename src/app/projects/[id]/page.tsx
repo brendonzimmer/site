@@ -6,8 +6,13 @@ import { Item } from "@/components/item";
 import { MDX } from "@/components/mdx";
 import { projects } from "@/data";
 
-export default async function Blog({ params }: { params: { id: string } }) {
-  const p = projects.find((p) => p.id === params.id);
+export default async function Blog({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const p = projects.find((p) => p.id === id);
   if (!p) notFound();
 
   const { mdx, data } = await MDX(p.id!);
