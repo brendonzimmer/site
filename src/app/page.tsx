@@ -12,7 +12,7 @@ import { Show } from "@/components/fun/show";
 export default function Home() {
   return (
     <>
-      <div className="h-1 snap-none bg-red-300" />
+      <div className="h-1 snap-none" />
       <div className="h-0 snap-start snap-always bg-green-300" />
 
       {/* Professional */}
@@ -44,7 +44,7 @@ export default function Home() {
       </div>
 
       <div className="h-0 snap-end snap-always bg-green-300" />
-      <div className="h-1 snap-none bg-red-300" />
+      <div className="h-1 snap-none" />
     </>
   );
 }
