@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedinIcon } from "@/icons";
+import { GithubIcon, LinkedinIcon, SpotifyIcon } from "@/icons";
 import { InlineLink } from "@/components/link";
 import { cn } from "@/utils";
 
@@ -19,6 +19,14 @@ export function Socials({ className }: { className?: string }) {
           className="text-auto-"
         >
           <GithubIcon className="size-6" />
+        </InlineLink>
+      </li>
+      <li>
+        <InlineLink
+          href="https://open.spotify.com/user/brendonzimmer"
+          className="text-auto-"
+        >
+          <SpotifyIcon className="size-6" />
         </InlineLink>
       </li>
     </ul>

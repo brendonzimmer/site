@@ -1,63 +1,79 @@
 import { ArrowOutIcon, LinkIcon } from "@/icons";
-import { BlockLink, InlineLink } from "./link";
-import type { Project } from "@/data";
-import { Tooltip } from "./tooltip";
-import { If, cn } from "@/utils";
+import type { Project as ProjectType } from "@/data";
+import { InlineLink } from "./link";
 import { Item } from "./item";
+import { cn } from "@/utils";
 
-export function Project({ title, description, skills, links, id }: Project) {
+const statusLabel: Record<ProjectType["status"], string> = {
+  live: "Live",
+  shipped: "Shipped",
+  wip: "WIP",
+  archived: "Archive",
+};
+
+export function Project(project: ProjectType) {
+  const { title, summary, skills, links, status, visibility } = project;
+
   return (
-    <Item
-      side={<Project.Links {...{ links, title }} />}
-      title={<Project.Title as="h3" {...{ title, id }} />}
-      desc={description}
-      tags={skills}
-    />
+    <div className="text-pretty lg:grid lg:grid-cols-[1fr_7fr]">
+      <Project.Links links={links} title={title} />
+
+      <div className="flex flex-col gap-2">
+        <Project.Title as="h3" title={title} />
+        <Project.Badges status={status} visibility={visibility} />
+        <Project.Summary summary={summary} />
+        <Item.Tags list={skills} />
+      </div>
+    </div>
   );
 }
 
 Project.Title = function Title({
   title,
-  id,
   as: As,
 }: {
-  id?: string;
   title: string;
   as: "h2" | "h3";
 }) {
-  const link = (
-    <div className="w-fit">
-      <span>
-        <Tooltip
-          trigger={
-            <BlockLink
-              href={`/projects/${id}`}
-              ariaLabel={`Blog post for ${title}`}
-              target="_self"
-              text={title}
-              icon="chevron-right"
-              underline={false}
-              className="hover:text-clr focus-visible:text-clr"
-            />
-          }
-          content={
-            <div className="bg-auto--">
-              <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
-                <span className="lowercase italic">view </span>
-                Details
-              </p>
-            </div>
-          }
-        />
+  return <As className="text-base font-semibold leading-snug text-auto+">{title}</As>;
+};
+
+Project.Badges = function Badges({
+  status,
+  visibility,
+  className,
+}: {
+  status: ProjectType["status"];
+  visibility: ProjectType["visibility"];
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex flex-wrap gap-2", className)}>
+      <span className="rounded-full bg-clr++/10 px-2 py-0.5 text-xs font-semibold text-clr+">
+        {statusLabel[status]}
       </span>
-      {/* <span className="sm:hidden">{title}</span> */}
+      {visibility === "private" && (
+        <span className="rounded-full border border-auto/25 px-2 py-0.5 text-xs font-semibold text-auto-">
+          Private
+        </span>
+      )}
     </div>
   );
+};
 
+Project.Summary = function Summary({
+  summary,
+  className,
+}: {
+  summary: ProjectType["summary"];
+  className?: string;
+}) {
   return (
-    <As className="text-base font-semibold leading-snug text-auto+">
-      <If this={!!id} then={link} else={title} />
-    </As>
+    <div className={cn("flex flex-col gap-1 text-sm text-auto", className)}>
+      <p>{summary.what}</p>
+      <p>{summary.impact}</p>
+      <p>{summary.role}</p>
+    </div>
   );
 };
 
@@ -68,13 +84,14 @@ Project.Links = function Links({
   forceColumn = false,
   className,
 }: {
-  links: Project["links"];
+  links: ProjectType["links"];
   title: string;
   forceColumn?: boolean;
   icon?: "link" | "arrow-out";
   className?: string;
 }) {
-  if (!links?.length) return null;
+  if (!links?.length) return <div />;
+
   return (
     <div
       className={cn(
@@ -84,8 +101,8 @@ Project.Links = function Links({
     >
       {links.map(({ name, url }) => (
         <InlineLink
-          key={name}
-          target={name === "Blog" ? "_self" : "_blank"}
+          key={`${name}_${url}`}
+          target={url.startsWith("/") ? "_self" : "_blank"}
           href={url}
           className={cn(
             "flex items-center gap-1 text-clr",
