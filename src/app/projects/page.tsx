@@ -4,8 +4,12 @@ import { Item } from "@/components/item";
 import { projects } from "@/data";
 
 export default function ProjectsPage() {
-  const currentProjects = projects
+  const activeProjects = projects
     .filter((project) => project.group === "current")
+    .sort((a, b) => b.year - a.year);
+
+  const backlogProjects = projects
+    .filter((project) => project.group === "backlog")
     .sort((a, b) => b.year - a.year);
 
   const archiveProjects = projects
@@ -28,7 +32,10 @@ export default function ProjectsPage() {
       </h1>
 
       <main className="mt-4 flex flex-col gap-12">
-        <ProjectsTable title="Current Projects" rows={currentProjects} />
+        <ProjectsTable title="Active" rows={activeProjects} />
+        {backlogProjects.length > 0 && (
+          <ProjectsTable title="Backlog" rows={backlogProjects} />
+        )}
         <ProjectsTable title="Archive" rows={archiveProjects} />
       </main>
     </div>
@@ -51,9 +58,7 @@ function ProjectsTable({
           <tr className="text-sm font-semibold uppercase text-clr *:py-4">
             <th>Year</th>
             <th>Project</th>
-            <th className="hidden sm:table-cell">Status</th>
-            <th className="hidden sm:table-cell">Skills</th>
-            <th className="hidden sm:table-cell">Links</th>
+            <th className="hidden sm:table-cell">Tech</th>
           </tr>
         </thead>
 
@@ -65,31 +70,15 @@ function ProjectsTable({
             >
               <td className="translate-y-px">{project.year}</td>
               <td className="flex flex-col gap-2">
-                <Project.Title as="h2" title={project.title} />
-                <Project.Summary summary={project.summary} className="text-sm" />
-                <Project.Badges
-                  status={project.status}
-                  visibility={project.visibility}
-                  className="sm:hidden"
+                <Project.TitleRow
+                  as="h2"
+                  title={project.title}
+                  links={project.links}
                 />
-              </td>
-              <td className="hidden sm:table-cell">
-                <Project.Badges
-                  status={project.status}
-                  visibility={project.visibility}
-                />
+                <Project.Description description={project.description} />
               </td>
               <td className="hidden sm:table-cell">
                 <Item.Tags list={project.skills} />
-              </td>
-              <td className="hidden sm:table-cell">
-                <Project.Links
-                  links={project.links}
-                  title={project.title}
-                  forceColumn
-                  icon="arrow-out"
-                  className="text-auto"
-                />
               </td>
             </tr>
           ))}

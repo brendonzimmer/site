@@ -85,7 +85,9 @@ const Experiences = () => (
   <Section.Items
     name="Experiences"
     items={experiences.map((experience) => (
-      <li key={`${experience.company.name}_${experience.date}`}>
+      <li
+        key={`${experience.company.name}_${experience.date}_${experience.roles[0].role}`}
+      >
         <Experience {...experience} />
       </li>
     ))}

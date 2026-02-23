@@ -22,10 +22,10 @@ export const experiences: Experience[] = [
   {
     roles: [
       { role: "Software Engineer", current: true },
-      { role: "Executive Board Member", current: true },
-      { role: "Director of Recruitment", current: true },
+      { role: "Executive Board Member", current: false },
+      { role: "Director of Recruitment", current: false },
     ],
-    date: "Jan 2023 — Present",
+    date: "Jan 2023 — May 2025",
     company: { name: "TroyLabs", url: "https://troylabs.vc" },
     description:
       "Delivered new features, tailored tech solutions, and strategic consultation to startups in weekly BUILD meetings. Oversaw full recruitment cycle, managing applicant events, group interviews, and facilitating weekly onboarding sessions to ensure cultural integration and support for new members.",
@@ -46,19 +46,13 @@ export const experiences: Experience[] = [
   },
 ] satisfies Experience[];
 
-export type ProjectSummary = {
-  what: string;
-  impact: string;
-  role: string;
-};
-
 export type Project = {
   title: string;
   year: number;
-  group: "current" | "archive";
-  status: "live" | "shipped" | "wip" | "archived";
+  group: "current" | "backlog" | "archive";
+  status: "active" | "backlog" | "archive";
   visibility: "public" | "private";
-  summary: ProjectSummary;
+  description: string;
   skills?: string[];
   links?: { name: string; url: string }[];
 };
@@ -68,14 +62,10 @@ export const projects: Project[] = [
     title: "wherami",
     year: 2026,
     group: "current",
-    status: "live",
+    status: "active",
     visibility: "private",
-    summary: {
-      what: "An iOS location tracker that captures background points every two minutes.",
-      impact:
-        "Built for real-world city movement with queueing, replay safety, and semantic visit inference.",
-      role: "I designed and built the mobile + backend pipeline using Expo, Convex, and SQLite.",
-    },
+    description:
+      "iOS background location tracker with queueing, replay safety, and semantic visit inference.",
     skills: [
       "Expo",
       "React Native",
@@ -89,99 +79,71 @@ export const projects: Project[] = [
     title: "gymlog",
     year: 2026,
     group: "current",
-    status: "wip",
+    status: "active",
     visibility: "private",
-    summary: {
-      what: "A workout logging app focused on fast session tracking and offline reliability.",
-      impact:
-        "Structured around resilient auth, sync, and recovery so sessions are never lost mid-workout.",
-      role: "I built the product architecture and core workout state/sync flows.",
-    },
+    description:
+      "Workout logging app focused on fast session tracking with resilient auth, sync, and offline reliability.",
     skills: ["React", "TypeScript", "Convex", "Better Auth", "Zustand"],
   },
   {
     title: "design",
     year: 2026,
     group: "current",
-    status: "shipped",
+    status: "active",
     visibility: "private",
-    summary: {
-      what: "A component studio for generating and iterating React UI through chat.",
-      impact:
-        "Streams generation progress and live previews so edits feel immediate and collaborative.",
-      role: "I built the orchestration layer across frontend, Bun server, and Convex state.",
-    },
+    description:
+      "Chat-driven component studio for generating and iterating React UI with streaming progress and live previews.",
     skills: ["React", "Vite", "Bun", "Convex", "TypeScript"],
   },
   {
     title: "dot",
     year: 2026,
     group: "current",
-    status: "shipped",
+    status: "active",
     visibility: "public",
-    summary: {
-      what: "A CLI for managing and deploying dotfiles with clearer workflows.",
-      impact:
-        "Turned repetitive machine setup into a simple repeatable command flow.",
-      role: "I built and maintain the CLI with Bun, TypeScript, and robust prompts.",
-    },
+    description:
+      "CLI for managing and deploying dotfiles with simple, repeatable command flows.",
     skills: ["Bun", "TypeScript", "CLI", "Automation"],
     links: [{ name: "Code", url: "https://github.com/b-relay/dot" }],
   },
   {
     title: "budget",
     year: 2025,
-    group: "current",
-    status: "shipped",
+    group: "backlog",
+    status: "backlog",
     visibility: "private",
-    summary: {
-      what: "A local-first budgeting app that mirrors a spreadsheet workflow.",
-      impact:
-        "Supports import/export, annualized views, and offline-first personal finance tracking.",
-      role: "I built the full frontend data model and UX in React + TypeScript.",
-    },
+    description:
+      "Local-first budgeting app that mirrors a spreadsheet workflow with import/export and annualized views.",
     skills: ["React", "TypeScript", "Vite", "Tailwind CSS"],
   },
   {
     title: "melody",
     year: 2025,
-    group: "archive",
-    status: "archived",
+    group: "backlog",
+    status: "backlog",
     visibility: "private",
-    summary: {
-      what: "A music-social app concept for sharing, rating, and discovering songs with friends.",
-      impact:
-        "Explored product direction and mobile architecture for social listening experiences.",
-      role: "I prototyped both app and API layers across Swift and TypeScript.",
-    },
+    description:
+      "Music-social app concept for sharing, rating, and discovering songs with friends.",
     skills: ["Swift", "TypeScript", "iOS", "API Design"],
   },
   {
     title: "usc-notifiy",
     year: 2024,
     group: "archive",
-    status: "archived",
+    status: "archive",
     visibility: "private",
-    summary: {
-      what: "A USC seat-availability notifier and registration helper tool.",
-      impact:
-        "Automated section monitoring and notifications for high-demand classes.",
-      role: "I built the monitoring loop, parsing, and notification flow end to end.",
-    },
+    description:
+      "USC seat-availability notifier that automated section monitoring and notifications for high-demand classes.",
     skills: ["TypeScript", "Playwright", "Twilio", "Automation"],
   },
   {
     title: "ftov",
     year: 2023,
     group: "archive",
-    status: "archived",
+    status: "archive",
     visibility: "public",
-    summary: {
-      what: "A CLI to encode and decode files through video representations.",
-      impact:
-        "Experimented with media pipelines and binary transformations in a practical CLI.",
-      role: "I built the full toolchain in Rust with FFmpeg integration.",
-    },
+    description:
+      "CLI to encode and decode files through video representations using Rust and FFmpeg.",
     skills: ["Rust", "CLI", "FFmpeg"],
     links: [{ name: "Code", url: "https://github.com/brendonzimmer/ftov" }],
   },
@@ -189,28 +151,20 @@ export const projects: Project[] = [
     title: "status",
     year: 2023,
     group: "archive",
-    status: "archived",
+    status: "archive",
     visibility: "private",
-    summary: {
-      what: "A web app for sharing short status updates with friends and family.",
-      impact:
-        "Tested lightweight social presence patterns with simple publishing UX.",
-      role: "I built the full-stack app with Next.js and PostgreSQL tooling.",
-    },
+    description:
+      "Web app for sharing short status updates with friends and family.",
     skills: ["TypeScript", "Next.js", "PostgreSQL", "Prisma"],
   },
   {
     title: "semagrams",
     year: 2021,
     group: "archive",
-    status: "archived",
+    status: "archive",
     visibility: "public",
-    summary: {
-      what: "A crowdsourced project inspired by the semagrams in sci-fi linguistics.",
-      impact:
-        "Combined collaborative input with creative worldbuilding in a web experience.",
-      role: "I built the project frontend and deployed the full app.",
-    },
+    description:
+      "Crowdsourced project inspired by the semagrams in sci-fi linguistics.",
     skills: ["TypeScript", "Next.js", "Tailwind CSS"],
     links: [
       { name: "Site", url: "https://semagrams.brendon.app" },
@@ -221,14 +175,10 @@ export const projects: Project[] = [
     title: "concordance",
     year: 2021,
     group: "archive",
-    status: "archived",
+    status: "archive",
     visibility: "public",
-    summary: {
-      what: "A programmatic art piece inspired by A Concordance of One's Life.",
-      impact:
-        "Translated literary ideas into an interactive visual narrative.",
-      role: "I built the visual system with Three.js and p5.js.",
-    },
+    description:
+      "Programmatic art piece inspired by A Concordance of One's Life, built with Three.js and p5.js.",
     skills: ["JavaScript", "Three.js", "p5.js"],
     links: [
       { name: "Site", url: "https://concordance.brendon.app" },
