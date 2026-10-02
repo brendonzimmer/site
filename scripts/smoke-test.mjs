@@ -67,8 +67,14 @@ try {
           "Intrinsic image dimensions",
         );
       }
-      for (const id of ["work", "about", "corner"])
-        assert(html.includes(`id="${id}"`), `Navigation target ${id}`);
+      assert(html.includes("h-[300vh]"), "Original gradient transition");
+      assert(html.includes("snap-mandatory"), "Original scroll snapping");
+      assert(html.includes("scrollbar-none"), "Hidden shelf scrollbars");
+      assert(!html.includes('href="#corner"'), "Corner stays undisclosed");
+      assert(
+        !html.includes("collection-controls"),
+        "No added gallery controls",
+      );
     }
     if (route === "/projects/ofc")
       assert(!html.includes("lorem ipsum"), "No placeholder article copy");

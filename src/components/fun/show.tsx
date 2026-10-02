@@ -3,7 +3,7 @@ import type { Show } from "@/fun_data";
 
 export function Show({ title, image }: Show) {
   return (
-    <div className="w-32 transition-transform duration-150 lg:w-48 xl:hover:scale-[1.04] xl:active:scale-[0.98]">
+    <div className="w-32 transition-transform duration-150 active:scale-[0.98] lg:w-48 xl:hover:scale-[1.04]">
       <Image
         src={image}
         width={192}
@@ -12,7 +12,7 @@ export function Show({ title, image }: Show) {
         alt={`${title} cover`}
         className="aspect-[25/37] rounded object-cover shadow-lg"
       />
-      <p className="line-clamp-2 text-balance pt-1 text-center text-base">
+      <p className="line-clamp-2 pt-1 text-center text-base text-balance">
         {title}
       </p>
     </div>

@@ -18,9 +18,9 @@ bun run build
 bun run test:smoke
 ```
 
-The smoke test starts the production build on port 3100, then checks the homepage, project archive, project overview, and unknown-project 404. It also checks titles, page landmarks, headings, navigation anchors, nonempty links, lazy image loading, and current biography copy.
+The smoke test starts the production build on port 3100, then checks the homepage, project archive, project overview, and unknown-project 404. It also checks titles, page landmarks, headings, hidden-corner behavior, original snap transition, nonempty links, lazy image loading, and current biography copy.
 
-Browser QA should cover narrow and wide screens, keyboard navigation, the three collection shelves, anchor navigation, Back/Forward, and reduced-motion preferences.
+Browser QA should cover narrow and wide screens, keyboard navigation, the three collection shelves, the gradual hidden-corner reveal, Back/Forward, and reduced-motion preferences.
 
 ## Framework versions
 
@@ -30,7 +30,8 @@ Tailwind v4 targets Safari 16.4+, Chrome 111+, and Firefox 128+.
 
 ## Content refresh
 
-- Original slate background, blue accents, monospace type, sticky identity column, and dark-purple personal corner are preserved
+- Original page structure, slate/blue palette, monospace type, sticky identity column, and hidden dark-purple personal corner are restored from the live-site source
+- The original 300vh gradient/smooth snap transition and scrollbar-hidden shelves are retained; cards keep desktop hover motion and add touch press feedback
 - Biography reflects the public Bloomberg/New York announcement and USC computer science graduation, magna cum laude, in 2025
 - Rig leads the selected projects; older experiments remain in the archive
 - The USC Course Notifier article is a concise overview, replacing unfinished placeholder text

@@ -1,6 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
-import colors from "tailwindcss/colors";
 import animate from "tailwindcss-animate";
 import typography from "@tailwindcss/typography";
 import scrollbar from "tailwind-scrollbar";
@@ -22,13 +21,13 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", ...defaultTheme.fontFamily.mono],
       },
       colors: {
-        "auto--": colors.slate[100],
-        "auto-": colors.slate[500],
-        auto: colors.slate[700],
-        "auto+": colors.slate[900],
-        clr: colors.blue[600],
-        "clr+": colors.blue[700],
-        "clr++": colors.blue[800],
+        "auto--": "#f1f5f9",
+        "auto-": "#64748b",
+        auto: "#334155",
+        "auto+": "#0f172a",
+        clr: "#2563eb",
+        "clr+": "#1d4ed8",
+        "clr++": "#1e40af",
       },
     },
   },
