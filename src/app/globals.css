@@ -37,44 +37,64 @@
   }
 }
 
-/* A compact, readable fallback: the corner is always in normal document flow. */
-.corner-transition {
-  block-size: 75vh;
-  block-size: 75svh;
-  background: linear-gradient(to bottom, #f1f5f9, #25283d);
+/* Snap the actual full-height scenes. Oversized sections still allow normal
+   reading between their edges; no zero-height markers or blank runway. */
+html:has(.home-page) {
+  scroll-snap-type: y mandatory;
 }
-.corner-transition-stage {
-  display: none;
+.home-page {
+  isolation: isolate;
+}
+.home-professional,
+.corner-content {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
-/* One local, reversible scene. Only opacity changes; no wheel interception,
-   per-frame JavaScript, global snapping, or live content hidden behind a layer. */
+/* Adjacent scene boundaries drive the dissolve. The outgoing page's exit range
+   and the corner's entry range share the same geometry, with no spacer at all.
+   The corner keeps its solid surface so its white text is always readable. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) and
-    (animation-range: contain 0% contain 100%) {
-    .corner-transition {
-      block-size: 160svh;
-      background: #f1f5f9;
-      view-timeline: --corner-transition block;
+    (animation-range: entry 0% entry 100%) {
+    .home-professional {
+      animation: professional-leave 1ms linear both;
+      animation-timeline: view(block);
+      animation-range: exit 0% exit 35%;
     }
-    .corner-transition-stage {
-      display: block;
-      position: sticky;
-      inset-block-start: 0;
-      block-size: 100vh;
-      block-size: 100dvh;
-      background: #f1f5f9;
-      pointer-events: none;
+    .corner-content {
+      view-timeline: --corner-reveal block;
+      view-timeline-inset: 0;
     }
-    .corner-transition-stage::after {
+    .corner-content::before {
       content: "";
-      position: absolute;
+      position: fixed;
       inset: 0;
+      z-index: -1;
       background: #25283d;
+      opacity: 0;
+      pointer-events: none;
       animation: corner-darken 1ms linear both;
-      animation-timeline: --corner-transition;
-      animation-range: contain 0% contain 100%;
+      animation-timeline: --corner-reveal;
+      animation-range: entry 15% entry 100%;
     }
+    /* Keyboard navigation must never leave a focused outgoing link invisible. */
+    .home-professional:has(a:focus-visible) {
+      animation: none;
+      opacity: 1;
+    }
+    .home-page:has(.home-professional a:focus-visible) .corner-content::before {
+      animation: none;
+      opacity: 0;
+    }
+  }
+}
+@keyframes professional-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 @keyframes corner-darken {
@@ -83,6 +103,11 @@
   }
   to {
     opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.home-page) {
+    scroll-snap-type: y proximity;
   }
 }
 

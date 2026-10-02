@@ -67,9 +67,10 @@ try {
           "Intrinsic image dimensions",
         );
       }
-      assert(html.includes("corner-transition-stage"), "Native reveal stage");
+      assert(html.includes('class="home-page"'), "Homepage-scoped snapping");
+      assert(html.includes("home-professional"), "Full professional snap area");
+      assert(!html.includes("corner-transition"), "No empty transition scene");
       assert(!html.includes("h-[300vh]"), "No oversized gradient spacer");
-      assert(!html.includes("snap-mandatory"), "No document-wide snap trap");
       assert(!html.includes("/_next/image?"), "No Vercel image proxy cost");
       assert(
         !/<img[^>]+src="\/gallery\//.test(html),
@@ -104,6 +105,19 @@ try {
         );
 
       assert(styles.includes("view-timeline"), "Native view timeline");
+      assert(
+        styles.includes("html:has(.home-page)"),
+        "Snapping scoped to homepage",
+      );
+      assert(
+        styles.includes("scroll-snap-type:y mandatory"),
+        "Native vertical snaps",
+      );
+      assert(
+        styles.includes("scroll-snap-align:start"),
+        "Section snap alignment",
+      );
+      assert(!styles.includes("160svh"), "No viewport-sized blank runway");
       assert(
         styles.includes("prefers-reduced-motion"),
         "Reduced-motion fallback",

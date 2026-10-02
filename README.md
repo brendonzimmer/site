@@ -18,7 +18,7 @@ bun run build
 bun run test:smoke
 ```
 
-The smoke test starts the production build on port 3100, then checks the homepage, project archive, project overview, and unknown-project 404. It also checks titles, page landmarks, headings, the hidden corner’s native transition, absence of document-wide snapping, nonempty links, browser-direct lazy image loading, and current biography copy.
+The smoke test starts the production build on port 3100, then checks the homepage, project archive, project overview, and unknown-project 404. It also checks titles, page landmarks, headings, the hidden corner’s native transition, homepage-scoped section snapping, nonempty links, browser-direct lazy image loading, and current biography copy.
 
 Browser QA should cover narrow and wide screens, keyboard navigation, the three collection shelves, the hidden-corner reveal in both directions, short wheel movements near the footer, Back/Forward, and reduced-motion preferences.
 
@@ -31,7 +31,7 @@ Tailwind v4 targets Safari 16.4+, Chrome 111+, and Firefox 128+.
 ## Content refresh
 
 - Original page structure, slate/blue palette, monospace type, sticky identity column, and hidden dark-purple personal corner are restored from the live-site source
-- The hidden corner remains a scrolling discovery, with a local native CSS crossfade replacing the 300vh gradient and mandatory root snap; shelves retain hidden scrollbars, hover motion, and touch press feedback
+- The hidden corner remains a scrolling discovery, with native section snapping and a CSS crossfade at the shared content boundary, without a blank transition scene; shelves retain hidden scrollbars, hover motion, and touch press feedback
 - Biography reflects the public Bloomberg/New York announcement and USC computer science graduation, magna cum laude, in 2025
 - Rig leads the selected projects; older experiments remain in the archive
 - The USC Course Notifier article is a concise overview, replacing unfinished placeholder text
@@ -58,13 +58,14 @@ Use a Vercel **Preview** deployment for review. Production promotion is a separa
 
 - Professional content and gallery markup are server rendered. Static external links use native anchors; only internal navigation uses Next Link.
 - The project-detail hint is a small client island with Escape dismissal, replacing the tooltip/positioning library in the browser bundle. Its trigger and content remain server-rendered slots.
-- The hidden-corner reveal is a native CSS view timeline on a local 160svh scene. A viewport-sized sticky surface crossfades using opacity over approximately 60svh, then yields to normal document flow. No wheel interception, scroll listener, per-frame React updates, or root scroll snapping.
-- Unsupported browsers and reduced-motion visitors get a compact static gradient. No content is initially hidden or depends on JavaScript to appear.
+- The hidden-corner reveal uses native view timelines at the shared boundary between the professional section and corner. The outgoing professional scene fades while a fixed decorative purple background crossfades in. Both full content sections are native snap areas; oversized sections retain free interior scrolling. There is no empty transition section, wheel interception, scroll listener, or per-frame React update. Snapping is scoped to the homepage only.
+- Unsupported browsers keep solid readable section surfaces. Reduced-motion visitors also get gentler proximity snapping with no scene fades. Keyboard focus in an outgoing professional link suppresses the dissolve so the focused link stays visible. All content is server rendered and no content depends on JavaScript to appear.
 - Shelves use native overflow and proximity snapping, with a single keyboard focus stop per shelf. Motion is gated by input capability and reduced-motion preferences. There is no carousel library or permanently promoted layer per card.
 - The same Geist fonts are retained. Only the landing-page monospace font is preloaded; the sans face loads as needed. This changes request priority, not necessarily total font transfer.
 - Artwork is loaded directly from the existing external providers. Do not introduce Vercel image proxying, local cover hosting, or a new paid image service: avoiding that transfer cost is intentional.
 
 Native-animation references:
+
 - https://developer.chrome.com/docs/css-ui/scroll-driven-animations
 - https://webkit.org/blog/17184/so-many-ranges-so-little-time-a-cheatsheet-of-animation-ranges-for-your-next-scroll-driven-animation/
 - https://webkit.org/blog/17862/webkit-features-for-safari-26-4/

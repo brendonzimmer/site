@@ -12,9 +12,9 @@ import { CollectionShelf } from "@/components/fun/collection-shelf";
 
 export default function Home() {
   return (
-    <>
-      {/* Professional */}
-      <div className="mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
+    <div className="home-page">
+      {/* The two full content sections are the native snap areas. */}
+      <div className="home-professional mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
         <header className="flex h-min flex-col lg:sticky lg:top-24">
           <Me />
           <Socials className="py-4" />
@@ -32,18 +32,13 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* A local scroll-driven stage, never a document-wide scroll trap. */}
-      <div className="corner-transition" aria-hidden="true">
-        <div className="corner-transition-stage" />
-      </div>
-
       <section
         className="corner-content bg-[#25283D] font-sans text-[#e5e5e5]"
         aria-labelledby="corner-heading"
       >
         <Fun />
       </section>
-    </>
+    </div>
   );
 }
 
