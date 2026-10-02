@@ -287,7 +287,7 @@ export const albums: Album[] = [
   album(
     "beerbongs & bentleys",
     "Post Malone",
-    "https://lastfm.freetls.fastly.net/i/u/500x500/d9a790b6c8526a4c8cb9862c64bc3342.jpg",
+    "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7e/3c/4e/7e3c4ef6-daa7-cc10-57d0-45f5a562eaf5/18UMGIM22101.rgb.jpg/592x592bb.webp",
   ),
   album(
     "Dreamland",
