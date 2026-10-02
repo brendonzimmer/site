@@ -40,19 +40,19 @@ const article: any = {
       prefetch={false}
       ref={undefined}
       className={cn(
-        "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
+        "font-semibold text-ink transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
         "group-[.sup]/sup:font-medium group-[.sup]/sup:text-clr group-[.sup]/sup:hover:underline",
       )}
     />
   ),
   h1: () => DoNotUse(),
   h2: (p: any) => (
-    <h2 className="text-[calc(1.1875rem)] font-bold leading-[1.33]" {...p} />
+    <h2 className="text-[calc(1.1875rem)] leading-[1.33] font-bold" {...p} />
   ),
   h3: (p: any) => (
-    <h3 className="text-[calc(1.1875rem)] font-semibold leading-[1.6]" {...p} />
+    <h3 className="text-[calc(1.1875rem)] leading-[1.6] font-semibold" {...p} />
   ),
-  h4: (p: any) => <h4 className="font-semibold leading-[1.5]" {...p} />,
+  h4: (p: any) => <h4 className="leading-[1.5] font-semibold" {...p} />,
   h5: () => DoNotUse(),
   h6: () => DoNotUse(),
   p: (p: any) => (
@@ -70,7 +70,7 @@ const article: any = {
   code: (p: any) => (
     <code
       {...p}
-      className="rounded bg-[#afb8c133] px-1 py-0.5 text-sm font-semibold text-auto+ group-[.pre]/pre:bg-transparent group-[.pre]/pre:p-0 group-[.pre]/pre:font-normal group-[.pre]/pre:text-auto--"
+      className="rounded bg-[#afb8c133] px-1 py-0.5 text-sm font-semibold text-ink group-[.pre]/pre:bg-transparent group-[.pre]/pre:p-0 group-[.pre]/pre:font-normal group-[.pre]/pre:text-paper"
     />
   ),
   pre: (p: any) => (
@@ -95,5 +95,5 @@ const article: any = {
 };
 
 const DoNotUse = () => (
-  <p className="bg-pink-600 font-bold text-auto--">Do not use this!</p>
+  <p className="bg-pink-600 font-bold text-paper">Do not use this!</p>
 );

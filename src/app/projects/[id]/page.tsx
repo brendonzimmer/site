@@ -34,10 +34,10 @@ export default async function Blog({
       />
 
       <div className="flex flex-col">
-        <h1 className="text-auto+ pb-1 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="pb-1 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           {data.title}
         </h1>
-        <h2 className="text-auto+ text-xl font-medium">
+        <h2 className="text-xl font-medium text-ink">
           <span className="text-lg italic">about</span> {p.title}
         </h2>
         <address className="pb-2 text-xl font-medium not-italic">

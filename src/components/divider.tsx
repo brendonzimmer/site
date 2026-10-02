@@ -19,12 +19,12 @@ export function Divider({
       className={cn(
         "flex items-center",
         pt,
-        sticky && "sticky top-0 z-10 bg-auto--/75 backdrop-blur lg:static",
+        sticky && "sticky top-0 z-10 bg-paper/75 backdrop-blur lg:static",
         className,
       )}
     >
       <div className="w-full grow border-[0.5px] border-auto" />
-      <As className="min-w-fit shrink px-4 text-sm font-semibold uppercase text-clr">
+      <As className="min-w-fit shrink px-4 text-sm font-semibold text-clr uppercase">
         {text}
       </As>
       <div className="w-full grow border-[0.5px] border-auto" />

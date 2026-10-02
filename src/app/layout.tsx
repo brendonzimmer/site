@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${GeistSans.variable} ${GeistMono.variable} snap-y snap-mandatory scroll-smooth bg-auto-- font-mono text-auto`}
+      className={`${GeistSans.variable} ${GeistMono.variable} snap-y snap-mandatory scroll-smooth bg-paper font-mono text-auto`}
       lang="en"
     >
       <body>

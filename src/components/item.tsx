@@ -50,7 +50,7 @@ Item.Tags = function Tags({
         <li key={tag}>
           <div
             className={cn(
-              "whitespace-nowrap rounded-full bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+",
+              "rounded-full bg-accent-dark/10 px-3 py-1 text-xs leading-5 whitespace-nowrap text-accent-strong",
               tagCn,
             )}
           >

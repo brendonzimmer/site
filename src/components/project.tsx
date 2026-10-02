@@ -41,8 +41,8 @@ Project.Title = function Title({
             />
           }
           content={
-            <div className="bg-auto--">
-              <p className="whitespace-nowrap rounded bg-clr++/10 px-3 py-1 text-xs leading-5 text-clr+ ring-4 ring-auto--">
+            <div className="bg-paper">
+              <p className="rounded bg-accent-dark/10 px-3 py-1 text-xs leading-5 whitespace-nowrap text-accent-strong ring-4 ring-paper">
                 <span className="lowercase italic">view </span>
                 Details
               </p>
@@ -55,7 +55,7 @@ Project.Title = function Title({
   );
 
   return (
-    <As className="text-base font-semibold leading-snug text-auto+">
+    <As className="text-base leading-snug font-semibold text-ink">
       <If this={!!id} then={link} else={title} />
     </As>
   );
@@ -79,7 +79,7 @@ Project.Links = function Links({
   return (
     <div
       className={cn(
-        "flex gap-2.5 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pb-0 lg:pr-2",
+        "flex gap-2.5 pb-1 text-xs font-semibold uppercase lg:mt-0.5 lg:flex-col lg:gap-0.5 lg:pr-2 lg:pb-0",
         forceColumn && "flex-col",
       )}
     >
@@ -98,7 +98,7 @@ Project.Links = function Links({
           {icon === "link" && <LinkIcon />}
           {name}
           {icon === "arrow-out" && (
-            <ArrowOutIcon className="inline-block transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
+            <ArrowOutIcon className="inline-block transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 motion-reduce:transition-none" />
           )}
         </InlineLink>
       ))}

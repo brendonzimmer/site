@@ -21,13 +21,13 @@ export default function Projects() {
         ariaLabel="Homepage"
       />
 
-      <h1 className="text-auto+ text-4xl font-bold tracking-tight sm:text-5xl">
+      <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
         Project Archive
       </h1>
 
       <main id="main-content" tabIndex={-1}>
         <table className="mt-4 text-left">
-          <thead className="sticky top-0 z-10 border-b border-auto/20 bg-auto--/75 px-6 py-5 backdrop-blur">
+          <thead className="sticky top-0 z-10 border-b border-auto/20 bg-paper/75 px-6 py-5 backdrop-blur">
             <tr className="text-sm font-semibold text-clr uppercase *:py-4">
               <th>Year</th>
               <th>Project</th>

@@ -70,6 +70,22 @@ try {
       assert(html.includes("h-[300vh]"), "Original gradient transition");
       assert(html.includes("snap-mandatory"), "Original scroll snapping");
       assert(html.includes("scrollbar-none"), "Hidden shelf scrollbars");
+      const stylesheetPaths = [
+        ...html.matchAll(/<link[^>]+href="([^"]+\.css[^"]*)"/g),
+      ].map((match) => match[1]);
+      const styles = (
+        await Promise.all(
+          stylesheetPaths.map(async (path) =>
+            (await fetch(`http://127.0.0.1:3100${path}`)).text(),
+          ),
+        )
+      ).join("\n");
+      for (const selector of [".bg-paper{", ".text-ink{", ".bg-accent-dark"])
+        assert(
+          styles.includes(selector),
+          `Original palette utility ${selector}`,
+        );
+
       assert(!html.includes('href="#corner"'), "Corner stays undisclosed");
       assert(
         !html.includes("collection-controls"),

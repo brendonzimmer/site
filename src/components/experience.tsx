@@ -14,7 +14,7 @@ export function Experience({
   return (
     <Item
       side={
-        <div className="text-balance text-xs font-semibold uppercase text-clr lg:mt-1 lg:pr-2">
+        <div className="text-xs font-semibold text-balance text-clr uppercase lg:mt-1 lg:pr-2">
           {date}
         </div>
       }
@@ -36,19 +36,19 @@ Experience.Title = function Title({
     <h3>
       <InlineLink
         href={company.url}
-        className="group/link font-medium leading-tight"
+        className="group/link leading-tight font-medium"
       >
         {role.role}
         <span className="text-xs italic"> at </span>
         {company.name}
-        <ArrowOutIcon className="mb-2.5 ml-0.5 inline-block size-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none" />
+        <ArrowOutIcon className="mb-2.5 ml-0.5 inline-block size-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-focus-visible/link:translate-x-0.5 group-focus-visible/link:-translate-y-0.5 motion-reduce:transition-none" />
       </InlineLink>
       {roles.map(({ role, current }) => (
         <div
           key={role}
           className={cn(
-            "font-medium text-auto-",
-            current && "leading-tight text-auto+",
+            "font-medium text-muted",
+            current && "leading-tight text-ink",
           )}
         >
           {role}

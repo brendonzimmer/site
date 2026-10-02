@@ -9,7 +9,7 @@ export function Socials({ className }: { className?: string }) {
         <InlineLink
           href="https://linkedin.com/in/brendonzimmer"
           ariaLabel="Brendon Zimmer on LinkedIn"
-          className="text-auto-"
+          className="text-muted"
         >
           <LinkedinIcon className="size-6" />
         </InlineLink>
@@ -18,7 +18,7 @@ export function Socials({ className }: { className?: string }) {
         <InlineLink
           href="https://github.com/brendonzimmer"
           ariaLabel="Brendon Zimmer on GitHub"
-          className="text-auto-"
+          className="text-muted"
         >
           <GithubIcon className="size-6" />
         </InlineLink>

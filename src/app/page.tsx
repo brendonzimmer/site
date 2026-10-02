@@ -56,10 +56,10 @@ export default function Home() {
 
 const Me = () => (
   <>
-    <h1 className="text-auto+ text-4xl font-bold tracking-tight sm:text-5xl">
+    <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
       Brendon Zimmer
     </h1>
-    <h2 className="text-auto+ pt-3 text-lg font-medium sm:text-xl">
+    <h2 className="pt-3 text-lg font-medium text-ink sm:text-xl">
       Full-Stack Software Engineer
     </h2>
     <p className="max-w-72 pt-4">

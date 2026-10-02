@@ -23,7 +23,7 @@ export function InlineLink({
         (target ?? "_blank") === "_blank" ? "noopener noreferrer" : undefined
       }
       className={cn(
-        "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
+        "font-semibold text-ink transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
         className,
       )}
       aria-label={ariaLabel}
@@ -58,7 +58,7 @@ export function BlockLink({
     <Link
       aria-label={ariaLabel}
       className={cn(
-        "group/link w-fit font-semibold leading-tight text-auto+",
+        "group/link w-fit leading-tight font-semibold text-ink",
         className,
       )}
       href={href}
@@ -66,12 +66,12 @@ export function BlockLink({
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
       prefetch={target !== "_blank"}
     >
-      <div className="w-fit text-pretty leading-[1.375]">
+      <div className="w-fit leading-[1.375] text-pretty">
         {icon === "left" && (
           <ArrowRightIcon
             className={cn(
               icon_cn,
-              "mb-0.5 mr-1 rotate-180 group-hover/link:-translate-x-[0.175rem] group-focus-visible/link:-translate-x-[0.175rem]",
+              "mr-1 mb-0.5 rotate-180 group-hover/link:-translate-x-[0.175rem] group-focus-visible/link:-translate-x-[0.175rem]",
             )}
           />
         )}
