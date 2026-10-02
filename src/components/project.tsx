@@ -8,7 +8,11 @@ import { Item } from "./item";
 export function Project({ title, description, skills, links, id }: Project) {
   return (
     <Item
-      side={<Project.Links {...{ links, title }} />}
+      side={
+        links?.some(({ url }) => url.trim()) ? (
+          <Project.Links {...{ links, title }} />
+        ) : undefined
+      }
       title={<Project.Title as="h3" {...{ title, id }} />}
       desc={description}
       tags={skills}
