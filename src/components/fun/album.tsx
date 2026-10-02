@@ -1,10 +1,14 @@
+import Image from "next/image";
 import type { Album } from "@/fun_data";
 
 export function Album({ title, image, author }: Album) {
   return (
     <div className="w-32 transition-transform duration-150 lg:w-48 xl:hover:scale-[1.04] xl:active:scale-[0.98]">
-      <img
+      <Image
         src={image}
+        width={192}
+        height={192}
+        unoptimized
         alt={`${title} by ${author} album cover`}
         className="aspect-square rounded object-cover shadow-lg"
       />

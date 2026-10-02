@@ -19,6 +19,9 @@ export function InlineLink({
     <Link
       href={href}
       target={target ?? "_blank"}
+      rel={
+        (target ?? "_blank") === "_blank" ? "noopener noreferrer" : undefined
+      }
       className={cn(
         "font-semibold text-auto+ transition-colors duration-150 ease-linear hover:text-clr focus-visible:text-clr",
         className,
@@ -60,6 +63,7 @@ export function BlockLink({
       )}
       href={href}
       target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       prefetch={target !== "_blank"}
     >
       <div className="w-fit text-pretty leading-[1.375]">

@@ -4,9 +4,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Brendon Zimmer",
-  description: "Brendon Zimmer is a software engineer from Los Angeles.",
-  icons: { icon: "icon.svg" },
+  metadataBase: new URL("https://brendon.app"),
+  title: {
+    default: "Brendon Zimmer — Software Engineer",
+    template: "%s · Brendon Zimmer",
+  },
+  description:
+    "Brendon Zimmer is a software engineer at Bloomberg in New York and a USC computer science graduate. Projects, experience, and a few favorite things.",
+  icons: { icon: "/icon.svg" },
 };
 
 export default function RootLayout({
@@ -16,10 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${GeistSans.variable} ${GeistMono.variable} snap-y snap-mandatory scroll-smooth bg-auto-- font-mono text-auto`}
+      className={`${GeistSans.variable} ${GeistMono.variable} font-mono`}
       lang="en"
     >
-      <body>{children}</body>
+      <body>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

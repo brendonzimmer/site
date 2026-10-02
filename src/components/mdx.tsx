@@ -11,9 +11,15 @@ import Link from "next/link";
 import fs from "fs/promises";
 
 export async function MDX(id: string) {
+  const source = await fs
+    .readFile(`./src/posts/${id}.mdx`, "utf8")
+    .catch((error: NodeJS.ErrnoException) => {
+      if (error.code === "ENOENT") notFound();
+      throw error;
+    });
   const bundle = await bundleMDX<{ authors: string[]; title: string }>({
-    source: await fs.readFile(`./src/posts/${id}.mdx`, "utf8"),
-  }).catch(notFound);
+    source,
+  });
   const mdx = await getMDXComponent(bundle.code)({
     components: article as unknown as MDXContentProps["components"],
   });
@@ -83,7 +89,7 @@ const article: any = {
       src={src ?? ""}
       width={1000}
       height={1000}
-      className="w-full rounded"
+      className="h-auto w-full rounded"
     />
   ),
 };

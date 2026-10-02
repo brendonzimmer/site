@@ -1,66 +1,82 @@
-import { Project } from "@/components/project";
-import { BlockLink } from "@/components/link";
-import { Item } from "@/components/item";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { projects } from "@/data";
 
+export const metadata: Metadata = {
+  title: "Project archive",
+  description:
+    "Software experiments, useful tools, and creative projects by Brendon Zimmer.",
+};
 export default function Projects() {
   return (
-    <div className="mx-auto flex max-w-screen-xl flex-col gap-2 p-6 lg:px-24 lg:pb-12 lg:pt-24">
-      <BlockLink
-        text="Brendon Zimmer"
-        href="/"
-        icon="left"
-        className="text-clr"
-        underline={false}
-        ariaLabel="Homepage"
-      />
-
-      <h1 className="text-4xl font-bold tracking-tight text-auto+ sm:text-5xl">
-        Project Archive
-      </h1>
-
-      <main>
-        <table className="mt-4 text-left">
-          <thead className="sticky top-0 z-10 border-b border-auto/20 bg-auto--/75 px-6 py-5 backdrop-blur">
-            <tr className="text-sm font-semibold uppercase text-clr *:py-4">
-              <th>Year</th>
-              <th>Project</th>
-              <th className="hidden sm:table-cell">Skills</th>
-              <th className="hidden sm:table-cell">Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from(projects)
-              .sort((a, b) => b.year - a.year)
-              .map((p) => {
-                return (
-                  <tr
-                    key={p.title}
-                    className="border-b border-auto/20 text-sm *:py-4 *:pr-4 *:align-top last:border-none"
-                  >
-                    <td className="translate-y-px">{p.year}</td>
-                    <td className="flex flex-col gap-1">
-                      <Project.Title as="h2" title={p.title} id={p.id} />
-                      <p className="text-pretty">{p.description}</p>
-                    </td>
-                    <td className="hidden sm:table-cell">
-                      <Item.Tags list={p.skills} />
-                    </td>
-                    <td className="hidden sm:table-cell">
-                      <Project.Links
-                        links={p.links}
-                        title={p.title}
-                        forceColumn
-                        icon="arrow-out"
-                        className="text-auto"
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </main>
-    </div>
+    <main id="main-content" className="site-shell archive-page">
+      <Link className="text-link" href="/">
+        ← Brendon Zimmer
+      </Link>
+      <div className="archive-heading">
+        <p className="eyebrow">A collection of things made</p>
+        <h1>
+          Project archive<span>.</span>
+        </h1>
+        <p>
+          Practical tools, systems experiments, and the occasional detour into
+          art.
+        </p>
+      </div>
+      <ol className="archive-list">
+        {[...projects]
+          .sort((a, b) => b.year - a.year)
+          .map((project) => (
+            <li key={project.title}>
+              <p className="project-year">{project.year}</p>
+              <div>
+                <h2>
+                  {project.id ? (
+                    <Link href={`/projects/${project.id}`}>
+                      {project.title} ↗
+                    </Link>
+                  ) : (
+                    project.title
+                  )}
+                </h2>
+                <p className="project-description">{project.description}</p>
+                <ul
+                  className="project-skills"
+                  aria-label={`${project.title} technologies`}
+                >
+                  {project.skills?.map((skill) => <li key={skill}>{skill}</li>)}
+                </ul>
+                <div className="project-actions">
+                  {project.id && (
+                    <Link
+                      className="text-link"
+                      href={`/projects/${project.id}`}
+                    >
+                      Project overview ↗
+                    </Link>
+                  )}
+                  {project.links
+                    ?.filter((link) => link.url.trim())
+                    .map((link) => (
+                      <a
+                        className="text-link"
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={link.name}
+                        aria-label={`${link.name === "Site" ? "Visit site" : "View code"} for ${project.title} (opens in a new tab)`}
+                      >
+                        {link.name === "Site" ? "Visit site" : "View code"} ↗
+                      </a>
+                    ))}
+                </div>
+              </div>
+            </li>
+          ))}
+      </ol>
+      <Link className="text-link" href="/">
+        ← Back home
+      </Link>
+    </main>
   );
 }

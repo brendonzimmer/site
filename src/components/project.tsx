@@ -74,7 +74,8 @@ Project.Links = function Links({
   icon?: "link" | "arrow-out";
   className?: string;
 }) {
-  if (!links?.length) return null;
+  const validLinks = links?.filter(({ url }) => url.trim());
+  if (!validLinks?.length) return null;
   return (
     <div
       className={cn(
@@ -82,7 +83,7 @@ Project.Links = function Links({
         forceColumn && "flex-col",
       )}
     >
-      {links.map(({ name, url }) => (
+      {validLinks.map(({ name, url }) => (
         <InlineLink
           key={name}
           target={name === "Blog" ? "_self" : "_blank"}
