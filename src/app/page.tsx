@@ -8,15 +8,13 @@ import { Project } from "@/components/project";
 import { Section } from "@/components/section";
 import { Album } from "@/components/fun/album";
 import { Show } from "@/components/fun/show";
+import { CollectionShelf } from "@/components/fun/collection-shelf";
 
 export default function Home() {
   return (
     <>
-      <div className="h-1 snap-none" />
-      <div className="h-0 snap-start snap-always bg-green-300" />
-
       {/* Professional */}
-      <div className="mx-auto max-w-screen-xl snap-end snap-always p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
+      <div className="mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
         <header className="flex h-min flex-col lg:sticky lg:top-24">
           <Me />
           <Socials className="py-4" />
@@ -34,22 +32,17 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Transition */}
-      <div
-        className="h-[300vh] snap-none"
-        style={{
-          backgroundImage: "linear-gradient(to bottom, #f1f5f9, #25283d)",
-        }}
-      />
-
-      {/* Fun */}
-      {/* <div className="h-96 snap-start snap-always bg-green-300" /> */}
-      <div className="snap-start snap-always bg-[#25283D] font-sans text-[#e5e5e5]">
-        <Fun />
+      {/* A local scroll-driven stage, never a document-wide scroll trap. */}
+      <div className="corner-transition" aria-hidden="true">
+        <div className="corner-transition-stage" />
       </div>
 
-      <div className="h-0 snap-end snap-always bg-green-300" />
-      <div className="h-1 snap-none" />
+      <section
+        className="corner-content bg-[#25283D] font-sans text-[#e5e5e5]"
+        aria-labelledby="corner-heading"
+      >
+        <Fun />
+      </section>
     </>
   );
 }
@@ -149,7 +142,9 @@ const Fun = () => (
   <>
     <div className="hidden pt-8 lg:block"></div>
     <div className="sticky top-0 z-10 bg-[#25283D]/90 px-6 pt-6 pb-4 backdrop-blur-md lg:px-24 lg:pt-4">
-      <h2 className="text-3xl font-medium">🏡 brendon&apos;s corner</h2>
+      <h2 id="corner-heading" className="text-3xl font-medium">
+        🏡 brendon&apos;s corner
+      </h2>
       <p>some things i like 🙂</p>
     </div>
     <div className="flex min-h-screen flex-col gap-4 px-6 pt-4 pb-6 lg:px-24 lg:pt-4 lg:pb-12">
@@ -170,40 +165,28 @@ const Fun = () => (
 );
 
 const Movies = () => (
-  <div
-    tabIndex={0}
-    aria-label="Movies"
-    className="-mr-6 -ml-24 scrollbar-none overflow-x-scroll pr-6 pl-24 lg:-mr-24 lg:-ml-24"
-  >
-    <div className="flex min-w-min gap-4 py-2">
+  <CollectionShelf label="Movies">
+    <div className="collection-track">
       {movies.map((m) => (
         <Show key={m.title} image={m.image} title={m.title} />
       ))}
     </div>
-  </div>
+  </CollectionShelf>
 );
 
 const Series = () => (
-  <div
-    tabIndex={0}
-    aria-label="Series"
-    className="-mr-6 -ml-24 scrollbar-none overflow-x-scroll pr-6 pl-24 lg:-mr-24 lg:-ml-24"
-  >
-    <div className="flex min-w-min gap-4 py-2">
+  <CollectionShelf label="Series">
+    <div className="collection-track">
       {series.map((tv) => (
         <Show key={tv.title} image={tv.image} title={tv.title} />
       ))}
     </div>
-  </div>
+  </CollectionShelf>
 );
 
 const Albums = () => (
-  <div
-    tabIndex={0}
-    aria-label="Albums"
-    className="-mr-6 -ml-24 scrollbar-none overflow-x-scroll pr-6 pl-24 lg:-mr-24 lg:-ml-24"
-  >
-    <div className="flex min-w-min gap-4 py-2">
+  <CollectionShelf label="Albums">
+    <div className="collection-track">
       {albums.map((a) => (
         <Album
           key={a.title}
@@ -213,5 +196,5 @@ const Albums = () => (
         />
       ))}
     </div>
-  </div>
+  </CollectionShelf>
 );

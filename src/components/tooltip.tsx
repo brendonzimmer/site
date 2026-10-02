@@ -1,43 +1,50 @@
 "use client";
 
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { cn } from "@/utils";
-import React from "react";
+import { useEffect, useState } from "react";
 
-const TooltipProvider = TooltipPrimitive.Provider;
-
-const TooltipRoot = TooltipPrimitive.Root;
-
-const TooltipTrigger = TooltipPrimitive.Trigger;
-
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn(
-      "z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-      className,
-    )}
-    {...props}
-  />
-));
-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
-
-export const Tooltip = ({
+export function Tooltip({
   trigger,
   content,
 }: {
   trigger: React.ReactNode;
   content: React.ReactNode;
-}) => (
-  <TooltipProvider>
-    <TooltipRoot>
-      <TooltipTrigger asChild>{trigger}</TooltipTrigger>
-      <TooltipContent>{content}</TooltipContent>
-      {/* <TooltipContent className="hidden sm:block">{content}</TooltipContent> */}
-    </TooltipRoot>
-  </TooltipProvider>
-);
+}) {
+  const [dismissed, setDismissed] = useState(false);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (!active || dismissed) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDismissed(true);
+    };
+    // Hover can open the hint while keyboard focus is somewhere else.
+    document.addEventListener("keydown", dismiss);
+    return () => document.removeEventListener("keydown", dismiss);
+  }, [active, dismissed]);
+
+  // The link already has a descriptive accessible name. This redundant visual
+  // hint needs neither a positioning engine nor another keyboard stop.
+  return (
+    <span
+      className="link-hint"
+      data-dismissed={dismissed || undefined}
+      onFocus={() => setActive(true)}
+      onPointerEnter={() => setActive(true)}
+      onBlur={(event) => {
+        const stillActive = event.currentTarget.matches(":hover");
+        setActive(stillActive);
+        if (!stillActive) setDismissed(false);
+      }}
+      onPointerLeave={(event) => {
+        const stillActive = event.currentTarget.matches(":focus-within");
+        setActive(stillActive);
+        if (!stillActive) setDismissed(false);
+      }}
+    >
+      {trigger}
+      <span className="link-hint-content" aria-hidden="true">
+        {content}
+      </span>
+    </span>
+  );
+}

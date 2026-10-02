@@ -58,7 +58,7 @@ try {
       );
       assert(!html.includes("approach graduation"), "No stale graduation copy");
       const images = html.match(/<img\b[^>]*>/g) || [];
-      assert(images.length > 0, "Gallery images present");
+      assert.equal(images.length, 59, "All 59 gallery images present");
       for (const image of images) {
         assert(image.includes('loading="lazy"'), "Lazy gallery image");
         assert(/alt="[^"]+"/.test(image), "Descriptive image alt");
@@ -67,8 +67,25 @@ try {
           "Intrinsic image dimensions",
         );
       }
-      assert(html.includes("h-[300vh]"), "Original gradient transition");
-      assert(html.includes("snap-mandatory"), "Original scroll snapping");
+      assert(html.includes("corner-transition-stage"), "Native reveal stage");
+      assert(!html.includes("h-[300vh]"), "No oversized gradient spacer");
+      assert(!html.includes("snap-mandatory"), "No document-wide snap trap");
+      assert(!html.includes("/_next/image?"), "No Vercel image proxy cost");
+      assert(
+        !/<img[^>]+src="\/gallery\//.test(html),
+        "No locally hosted covers",
+      );
+      assert(
+        !html.includes('rel="preload" as="image"'),
+        "No hidden gallery preloads",
+      );
+      for (const image of images) {
+        assert(image.includes('decoding="async"'), "Async gallery decode");
+        assert(
+          image.includes('src="https://'),
+          "Browser-direct external artwork",
+        );
+      }
       assert(html.includes("scrollbar-none"), "Hidden shelf scrollbars");
       const stylesheetPaths = [
         ...html.matchAll(/<link[^>]+href="([^"]+\.css[^"]*)"/g),
@@ -86,6 +103,15 @@ try {
           `Original palette utility ${selector}`,
         );
 
+      assert(styles.includes("view-timeline"), "Native view timeline");
+      assert(
+        styles.includes("prefers-reduced-motion"),
+        "Reduced-motion fallback",
+      );
+      assert(
+        styles.includes("overscroll-behavior-x:contain"),
+        "Contained shelf gesture",
+      );
       assert(!html.includes('href="#corner"'), "Corner stays undisclosed");
       assert(
         !html.includes("collection-controls"),

@@ -15,8 +15,9 @@ export function InlineLink({
   className?: string;
   children: React.ReactNode;
 }) {
+  const Anchor = href.startsWith("/") ? Link : "a";
   return (
-    <Link
+    <Anchor
       href={href}
       target={target ?? "_blank"}
       rel={
@@ -29,7 +30,7 @@ export function InlineLink({
       aria-label={ariaLabel}
     >
       {children}
-    </Link>
+    </Anchor>
   );
 }
 
@@ -52,10 +53,11 @@ export function BlockLink({
   className?: string;
   ariaLabel?: string;
 }) {
+  const Anchor = href.startsWith("/") ? Link : "a";
   const icon_cn =
     "inline-block size-3 transition-transform group-hover/link:translate-x-0.5 group-focus-visible/link:translate-x-0.5 motion-reduce:transition-none";
   return (
-    <Link
+    <Anchor
       aria-label={ariaLabel}
       className={cn(
         "group/link w-fit leading-tight font-semibold text-ink",
@@ -64,7 +66,6 @@ export function BlockLink({
       href={href}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      prefetch={target !== "_blank"}
     >
       <div className="w-fit leading-[1.375] text-pretty">
         {icon === "left" && (
@@ -115,6 +116,6 @@ export function BlockLink({
           />
         )}
       </div>
-    </Link>
+    </Anchor>
   );
 }

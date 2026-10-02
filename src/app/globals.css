@@ -27,12 +27,143 @@
   transform: translateY(0);
 }
 
-/* Keep the original transition unless the visitor requests less motion. */
+/* Smooth in-page navigation respects the visitor’s motion preference. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .transition-transform {
     transition: none;
+  }
+}
+
+/* A compact, readable fallback: the corner is always in normal document flow. */
+.corner-transition {
+  block-size: 75vh;
+  block-size: 75svh;
+  background: linear-gradient(to bottom, #f1f5f9, #25283d);
+}
+.corner-transition-stage {
+  display: none;
+}
+
+/* One local, reversible scene. Only opacity changes; no wheel interception,
+   per-frame JavaScript, global snapping, or live content hidden behind a layer. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) and
+    (animation-range: contain 0% contain 100%) {
+    .corner-transition {
+      block-size: 160svh;
+      background: #f1f5f9;
+      view-timeline: --corner-transition block;
+    }
+    .corner-transition-stage {
+      display: block;
+      position: sticky;
+      inset-block-start: 0;
+      block-size: 100vh;
+      block-size: 100dvh;
+      background: #f1f5f9;
+      pointer-events: none;
+    }
+    .corner-transition-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #25283d;
+      animation: corner-darken 1ms linear both;
+      animation-timeline: --corner-transition;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+}
+@keyframes corner-darken {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.collection-shelf {
+  margin-inline: -1.5rem;
+  padding-inline: 1.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1.5rem;
+}
+.collection-track {
+  display: flex;
+  gap: 1rem;
+  inline-size: max-content;
+  padding-block: 0.5rem;
+}
+.collection-track > * {
+  flex: none;
+  scroll-snap-align: start;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .collection-card {
+    transition: transform 150ms ease-out;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .collection-card:hover {
+      transform: scale(1.04);
+    }
+  }
+  .collection-card:active,
+  .collection-card[data-pressed] {
+    transform: scale(0.98);
+  }
+}
+.collection-shelf:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: -2px;
+}
+@media (min-width: 64rem) {
+  .collection-shelf {
+    margin-inline: -6rem;
+    padding-inline: 6rem;
+    scroll-padding-inline: 6rem;
+  }
+}
+
+.link-hint {
+  position: relative;
+  display: inline-block;
+}
+.link-hint-content {
+  position: absolute;
+  z-index: 20;
+  inset-inline-start: 50%;
+  inset-block-end: 100%;
+  padding-block-end: 0.5rem;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 120ms,
+    visibility 120ms;
+}
+.link-hint:not([data-dismissed]):focus-within .link-hint-content {
+  visibility: visible;
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link-hint:not([data-dismissed]):hover .link-hint-content {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-hint-content {
+    transition: none;
+  }
+  .collection-track > * {
+    transition: none;
+    transform: none;
+    scale: none;
   }
 }

@@ -1,14 +1,13 @@
-import Image from "next/image";
 import type { Show } from "@/fun_data";
+import { GalleryImage } from "./gallery-image";
 
 export function Show({ title, image }: Show) {
   return (
-    <div className="w-32 transition-transform duration-150 active:scale-[0.98] lg:w-48 xl:hover:scale-[1.04]">
-      <Image
+    <div className="collection-card w-32 lg:w-48">
+      <GalleryImage
         src={image}
         width={192}
         height={284}
-        unoptimized
         alt={`${title} cover`}
         className="aspect-[25/37] rounded object-cover shadow-lg"
       />

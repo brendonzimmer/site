@@ -1,14 +1,13 @@
-import Image from "next/image";
 import type { Album } from "@/fun_data";
+import { GalleryImage } from "./gallery-image";
 
 export function Album({ title, image, author }: Album) {
   return (
-    <div className="w-32 transition-transform duration-150 active:scale-[0.98] lg:w-48 xl:hover:scale-[1.04]">
-      <Image
+    <div className="collection-card w-32 lg:w-48">
+      <GalleryImage
         src={image}
         width={192}
         height={192}
-        unoptimized
         alt={`${title} by ${author} album cover`}
         className="aspect-square rounded object-cover shadow-lg"
       />

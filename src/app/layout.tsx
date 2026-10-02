@@ -1,7 +1,16 @@
-import { GeistSans } from "geist/font/sans";
+import localFont from "next/font/local";
 import { GeistMono } from "geist/font/mono";
 import type { Metadata } from "next";
 import "./globals.css";
+
+// Keep the same font without a high-priority preload competing with Mono.
+const GeistSans = localFont({
+  src: "../../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+  display: "swap",
+  preload: false,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brendon.app"),
@@ -21,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${GeistSans.variable} ${GeistMono.variable} snap-y snap-mandatory scroll-smooth bg-paper font-mono text-auto`}
+      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth bg-paper font-mono text-auto`}
       lang="en"
     >
       <body>

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:smoke": "node scripts/smoke-test.mjs"
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "test:gallery": "node scripts/check-gallery-images.mjs"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.0",
@@ -33,6 +34,7 @@
     "postcss": "^8",
     "prettier": "3.9.9",
     "prettier-plugin-tailwindcss": "0.8.1",
+    "sharp": "0.35.5",
     "tailwindcss": "4.3.3",
     "typescript": "^5",
     "@tailwindcss/postcss": "4.3.3"
