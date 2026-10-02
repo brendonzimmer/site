@@ -90,12 +90,12 @@ export const series: Show[] = [
   {
     title: "The Queen's Gambit",
     image:
-      "https://m.media-amazon.com/images/M/MV5BM2EwMmRhMmUtMzBmMS00ZDQ3LTg4OGEtNjlkODk3ZTMxMmJlXkEyXkFqcGdeQXVyMjM5ODk1NDU@._V1_.jpg",
+      "https://media.themoviedb.org/t/p/w500/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
   },
   {
     title: "Russian Doll",
     image:
-      "https://m.media-amazon.com/images/M/MV5BMzRjYzA2YzgtYmEyYy00YzZjLTkzMGEtMWQ1M2Y2MTA2ZjcwXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg",
+      "https://media.themoviedb.org/t/p/w500/1ju4vQ1EwlIkQxEgWiYmxOs3iBG.jpg",
   },
   {
     title: "Avatar: The Last Airbender",
@@ -105,7 +105,7 @@ export const series: Show[] = [
   {
     title: "Adventure Time",
     image:
-      "https://m.media-amazon.com/images/M/MV5BMGFkNGY4NGMtZjY0NC00YTI0LThiZjMtMjBmZGMzOGU3YTdmXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_FMjpg_UX1000_.jpg",
+      "https://media.themoviedb.org/t/p/w500/qk3eQ8jW4opJ48gFWYUXWaMT4l.jpg",
   },
 ] satisfies Show[];
 
@@ -137,7 +137,7 @@ export const albums: Album[] = [
   album(
     "Chip Chrome & The Mono-Tones",
     "The Neighbourhood",
-    "https://lastfm.freetls.fastly.net/i/u/500x500/5d033ef39b6dd6058a487e60a0eed29a.jpg",
+    "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/bd/0a/46/bd0a46b9-4eb6-bd63-c936-d66728a41dae/886448552550.jpg/592x592bb.webp",
   ),
   album(
     "Blonde",
@@ -147,7 +147,7 @@ export const albums: Album[] = [
   album(
     "Hard To Imagine The Neighbourhood Ever Changing",
     "The Neighbourhood",
-    "https://lastfm.freetls.fastly.net/i/u/500x500/86e765555e472c686ddfd172f63a9982.jpg",
+    "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/d0/89/fcd0899c-2236-a726-9ce2-ebb110e2204d/886447414545.jpg/592x592bb.webp",
   ),
   album(
     "Trumpet Boy",
@@ -172,7 +172,7 @@ export const albums: Album[] = [
   album(
     "HIT ME HARD AND SOFT",
     "Billie Eilish",
-    "https://lastfm.freetls.fastly.net/i/u/500x500/e69971625c379772fb79213dccfa194f.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/a/aa/Billie_Eilish_-_Hit_Me_Hard_and_Soft.png",
   ),
   album(
     "Currents",

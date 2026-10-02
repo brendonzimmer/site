@@ -592,3 +592,23 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+.cover-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #3a405d;
+  color: #cbd0e3;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.cover-fallback > span:first-child {
+  font-size: 36px;
+}
+.collection-show .cover-fallback {
+  aspect-ratio: 240/355;
+}
