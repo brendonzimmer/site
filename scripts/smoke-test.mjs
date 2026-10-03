@@ -69,6 +69,11 @@ try {
       }
       assert(html.includes('class="home-page"'), "Homepage-scoped snapping");
       assert(html.includes("home-professional"), "Professional scene");
+      assert(html.includes('id="brendon-corner"'), "Corner entrance target");
+      assert(
+        html.includes('aria-controls="brendon-corner"'),
+        "Accessible corner entrance",
+      );
       assert(!html.includes("corner-transition"), "No empty transition scene");
       assert(!html.includes("h-[300vh]"), "No oversized gradient spacer");
       assert(!html.includes("/_next/image?"), "No Vercel image proxy cost");

@@ -20,7 +20,7 @@ bun run test:smoke
 
 The smoke test starts the production build on port 3100, then checks the homepage, project archive, project overview, and unknown-project 404. It also checks titles, page landmarks, headings, the hidden corner’s native transition, homepage-scoped section snapping, nonempty links, browser-direct lazy image loading, and current biography copy.
 
-Browser QA should cover narrow and wide screens, keyboard navigation, the three collection shelves, the hidden-corner reveal in both directions, short wheel movements near the footer, Back/Forward, and reduced-motion preferences.
+Browser QA should cover narrow and wide screens, keyboard navigation, the three collection shelves, the hidden-corner reveal in both directions, arrival momentum at the footer, a fresh extra gesture, interrupted entry, Back/Forward, and reduced-motion preferences. Record the transition itself, not just its settled endpoints.
 
 ## Framework versions
 
@@ -31,7 +31,7 @@ Tailwind v4 targets Safari 16.4+, Chrome 111+, and Firefox 128+.
 ## Content refresh
 
 - Original page structure, slate/blue palette, monospace type, sticky identity column, and hidden dark-purple personal corner are restored from the live-site source
-- The hidden corner remains a scrolling discovery, with native section snapping and a CSS crossfade at the shared content boundary, without a blank transition scene; shelves retain hidden scrollbars, hover motion, and touch press feedback
+- The regular page ends naturally at its footer. A fresh extra scroll opens the hidden corner with a short reveal and lands at its beginning, without a blank transition scene; shelves retain hidden scrollbars, hover motion, and touch press feedback
 - Biography reflects the public Bloomberg/New York announcement and USC computer science graduation, magna cum laude, in 2025
 - Rig leads the selected projects; older experiments remain in the archive
 - The USC Course Notifier article is a concise overview, replacing unfinished placeholder text
@@ -59,8 +59,9 @@ Use a Vercel **Preview** deployment for review. Production promotion is a separa
 - Professional content and gallery markup are server rendered. Static external links use native anchors; only internal navigation uses Next Link.
 - The project-detail hint is a small client island with Escape dismissal, replacing the tooltip/positioning library in the browser bundle. Its trigger and content remain server-rendered slots.
 - The hidden-corner reveal uses native view timelines at the shared boundary between the professional section and corner. The outgoing professional scene and one viewport-wide purple backdrop share the full boundary-crossing range. The enhanced corner is transparent during entry, avoiding an abrupt purple panel edge. Its text switches from black to white at the backdrop's contrast crossover instead of interpolating through unreadable colors.
-- A small client wrapper settles near the main-page top, its readable end, and the corner start using native `scrollend` and `scrollTo`. It only advances in the visitor's current direction, so a small gesture away from a landing is never pulled backward. New wheel, pointer or keyboard input cancels that automatic settling without preventing the input's default action. A passive listener records direction; layout is measured only after scrolling finishes. There is no input replacement, animation loop, React update per frame, or added transition space. Server-rendered content remains outside the client implementation.
-- Browsers without `scrollend` retain CSS proximity snaps on small scene-start targets. Browsers without view timelines retain solid readable section surfaces. Reduced-motion visitors get no scene fades or automatic directional settling. Keyboard focus also suppresses automatic settling, and an outgoing focused professional link suppresses the dissolve. All content is server rendered and no content depends on JavaScript to appear.
+- A small client wrapper makes the regular page's bottom a deliberate discovery boundary. The enhanced corner is collapsed and inert until a fresh gesture starts at that boundary. Arrival momentum cannot qualify; the extra gesture unlocks the corner and uses native smooth scrolling to land at its beginning. The triggering wheel burst is drained before ordinary corner scrolling resumes. Opposite input can interrupt the reveal. Returning to the main page closes the boundary again.
+- Keyboard and assistive-technology users have a real entrance button at the footer, revealed visually on keyboard focus. Touch entry requires a separate vertical swipe starting at the boundary. Reduced motion retains the deliberate entrance with an instant jump and no fades or title pop. Geometry is cached outside input handlers; there is no animation loop or React update per frame. Server-rendered content remains outside the client implementation.
+- Without the JavaScript enhancement, both sections remain normally readable with CSS proximity snapping. Browsers without view timelines retain solid readable section surfaces. Explicit corner fragments and restored positions must preserve access rather than being clamped into the closed main page.
 - Shelves use native overflow and proximity snapping, with a single keyboard focus stop per shelf. Motion is gated by input capability and reduced-motion preferences. There is no carousel library or permanently promoted layer per card.
 - The same Geist fonts are retained. Only the landing-page monospace font is preloaded; the sans face loads as needed. This changes request priority, not necessarily total font transfer.
 - Artwork is loaded directly from the existing external providers. Do not introduce Vercel image proxying, local cover hosting, or a new paid image service: avoiding that transfer cost is intentional.

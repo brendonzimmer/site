@@ -14,7 +14,7 @@ import { HomeScenes } from "@/components/home-scenes";
 export default function Home() {
   return (
     <HomeScenes>
-      {/* Native snap targets sit at scene starts without adding layout space. */}
+      {/* The corner opens only after another gesture at the main page's end. */}
       <div className="home-professional mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
         <header className="flex h-min flex-col lg:sticky lg:top-24">
           <Me />
@@ -30,10 +30,20 @@ export default function Home() {
         <footer className="col-start-2">
           <Separator className="my-8" />
           <Thanks />
+          <button
+            type="button"
+            className="corner-entry"
+            data-corner-entry
+            aria-controls="brendon-corner"
+            aria-expanded="false"
+          >
+            Explore Brendon&apos;s Corner
+          </button>
         </footer>
       </div>
 
       <section
+        id="brendon-corner"
         className="corner-content bg-[#25283D] font-sans text-[#e5e5e5]"
         aria-labelledby="corner-heading"
       >
@@ -138,7 +148,7 @@ const Fun = () => (
   <>
     <div className="hidden pt-8 lg:block"></div>
     <div className="corner-heading-surface sticky top-0 z-10 bg-[#25283D]/90 px-6 pt-6 pb-4 backdrop-blur-md lg:px-24 lg:pt-4">
-      <h2 id="corner-heading" className="text-3xl font-medium">
+      <h2 id="corner-heading" tabIndex={-1} className="text-3xl font-medium">
         🏡 brendon&apos;s corner
       </h2>
       <p>some things i like 🙂</p>

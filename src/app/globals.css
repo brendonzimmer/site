@@ -49,6 +49,58 @@ html:has(.home-page[data-snapping="directional"]) {
 .home-page {
   isolation: isolate;
 }
+/* The enhanced main page has a real end. The next intentional gesture unlocks
+   the adjacent corner; no empty scroll distance is inserted into the layout. */
+.home-page[data-corner="closed"] .corner-content {
+  block-size: 0;
+  overflow: clip;
+  visibility: hidden;
+}
+.home-page[data-corner="closed"] .home-professional {
+  animation: none;
+  opacity: 1;
+}
+.home-page[data-corner="closed"] .corner-content::before {
+  display: none;
+  animation: none;
+  opacity: 0;
+}
+html:has(.home-page[data-corner="closed"]) {
+  overscroll-behavior-y: none;
+}
+/* Keep discovery hidden visually, with an actual entrance for keyboard and
+   assistive-technology users. Revealing focus never changes the page height. */
+.corner-entry {
+  display: none;
+}
+.home-page[data-corner="closed"] .corner-entry {
+  display: block;
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.home-page[data-corner="closed"] .corner-entry:focus-visible {
+  position: fixed;
+  inset: auto 1.5rem 1.5rem auto;
+  z-index: 100;
+  inline-size: auto;
+  block-size: auto;
+  padding: 0.75rem 1rem;
+  clip-path: none;
+  background: #f1f5f9;
+  color: #25283d;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+#corner-heading:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
 .home-professional,
 .corner-content {
   position: relative;
@@ -87,6 +139,12 @@ html:has(.home-page[data-snapping="directional"]) {
       animation: corner-heading-surface 1ms steps(1, end) both;
       animation-timeline: --corner-reveal;
       animation-range: entry 0% entry 100%;
+    }
+    .corner-heading-surface h2 {
+      transform-origin: left center;
+      animation: corner-title-arrive 1ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: --corner-reveal;
+      animation-range: entry 35% entry 100%;
     }
     .corner-content::before {
       content: "";
@@ -155,6 +213,14 @@ html:has(.home-page[data-snapping="directional"]) {
   }
   to {
     background: rgb(37 40 61 / 90%);
+  }
+}
+@keyframes corner-title-arrive {
+  from {
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    transform: none;
   }
 }
 .collection-shelf {
