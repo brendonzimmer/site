@@ -15,10 +15,26 @@ export function HomeScenes({ children }: { children: React.ReactNode }) {
     let previousY = window.scrollY;
     let direction = 0;
     let settling = false;
+    const stopWatchingInput = () => {
+      window.removeEventListener("wheel", cancelSettling, true);
+      window.removeEventListener("pointerdown", cancelSettling, true);
+      window.removeEventListener("keydown", cancelSettling, true);
+    };
+    const cancelSettling = () => {
+      if (!settling) return;
+      settling = false;
+      direction = 0;
+      // Stop only our pending smooth scroll. The new input's default action
+      // still runs normally; no wheel, touch or keyboard event is prevented.
+      window.scrollTo({ top: window.scrollY, behavior: "instant" });
+      previousY = window.scrollY;
+      stopWatchingInput();
+    };
     const reset = () => {
       previousY = window.scrollY;
       direction = 0;
       settling = false;
+      stopWatchingInput();
     };
 
     const trackDirection = (event: Event) => {
@@ -33,6 +49,7 @@ export function HomeScenes({ children }: { children: React.ReactNode }) {
       if (settling) {
         settling = false;
         direction = 0;
+        stopWatchingInput();
         return;
       }
 
@@ -62,17 +79,28 @@ export function HomeScenes({ children }: { children: React.ReactNode }) {
       if (target === undefined) return;
 
       settling = true;
+      window.addEventListener("wheel", cancelSettling, {
+        passive: true,
+        capture: true,
+      });
+      window.addEventListener("pointerdown", cancelSettling, {
+        passive: true,
+        capture: true,
+      });
+      window.addEventListener("keydown", cancelSettling, true);
       window.scrollTo({ top: target, behavior: "smooth" });
     };
 
     // CSS proximity snapping can undo a small gesture away from a snap target.
-    // Replace it only where scrollend is supported. Inputs remain untouched:
-    // the browser handles wheel, touch momentum, keys and smooth-scroll easing.
+    // Replace it only where scrollend is supported. The browser handles input,
+    // touch momentum and easing; new input can cancel our automatic settling.
     root.dataset.snapping = "directional";
     document.addEventListener("scroll", trackDirection, { passive: true });
     document.addEventListener("scrollend", settle);
     window.addEventListener("pageshow", reset);
     return () => {
+      cancelSettling();
+      stopWatchingInput();
       document.removeEventListener("scroll", trackDirection);
       document.removeEventListener("scrollend", settle);
       window.removeEventListener("pageshow", reset);
