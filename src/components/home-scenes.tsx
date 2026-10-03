@@ -53,7 +53,7 @@ export function HomeScenes({ children }: { children: React.ReactNode }) {
       const mainBottom = Math.max(top, cornerTop - window.innerHeight);
       const reach = Math.min(160, window.innerHeight * 0.2);
       const maxY = document.documentElement.scrollHeight - window.innerHeight;
-      const candidates = [...new Set([top, mainBottom, cornerTop])]
+      const candidates = Array.from(new Set([top, mainBottom, cornerTop]))
         .filter((target) => target >= 0 && target <= maxY)
         .filter((target) => (target - y) * travel > 1)
         .filter((target) => Math.abs(target - y) <= reach)
