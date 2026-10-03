@@ -68,7 +68,7 @@ try {
         );
       }
       assert(html.includes('class="home-page"'), "Homepage-scoped snapping");
-      assert(html.includes("home-professional"), "Full professional snap area");
+      assert(html.includes("home-professional"), "Professional scene");
       assert(!html.includes("corner-transition"), "No empty transition scene");
       assert(!html.includes("h-[300vh]"), "No oversized gradient spacer");
       assert(!html.includes("/_next/image?"), "No Vercel image proxy cost");
@@ -110,8 +110,8 @@ try {
         "Snapping scoped to homepage",
       );
       assert(
-        styles.includes("scroll-snap-type:y mandatory"),
-        "Native vertical snaps",
+        styles.includes("scroll-snap-type:y proximity"),
+        "Native proximity snaps",
       );
       assert(
         styles.includes("scroll-snap-align:start"),
