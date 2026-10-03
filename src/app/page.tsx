@@ -9,10 +9,11 @@ import { Section } from "@/components/section";
 import { Album } from "@/components/fun/album";
 import { Show } from "@/components/fun/show";
 import { CollectionShelf } from "@/components/fun/collection-shelf";
+import { HomeScenes } from "@/components/home-scenes";
 
 export default function Home() {
   return (
-    <div className="home-page">
+    <HomeScenes>
       {/* Native snap targets sit at scene starts without adding layout space. */}
       <div className="home-professional mx-auto max-w-screen-xl p-6 lg:grid lg:grid-cols-[2fr_3fr] lg:gap-4 lg:px-24 lg:pt-24 lg:pb-12">
         <header className="flex h-min flex-col lg:sticky lg:top-24">
@@ -38,7 +39,7 @@ export default function Home() {
       >
         <Fun />
       </section>
-    </div>
+    </HomeScenes>
   );
 }
 

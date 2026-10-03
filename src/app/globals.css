@@ -43,6 +43,9 @@
 html:has(.home-page) {
   scroll-snap-type: y proximity;
 }
+html:has(.home-page[data-snapping="directional"]) {
+  scroll-snap-type: none;
+}
 .home-page {
   isolation: isolate;
 }
